@@ -37,7 +37,7 @@
   
   
   .see-all {
-    font-size: clamp(15px, 2vw, 15px);
+    font-size: 20px;
     color: #c6ffa4;
   }
   
@@ -55,12 +55,6 @@
     background: #111;
     color: #fff;
     padding: 30px 130px;
-  }
-  
-  .games2 {
-    background: #85c443;
-    color: #fff;
-    padding: 30px 70px;
   }
   
   .game-grid {

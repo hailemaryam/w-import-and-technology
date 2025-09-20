@@ -40,9 +40,9 @@
   background: #98CC52;
   border-radius: 30px; /* slightly smaller radius */
   margin: 10px 25% 0 27%;
-  padding: 10px 15px; /* smaller padding */
+  padding: 10px 12px; /* smaller padding */
   color: #ffffff;
-  font-weight: 500;
+  font-weight: 400;
   width: 45%;
   text-transform: uppercase;
   cursor: pointer;

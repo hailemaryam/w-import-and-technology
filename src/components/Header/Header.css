@@ -12,7 +12,6 @@
 }
 
 
-
   .nav-shell {
     display: flex;
     align-items: center;
@@ -43,7 +42,7 @@
     justify-content: center;
     gap: 32px;
     height: 100%;
-    padding-top: 20px;
+    padding-top: 50px;
     align-items: center;
   }
   

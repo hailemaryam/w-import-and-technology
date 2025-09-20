@@ -1,0 +1,30 @@
+/* About Section */
+.about {
+    background: #85c443;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    }
+
+    .about img {
+    width: 50%;
+    height: 400px;
+    }
+
+    .about-text {
+    flex: 1;
+    }
+
+    .about-text h2 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    }
+
+    .about-text p {
+    font-weight: 100;
+        font-size: 14px;
+        line-height: 1.5;
+    }
