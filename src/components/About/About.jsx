@@ -4,9 +4,9 @@ import "./About.css"; // Optional CSS file for styling
 function About() {
   return (
     <section className="about">
-      <img src="/images/exact_embed.svg" alt="Character" />
+      <img src="/images/exact_embed.png" alt="Character" />
       <div className="about-text">
-        <p>ABOUT KIDOPIA ----</p>
+        <p className="about-kidopia">ABOUT KIDOPIA ----</p>
         <h2
           data-en="EXPERIENCE NEXT-LEVEL ENTERTAINMENT WITH KIDOPIA – YOUR ULTIMATE PREMIUM HTML5 GAMING PORTAL."
           data-am="የቀጣይ ደረጃ መዝናኛን ከKIDOPIA ጋር ይለማመዱ - የእርስዎ የመጨረሻው ፕሪሚየም HTML5 ጨዋታ መግቢያ።"

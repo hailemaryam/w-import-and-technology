@@ -14,7 +14,8 @@ function Kidopia() {
       <main>
       <Hero />
       <Box />
-     
+     <About />
+     <Box />
       </main>
 
 

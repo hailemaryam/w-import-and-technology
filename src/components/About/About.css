@@ -6,25 +6,32 @@
     align-items: center;
     gap: 50px;
     flex-wrap: wrap;
-    }
+    min-height: 100px;
+    padding: 0;
+}
 
-    .about img {
+.about img {
+    padding-left: 20px;
     width: 50%;
-    height: 400px;
-    }
+    height: 40%;
+}
 
-    .about-text {
+.about-text {
     flex: 1;
-    }
+    padding-right: 3%;
+}
 
-    .about-text h2 {
-    font-size: 40px;
+.about-text h2 {
+    font-size: 50px;
     font-weight: 800;
     margin-bottom: 15px;
-    }
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
-    .about-text p {
-    font-weight: 100;
-        font-size: 14px;
-        line-height: 1.5;
-    }
+
+.about-text p {
+    font-weight: 10;
+    font-size: 30px;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
