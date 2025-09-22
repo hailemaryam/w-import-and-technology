@@ -1,4 +1,5 @@
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -11,21 +12,21 @@ function Header() {
 
         {/* Center navigation */}
         <nav className="green-bar">
-          <a className="active" href="#">Home</a>
+          <Link className="active links home" to="/">Home</Link>
 
           <div className="dropdown">
-            <a href="#" className="dropbtn">Game Category ▾</a>
+            <span className="dropbtn links">Game Category ▾</span>
             <div className="dropdown-content">
-              <a href="#">Action</a>
-              <a href="#">Adventure</a>
-              <a href="#">Arcade</a>
-              <a href="#">Sports</a>
-              <a href="#">Puzzle</a>
+              <Link className="categorys" to="/category/action">Action</Link>
+              <Link className="categorys" to="/category/adventure">Adventure</Link>
+              <Link className="categorys" to="/category/arcade">Arcade</Link>
+              <Link className="categorys" to="/category/sports">Sports</Link>
+              <Link className="categorys" to="/category/puzzle">Puzzle</Link>
             </div>
           </div>
 
-          <a href="#">My Account</a>
-          <a className="toggle-lang" href="#" id="lang-toggle">En | አማርኛ</a>
+          <Link className="my-account links" to="/">My Account</Link>
+          <a className="toggle-lang links" href="#" id="lang-toggle">En | አማርኛ</a>
         </nav>
 
         {/* Right logo */}

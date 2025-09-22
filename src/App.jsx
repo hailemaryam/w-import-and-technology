@@ -1,15 +1,13 @@
 import './App.css'
 import Kidopia from './components/Kidopia'
-
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 function App() {
   return (
-    <Kidopia/>
-    // <div className="App">
-  
-    //   <Kidopia />
-    // </div>
+    <Router>
+      <Kidopia />
+    </Router>
   );
 }
 
