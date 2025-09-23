@@ -7,9 +7,11 @@ function GameCard({ name, img, link }) {
     <div className="game-card">
       <img src={img} alt={name} />
       <p>{name}</p>
+      <div>
       <button onClick={() => window.open(link, "_blank")}>
-        PLAY NOW <FaPlay className="icon" />
+        PLAY NOW <FaPlay className="icon" /> 
       </button>
+      </div>
     </div>
   );
 }

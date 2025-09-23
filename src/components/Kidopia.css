@@ -6,10 +6,7 @@
   width: 100%;
 }
 
-/* Ensure each component takes full width and stacks vertically */
-.kidopia-container > * {
-  width: 100%;
-}
+
 
 /* Optional: Add some spacing between components if needed */
 .kidopia-container > *:not(:last-child) {

@@ -46,7 +46,7 @@ const gameData = {
     { name: "Mighty Raju", img: "/images/gmighty_raju.png", link: "https://www.kidopia.et/esportsmix/content/Action/game3.html" },
   ],
   adventure: [
-    { name: "Avalaunch", img: "/images/logo.jpg", link: "https://www.kidopia.et/esportsmix/content/Adventure/Avalaunch/index.html" },
+    { name: "Avalaunch", img: "/images/gava_launch.png", link: "https://www.kidopia.et/esportsmix/content/Adventure/Avalaunch/index.html" },
     { name: "A Dungeon Adventure for Brave", img: "/images/logo.jpg", link: "https://www.kidopia.et/esportsmix/content/Adventure/ADungeonAdventurefortheBrave/index.html" },
     { name: "Alien Rivals", img: "/images/logo(1).png", link: "https://www.kidopia.et/esportsmix/content/Adventure/AlienRivals/index.html" },
     { name: "Angry Betty", img: "/images/logo(2).png", link: "https://www.kidopia.et/esportsmix/content/Adventure/AngryBetty/index.html" },
@@ -61,7 +61,7 @@ const gameData = {
   ],
   arcade: [
     { name: "Beary Rapids", img: "/images/gbeary_rapids.png", link: "#" },
-    { name: "44 Chats", img: "/images/logo(8).png", link: "#" },
+    { name: "44 Chats", img: "/images/g44chats.png", link: "#" },
   ]
 };
 

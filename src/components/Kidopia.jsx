@@ -4,14 +4,17 @@ import Home from "./Home/Home";
 import Footer from "./Footer/Footer";
 import Category from "./Category/Category";
 import { Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "../contexts/LanguageContext";
 
 function Kidopia() {
 
   return (
 
     <div >
+      <LanguageProvider>
       {/* Header */}
       <Header />
+      
       <main>
       <Routes>
           <Route path="/" element={<Home />} />
@@ -19,8 +22,9 @@ function Kidopia() {
         </Routes>
       </main>
       <Footer />
-
-    </div>
+      
+      </LanguageProvider>
+      </div>
   )
 }
 

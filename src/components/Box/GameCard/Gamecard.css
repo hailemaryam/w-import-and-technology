@@ -11,37 +11,42 @@
 
 .game-card img {
   width: 100%;
-  height: 60%; /* take half of the card */
-  object-fit: cover; /* scale and crop to fill */
+  aspect-ratio: 4/3; /* 4:3 rectangular aspect ratio */
+  object-fit: cover;
+  flex: none;
 }
-
-
 
 .game-card p {
   margin: 10px 0;
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 25px;
   font-weight: 100;
   text-align: center;
+  flex: 1;
 }
 
+.game-card div {
+  align-items: bottom;
+  justify-content: center;
+  flex: 1;
+}
 
 .game-card button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 17px; /* slightly smaller */
+  font-size: 15px;
   background: #98CC52;
-  border-radius: 30px; /* slightly smaller radius */
+  border-radius: 30px;
   margin: 10px 25% 0 27%;
-  padding: 10px 12px; /* smaller padding */
+  padding: 10px 12px;
   color: #ffffff;
   font-weight: 400;
   width: 40%;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-top: 12px; /* space below the text */
+  margin-top: 12px;
   margin-bottom: 12px;
 }
 
@@ -49,17 +54,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   padding: 5px;
   margin-left: 8px;
   border-radius: 50%;
-  border: 1px solid #fff;      /* white circle */
-  color: #fff;        /* green icon */
-  font-size: 10px;  
+  border: 1px solid #fff;
+  color: #fff; 
 }
 
 .game-card button:hover {
   transform: translateY(-2px);
-  background: #000; /* subtle hover effect */
+  background: #000;
 }
