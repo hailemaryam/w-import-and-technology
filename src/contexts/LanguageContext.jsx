@@ -38,7 +38,6 @@ export const LanguageProvider = ({ children }) => {
       aboutTitle: "EXPERIENCE NEXT-LEVEL ENTERTAINMENT WITH KIDOPIA – YOUR ULTIMATE PREMIUM HTML5 GAMING PORTAL.",
       aboutDescription: "Play hundreds of high-quality games instantly — no downloads, no waiting, just pure fun. Fast, sleek, and built for any device, KIDOPIA turns every moment into a gaming adventure.",
       privacyPolicy: "Privacy Policy",
-      termsConditions: "Terms & Conditions",
       faq: "FAQ",
       copyright: "© ETHIO TELECOM KIDOPIA 2025, ALL RIGHTS RESERVED",
       // Banner
@@ -100,7 +99,6 @@ export const LanguageProvider = ({ children }) => {
       aboutTitle: "የቀጣይ ደረጃ መዝናኛን ከKIDOPIA ጋር ይለማመዱ - የእርስዎ የመጨረሻው ፕሪሚየም HTML5 ጨዋታ መግቢያ።",
       aboutDescription: "በመቶዎች የሚቆጠሩ ከፍተኛ ጥራት ያላቸውን ጨዋታዎችን በቅጽበት ይጫወቱ - ምንም ማውረድ፣ መጠበቅ የለም፣ ንጹህ አዝናኝ ብቻ። ፈጣን፣ ቄንጠኛ እና ለማንኛውም መሳሪያ የተሰራ KIDOPIA እያንዳንዱን አፍታ ወደ የጨዋታ ጀብዱነት ይቀየራል።",
       privacyPolicy: "የግለሰቦች ፖሊሲ",
-      termsConditions: "ውሎች እና ሁኔታዎች",
       faq: "FAQ", // You can add Amharic translation if needed
       copyright: "© ኢትዮ ቴሌኮም KIDOPIA 2025፣ መብቱ በህግ የተጠበቀ ነው።",
       // Banner

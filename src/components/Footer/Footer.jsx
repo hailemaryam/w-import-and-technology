@@ -1,34 +1,28 @@
 import React from "react";
 import "./Footer.css";
-import { useLanguage } from '../../contexts/LanguageContext'; // Adjust path as needed
+import { useLanguage } from '../../contexts/LanguageContext';
 import { Link } from "react-router-dom";
-
 
 function Footer() {
   const { t } = useLanguage();
 
   return (
     <footer className="footer">
-      <div className="footer-inner">
-        <div className="foot-links">
-          <a href="#">
+      <div className="footer-container">
+        <div className="footer-links">
+          <a href="#" className="footer-link">
             {t('privacyPolicy')}
           </a>
-          <Link to="terms">
+          <Link to="/terms" className="footer-link">
             {t('termsConditions')}
           </Link>
-          <a href="https://t.me/+uZq8ysM6FWA2ZWVk">
+          <a href="https://t.me/+uZq8ysM6FWA2ZWVk" className="footer-link">
             {t('contactUs')}
           </a>
-          <a href="#">
+          <a href="#" className="footer-link">
             {t('faq')}
           </a>
         </div>
-
-        {/* Uncomment if you want the copyright */}
-        {/* <div className="copy">
-          {t('copyright')}
-        </div> */}
       </div>
     </footer>
   );
