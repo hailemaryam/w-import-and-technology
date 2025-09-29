@@ -1,7 +1,7 @@
 /* ---------- Hero ---------- */
 .hero {
   background: #8DC63F;
-
+height: 90vh;
   min-height: 100%;
   /* increased height */
   display: flex;
