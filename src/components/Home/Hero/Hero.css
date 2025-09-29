@@ -2,7 +2,7 @@
 .hero {
   background: #8DC63F;
 
-  min-height: 90%;
+  min-height: 100%;
   /* increased height */
   display: flex;
   align-items: center;

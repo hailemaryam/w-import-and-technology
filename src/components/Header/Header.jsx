@@ -1,12 +1,15 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext.jsx';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Header() {
   const { t, toggleLanguage, currentLang } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+  const mobileNavRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -21,6 +24,38 @@ function Header() {
     setIsDropdownOpen(false);
   };
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if click is outside both mobile nav and hamburger button
+      if (
+        isMobileMenuOpen &&
+        mobileNavRef.current &&
+        !mobileNavRef.current.contains(event.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        closeMobileMenu();
+      }
+    };
+
+    // Add event listener when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when mobile menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Re-enable body scroll when mobile menu is closed
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header className="header">
       <div className="nav-shell">
@@ -31,7 +66,8 @@ function Header() {
 
         {/* Hamburger Menu Button */}
         <button 
-          className="hamburger-menu" 
+          ref={hamburgerRef}
+          className={`hamburger-menu ${isMobileMenuOpen ? 'open' : ''}`} 
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
         >
@@ -57,17 +93,10 @@ function Header() {
 
           <Link className="my-account links" to="/">{t('myAccount')}</Link>
           
+          {/* Simplified Language Toggle Button */}
           <button 
             className="toggle-lang links" 
             onClick={toggleLanguage}
-            style={{ 
-              background: 'none', 
-              color: 'white',
-              border: 'none',  
-              cursor: 'pointer',
-              fontSize: '23px',
-              padding: 0
-            }}
           >
             {currentLang === 'en' ? 'አማርኛ|English' : 'English|አማርኛ'}
           </button>
@@ -80,7 +109,10 @@ function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+      <nav 
+        ref={mobileNavRef}
+        className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}
+      >
         <Link className="links home" to="/" onClick={closeMobileMenu}>{t('home')}</Link>
         
         {/* Mobile Dropdown Container */}
@@ -101,21 +133,12 @@ function Header() {
 
         <Link className="links my-account" to="/" onClick={closeMobileMenu}>{t('myAccount')}</Link>
         
+        {/* Simplified Mobile Language Toggle Button */}
         <button 
-          className="links toggle-lang-mobile" 
+          className="toggle-lang links" 
           onClick={() => {
             toggleLanguage();
             closeMobileMenu();
-          }}
-          style={{ 
-            background: 'none', 
-            color: 'white',
-            border: 'none',  
-            cursor: 'pointer',
-            fontSize: '18px',
-            padding: '15px 20px',
-            textAlign: 'left',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
           }}
         >
           {currentLang === 'en' ? 'አማርኛ|English' : 'English|አማርኛ'}

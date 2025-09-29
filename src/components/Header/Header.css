@@ -1,139 +1,144 @@
 .header {
   background: #8DC63F; /* green background */
-  height: 16vh; /* set a fixed height instead of 100% */
+  height: 12vh; /* use viewport height for scaling */
+  min-height: 60px; /* minimum height for very small screens */
+  max-height: 100px; /* maximum height for very large screens */
   display: flex;
   align-items: center;
   width: 100%;
-  border-bottom: 3px solid white;
-  position: fixed;   /* fix it at the top */
-  top: 0;            /* align to top */
+  border-bottom: 0.5vh solid white; /* relative to viewport height */
+  position: fixed;
+  top: 0;
   left: 0;
-  z-index: 999;     /* stay above other content */
+  z-index: 999;
 }
 
-
-  .nav-shell {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  /* Caps with logos */
-  .cap {
-    display: flex;
-    align-items: center;
-  }
-  
-  .cap img {
-    height: 16vh;        /* slightly taller than the header height */
-    width: auto;         /* keeps the aspect ratio */
-    max-height: 16vh;   /* prevent it from overflowing too much */
-    object-fit: contain;
-    margin: 0;
-    padding: 0;
+.nav-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 0; /* percentage padding for side spacing */
+  height: 8vh;
 }
 
-  
-  /* Center nav links */
-  .green-bar {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    height: 100%;
-    padding-top: 50px;
-    align-items: center;
-  }
-  
+/* Caps with logos */
+.cap {
+  display: flex;
+  align-items: center;
+  flex: 0 1 auto; /* flexible but doesn't grow unnecessarily */
+}
 
-  .green-bar .links:hover,
-  .green-bar .links.active {
-    color: #fff;
-    font-weight: 800;
-  }
-  
-  /* Dropdown */
-  .dropdown {
-    position: relative;
-  }
-  
-  .links {
-    cursor: pointer;
-    color: #fff;
-    font-weight: 500;
-    text-decoration: none;
-    font-size: 23px;
-    padding: 0 10px;
-    transition: color 0.3s;
-    
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    background: #ffffff;
-    min-width: 180px;
-    border: 1px solid #fff;
-    border-radius: 4px ;
-    overflow: hidden;
-    z-index: 100;
-  }
-  
-  .categorys{
-    display: block;
-    padding: 10px 14px;
-    color: #8DC63F;
-    font-size: 20px;
-    text-decoration: none;
-  }
-  
-  .categorys:hover {
-    color: #fff;
-    background: #8DC63F;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
+.cap img {
+  height: 12vh; /* relative to viewport height */
+  min-height: 60px; /* prevent too small on mobile */
+  max-height: 100px; /* prevent too large on desktop */
+  width: auto;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+}
+
+/* Center nav links */
+.green-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 2vw; /* viewport width for gap scaling */
+  height: 100%;
+  padding-top: 4vh; /* relative padding */
+  align-items: center;
+}
+
+.green-bar .links:hover,
+.green-bar .links.active {
+  color: #fff;
+  font-weight: 800;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.links {
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: clamp(16px, 2.2vh, 24px); /* responsive font size */
+  padding: 0 1vw; /* viewport width padding */
+  transition: color 0.3s;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: #ffffff;
+  min-width: 12vw; /* viewport width for responsive sizing */
+  max-width: 200px; /* maximum width */
+  border: 0.1vh solid #fff;
+  border-radius: 0.4vh;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.categorys {
+  display: block;
+  padding: 1vh 1vw;
+  color: #8DC63F;
+  font-size: clamp(14px, 1.8vh, 20px);
+  text-decoration: none;
+}
+
+.categorys:hover {
+  color: #fff;
+  background: #8DC63F;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Mobile Hamburger Menu */
 .hamburger-menu {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  width: clamp(25px, 6vw, 35px); /* responsive width */
+  height: clamp(18px, 4vh, 25px); /* responsive height */
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin-left: 20px;
+  margin-left: 2vw; /* percentage margin */
 }
 
 .hamburger-menu span {
   display: block;
-  height: 3px;
+  height: 0.3vh; /* relative to viewport height */
   width: 100%;
   background-color: white;
-  border-radius: 3px;
+  border-radius: 0.3vh;
   transition: all 0.3s ease;
 }
+
 /* Mobile Navigation */
 .mobile-nav {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
-  background: #2E7D32;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for exact center */
+  width: 40%;
+  background: #fff;
   flex-direction: column;
   z-index: 1000;
+  text-align: center; /* Center text content */
 }
 
 .mobile-nav.open {
@@ -141,20 +146,23 @@
 }
 
 .mobile-nav .links {
-  padding: 15px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5vh 3vw;
+  border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2); /* Green border for better visibility */
   text-decoration: none;
-  color: white;
-  font-size: 18px;
+  color: #8DC63F;
+  font-size: clamp(16px, 2vh, 20px);
   background: none;
   border: none;
-  text-align: left;
+  text-align: center; /* Center align text */
+  width: 100%;
 }
 
 /* Mobile Dropdown Container */
 .mobile-dropdown-container {
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center dropdown items */
+  padding-left: 5vw;
 }
 
 .mobile-dropdown-btn {
@@ -164,55 +172,80 @@
   width: 100%;
   background: none;
   border: none;
-  color: white;
-  font-size: 18px;
-  padding: 15px 20px;
+  color: #8DC63F;
+  font-size: clamp(16px, 2vh, 20px);
+  padding: 1.5vh 3vw;
   cursor: pointer;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center; /* Center text */
+  border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2); /* Green border */
 }
 
 /* Mobile Dropdown Content */
 .mobile-dropdown-content {
   display: none;
   flex-direction: column;
-  background: #1B5E20;
+  background: #fff; /* White background */
+  width: 100%;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
+  align-items: center; /* Center dropdown items */
 }
 
 .mobile-dropdown-content.open {
   display: flex;
-  max-height: 300px; /* Adjust based on your content height */
+  max-height: 30vh;
   transition: max-height 0.3s ease-in;
 }
 
 .mobile-nav .categorys {
-  padding: 12px 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.2vh 4vw;
+  border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2); /* Green border */
   text-decoration: none;
-  color: white;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  color: #8DC63F;
+  font-size: clamp(14px, 1.8vh, 18px);
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center; /* Center text */
 }
 
-.mobile-nav .categorys:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+/* When category is clicked/hovered */
+.mobile-nav .categorys:hover,
+.mobile-nav .categorys.active {
+  color: #fff; /* White text */
+  background: #8DC63F; /* Green background */
+}
+
+/* Language button styling for mobile */
+.mobile-nav .toggle-lang.links {
+  color: #8DC63F; /* Green color for language text */
+  text-align: center;
+  width: 100%;
 }
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .nav-shell {
+    height: 16vh;
     margin: 0;
+    padding: 0 0;
   }
+  
+  .header {
+    height: 16vh;
+    min-height: 55px;
+    margin: 0;
+    padding: 0;
+  }
+
   .cap img {
-    max-width: 200px;
+    max-width: 100%; /* percentage instead of fixed pixels */
+    height: 16vh;
   }
   
   .green-bar .links {
-    font-size: 18px;
-    padding: 10px 12px;
+    font-size: clamp(16px, 1.4vh, 20px);
+    padding: 0.5vh 0.5vw;
   }
 }
 
@@ -220,6 +253,7 @@
   .hamburger-menu {
     display: flex;
   }
+  
   .green-bar {
     display: none !important;
   }
@@ -237,7 +271,9 @@
   }
   
   .nav-shell {
+    height: 9vh;
     justify-content: space-between;
+    padding: 0 0;
   }
   
   .mobile-nav {
@@ -246,6 +282,16 @@
   
   .mobile-nav.open {
     display: flex;
+  }
+  
+  .header {
+    height: 9vh;
+    min-height: 50px;
+  }
+  
+  .cap img {
+    height: 9vh;
+    min-height: 40px;
   }
   
   /* Ensure the dropdown content appears below the button */
@@ -259,27 +305,146 @@
 
 @media (max-width: 480px) {
   .cap img {
-    max-width: 100px;
+    max-width: 100%;
+    height: 8vh;
+  }
+  
+  .nav-shell {
+    height: 8vh;
+    margin: 0;
+    padding: 0 0;
+  }
+  
+  .header {
+    height: 8vh;
+    min-height: 45px;
   }
   
   .hamburger-menu {
-    width: 25px;
-    height: 18px;
-    margin-left: 15px;
+    width: clamp(20px, 8vw, 30px);
+    height: clamp(15px, 4vh, 22px);
+    margin-left: 3vw;
   }
   
   .mobile-nav .links,
   .mobile-dropdown-btn {
-    padding: 12px 15px;
-    font-size: 16px;
+    padding: 1.2vh 4vw;
+    font-size: clamp(14px, 1.8vh, 18px);
+    color: #8DC63F;
   }
   
   .mobile-nav .categorys {
-    padding: 10px 25px;
-    font-size: 14px;
+    padding: 1vh 5vw;
+    font-size: clamp(12px, 1.6vh, 16px);
   }
   
   .mobile-dropdown-content.open {
-    max-height: 250px; /* Smaller height for mobile */
+    max-height: 25vh; /* Smaller height for mobile */
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .header {
+    height: 7vh;
+    min-height: 40px;
+  }
+  
+  .cap img {
+    height: 7vh;
+    min-height: 40px;
+  }
+  
+  .nav-shell {
+    height: 7vh;
+    padding: 0 0;
+  }
+}
+
+
+/* Add this to your CSS file */
+
+/* Language Toggle Button - Desktop */
+.toggle-lang.links {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: clamp(16px, 2.2vh, 22px);
+  padding: 0 1vw;
+  transition: color 0.3s;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.toggle-lang.links:hover {
+  color: #fff;
+  font-weight: 800;
+}
+
+/* Mobile styles for language toggle */
+@media (max-width: 768px) {
+  .toggle-lang.links {
+    color: #8DC63F;
+    text-align: center;
+    width: 100%;
+    padding: 1.5vh 3vw;
+    border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2);
+    font-size: clamp(16px, 2vh, 20px);
+  }
+  
+  /* Ensure it stays green in mobile nav */
+  .mobile-nav .toggle-lang.links {
+    color: #8DC63F;
+  }
+  
+  /* Hover state for mobile */
+  .mobile-nav .toggle-lang.links:hover {
+    color: #fff;
+    background: #8DC63F;
+  }
+}
+/* Hamburger Menu Transformations */
+.hamburger-menu.open span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Update existing hamburger menu styles */
+.hamburger-menu span {
+  display: block;
+  height: 0.3vh;
+  width: 100%;
+  background-color: white;
+  border-radius: 0.3vh;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Adjust transform values for different screen sizes */
+@media (max-width: 768px) {
+  .hamburger-menu.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburger-menu.open span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+  
+  .hamburger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
   }
 }

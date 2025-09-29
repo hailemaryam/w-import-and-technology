@@ -1,5 +1,10 @@
 main {
-    padding-top: 16vh; /* push content below the fixed header */
+    padding-top: 10vh; /* push content below the fixed header */
     width: 100%;
   }
-  
+@media (max-width: 768px) {
+    main {
+        padding-top: 8vh; /* push content below the fixed header */
+        width: 100%;
+      } 
+}
