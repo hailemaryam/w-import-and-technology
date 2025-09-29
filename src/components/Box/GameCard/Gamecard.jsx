@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa"; // <-- import the icon
-import "./GameCard.css"; // card styles
+import "./Gamecard.css"; // card styles
 
 function GameCard({ name, img, link }) {
   return (
