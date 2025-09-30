@@ -95,7 +95,7 @@
 
 .hero-art img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   max-height: 80vh;
   object-fit: contain;
 }
@@ -116,13 +116,16 @@
   }
   
   .hero-title {
+    padding-top: 6%;
     margin-bottom: 1.25rem;
+    font-size: clamp(2rem, 5vw, 4rem);
   }
   
   .hero-description {
     margin-bottom: 2rem;
     margin-left: auto;
     margin-right: auto;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
   }
   
   .hero-cta .btn {
@@ -133,6 +136,9 @@
   .hero-art {
     padding-top: 1rem;
     align-items: center;
+    width: 100%;
+    padding-left: 2rem;
+    height: 50%;
   }
 }
 
@@ -161,6 +167,13 @@
   .hero-cta .btn {
     padding: 0.875rem 1.75rem;
   }
+  .hero-art {
+    padding-top: 1rem;
+    align-items: center;
+    width: 100%;
+    padding-left: 2rem;
+    height: 50%;
+  }
 }
 
 /* Small Mobile Responsive */
@@ -175,7 +188,11 @@
   }
   
   .hero-art {
-    padding-top: 0.5rem;
+    padding-top: 1rem;
+    align-items: center;
+    width: 100%;
+    padding-left: 2rem;
+    height: 50%;
   }
 }
 

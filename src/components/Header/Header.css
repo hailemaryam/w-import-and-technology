@@ -249,6 +249,16 @@
   }
 }
 
+@media(max-width: 980px){
+  .green-bar .links {
+    font-size: clamp(13px, 1vh, 17px);
+    padding: 0.5vh 0.5vw;
+  }
+  .toggle-lang.links {
+    font-size: clamp(13px, 1vh, 17px);
+  }
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: flex;
