@@ -1,8 +1,8 @@
 /* ---------- Hero ---------- */
 .hero {
   background: #8DC63F;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 70vh;
+  height: 70vh;
   display: flex;
   align-items: center;
   color: #fff;
