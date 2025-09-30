@@ -8,3 +8,9 @@ main {
         width: 100%;
       } 
 }
+@media (max-width: 1024px) {
+    main {
+        padding-top: 5vh; /* push content below the fixed header */
+        width: 100%;
+      } 
+}

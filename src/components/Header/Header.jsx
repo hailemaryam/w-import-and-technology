@@ -61,7 +61,7 @@ function Header() {
       <div className="nav-shell">
         {/* Left logo */}
         <div className="cap left-cap">
-          <img src="/images/ethio_telecom_logo.svg" alt="Ethio Telecom" />
+          <img src="/images/ethio_telecom_logo.svg" className="" alt="Ethio Telecom" />
         </div>
 
         {/* Hamburger Menu Button */}
@@ -104,7 +104,7 @@ function Header() {
 
         {/* Right logo */}
         <div className="cap right-cap">
-          <img className="kidopia" src="/images/kidopia-logo.png" alt="KIDOPIA" />
+          <img className="kidopia " src="/images/kidopia-logo.png" alt="KIDOPIA" />
         </div>
       </div>
 
