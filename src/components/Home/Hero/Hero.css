@@ -35,13 +35,14 @@
 }
 
 .hero-title {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 4.5vw, 3.5rem);
   font-weight: 800;
-  text-transform: uppercase;
+  text-transform: uppercase; 
   font-family: 'roboto', sans-serif;
   margin-bottom: 1.5rem;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  margin-top: 2rem;
  
 }
 
