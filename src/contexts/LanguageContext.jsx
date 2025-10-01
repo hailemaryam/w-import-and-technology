@@ -83,7 +83,7 @@ export const LanguageProvider = ({ children }) => {
       helpDesk: "Help Desk : 251 970 305 059"
     },
     am: {
-      home: "ቤት",
+      home: "መግቢያ",
       gameCategory: "የጨዋታ ምድብ",
       actionGames: "ተግባር",
       adventureGames: "መግባባት",

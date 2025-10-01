@@ -73,7 +73,8 @@
 .games {
   background: #111;
   color: #fff;
-  padding: 40px 130px;
+  padding: 8% 130px 6% 130px;
+  margin-top: auto;
 }
 
 .game-grid {
