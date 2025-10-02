@@ -10,12 +10,13 @@ function Home() {
 
             <Hero />
             <Box categoryName="action" />
-            <About />
-            
             <Box categoryName="adventure" />
             <Box categoryName="puzzle" />
             <Box categoryName="sports" />
       <Box categoryName="arcade" />
+            <About />
+            
+  
 
 
         </div>
