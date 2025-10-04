@@ -6,6 +6,7 @@ import Footer from "./Footer/Footer";
 import Login from "./Login/Login";
 import Category from "./Category/Category";
 import TermsAndConditions from "./TermsAndConditions/TermsAndConditions";
+import ProtectedRoute from "./ProtectedRoute";
 import { Routes, Route, useLocation } from "react-router-dom"; // ADD useLocation
 import { LanguageProvider } from "../contexts/LanguageContext";
 
@@ -23,10 +24,18 @@ function Kidopia() {
       
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/category/:categoryName" element={<Category />} />
-            <Route path="/login/" element={<Login />} /> 
+            <Route path="/login" element={<Login />} />
             <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/" element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            } />
+            <Route path="/category/:categoryName" element={
+              <ProtectedRoute>
+                <Category />
+              </ProtectedRoute>
+            } />
           </Routes>
         </main>
         

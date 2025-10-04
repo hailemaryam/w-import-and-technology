@@ -1,13 +1,24 @@
 import './App.css'
 import Kidopia from './components/Kidopia'
 import { HashRouter as Router } from "react-router-dom";
+import { FrappeProvider } from "frappe-react-sdk";
+import { AuthProvider } from "./contexts/AuthContext";
 
+// Use proxy URL for development, direct URL for production
+const frappeUrl = import.meta.env.DEV ? window.location.origin : 'https://kidopia.memby.online';
+
+console.log('Frappe URL:', frappeUrl);
+console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
 
 function App() {
   return (
-    <Router>
-      <Kidopia />
-    </Router>
+    <FrappeProvider url={frappeUrl}>
+      <AuthProvider>
+        <Router>
+          <Kidopia />
+        </Router>
+      </AuthProvider>
+    </FrappeProvider>
   );
 }
 

@@ -1,10 +1,13 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext.jsx';
+import { useAuth } from '../../contexts/AuthContext';
 import { useState, useRef, useEffect } from 'react';
 
 function Header() {
   const { t, toggleLanguage, currentLang } = useLanguage();
+  const { logout, currentUser } = useAuth();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
@@ -22,6 +25,13 @@ function Header() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsDropdownOpen(false);
+  };
+
+  const handleLogout = async () => {
+    const result = await logout();
+    if (result.success) {
+      navigate('/login');
+    }
   };
 
   // Close mobile menu when clicking outside
@@ -92,7 +102,7 @@ function Header() {
           </div>
 
           <Link className="my-account links" to="/">{t('myAccount')}</Link>
-          <Link className="links logout" to="/">{t('logout')}</Link>
+          <Link className="links logout" onClick={handleLogout}>{t('logout')}</Link>
           
           {/* Simplified Language Toggle Button */}
           <button 
@@ -133,7 +143,7 @@ function Header() {
         </div>
 
         <Link className="links my-account" to="/" onClick={closeMobileMenu}>{t('myAccount')}</Link>
-        <Link className="active links logout" to="/" onClick={closeMobileMenu}>{t('logout')}</Link>
+        <button className="active links logout" onClick={() => { handleLogout(); closeMobileMenu(); }}>{t('logout')}</button>
         
         {/* Simplified Mobile Language Toggle Button */}
         <button 
