@@ -119,6 +119,7 @@
 .kidopia-login-container {
   width: 100%;
   text-align: center;
+  padding: 0 auto;
 }
 
 .kidopia-login-container h2 {
@@ -136,7 +137,19 @@
   line-height: 1.5;
   text-align: center;
 }
-
+.subscription-list{
+  display: inline;
+  margin: 3em;
+}
+.subscription-list li{
+  text-align: left;
+  margin-left: 5%;
+}
+.kidopia-error {
+  background: #fee;
+  color: #d32f2f;
+  border: 1px solid #f5c6cb;
+}
 /* ===== Form Elements ===== */
 .kidopia-input-group,
 .kidopia-otp-wrap {
@@ -202,6 +215,21 @@
   cursor: not-allowed;
 }
 
+/* ===== Loading Text Animation ===== */
+.loading-text::after {
+  content: '...';
+  display: inline-block;
+  animation: dots 1s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+
 /* ===== Messages ===== */
 .kidopia-message {
   font-size: 14px;
@@ -242,14 +270,14 @@
   transform: scale(1.2);
 }
 
-.kidopia-consent-line a {
+.consent {
   color: var(--primary-green);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
-.kidopia-consent-line a:hover {
+.consent:hover {
   color: var(--green-dark);
   text-decoration: underline;
 }

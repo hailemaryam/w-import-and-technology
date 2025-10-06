@@ -1,3 +1,4 @@
+/* Footer Base */
 .footer {
   background: #323334;
   color: #c6ff74;
@@ -5,21 +6,22 @@
   border-top: 2px solid #85c443;
   margin-top: auto;
   width: 100%;
+  text-align: center;
 }
 
 .footer-container {
-  max-width: 100%;
+  max-width: 1200px; /* reasonable max width */
   margin: 0 auto;
-  padding: 0 0;
-  width: 100%;
+  padding: 0 10px;
 }
 
+/* Links */
 .footer-links {
   display: flex;
-  justify-content: space-between; /* This spreads links evenly across full width */
-  align-items: center;
-  width: 100%;
-  gap: 40px; /* Reduced gap since space-between handles spacing */
+  justify-content: center; /* center all links */
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 10px;
 }
 
 .footer-link {
@@ -31,8 +33,6 @@
   padding: 10px 20px;
   position: relative;
   white-space: nowrap;
-  flex: 1; /* Makes each link take equal space */
-  text-align: center; /* Center text within each link */
 }
 
 .footer-link:hover {
@@ -56,7 +56,8 @@
   width: 80%;
 }
 
-/* Tablet Responsive */
+
+/* Responsive Design */
 @media (max-width: 1024px) {
   .footer-link {
     font-size: 18px;
@@ -64,58 +65,46 @@
   }
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .footer {
     padding: 25px 0;
   }
-  
-  .footer-links {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  
+
   .footer-link {
     font-size: 16px;
     padding: 8px 12px;
-    flex: 0 0 calc(50% - 10px); /* 2 columns on mobile */
-    text-align: center;
   }
 }
 
-/* Small Mobile Devices */
 @media (max-width: 480px) {
-  .footer {
-    padding: 20px 0;
-  }
-  
-  .footer-links {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
   .footer-link {
     font-size: 16px;
     padding: 12px 0;
-    flex: 0 0 auto;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .footer-container {
-    padding: 0 15px;
   }
 }
 
-/* Very Small Devices */
 @media (max-width: 320px) {
-  .footer-links {
-    gap: 12px;
-  }
-  
   .footer-link {
     font-size: 15px;
     padding: 10px 0;
+  }
+}
+
+/* Accessibility Focus */
+.footer-link:focus {
+  outline: 2px solid #85c443;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .footer-link {
+    transition: none;
+  }
+
+  .footer-link:hover {
+    transform: none;
   }
 }
 
@@ -132,22 +121,4 @@ html, body {
 
 .main-content {
   flex: 1;
-}
-
-/* Focus states for accessibility */
-.footer-link:focus {
-  outline: 2px solid #85c443;
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .footer-link {
-    transition: none;
-  }
-  
-  .footer-link:hover {
-    transform: none;
-  }
 }

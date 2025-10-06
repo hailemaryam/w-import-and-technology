@@ -73,7 +73,7 @@
 .games {
   background: #111;
   color: #fff;
-  padding: 6vh 130px 6% 130px;
+  padding: 8% 130px 6% 130px;
   margin-top: auto;
 }
 
@@ -94,7 +94,7 @@
 /* Mobile Box Section - Enhanced Responsive Design */
 @media (max-width: 768px) {
   .games {
-    padding: 30px 20px !important;
+    padding: 6% 20px !important;
   }
   
   .section-title {
@@ -164,12 +164,12 @@
 /* Small Mobile Devices */
 @media (max-width: 480px) {
   .games {
-    padding: 20px 15px !important;
+    padding: 20% 15px !important;
   }
   
   .section-title {
     font-size: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 1vh;
   }
   
   .section-header {
@@ -180,18 +180,19 @@
   }
   
   .section-title-h2 {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
     gap: 10px;
     line-height: 1.2;
   }
   
   .section-title-h2 .clr {
-    font-size: 2.5rem !important; /* Adjusted for better proportion */
+    font-size: 2rem !important; /* Adjusted for better proportion */
   }
   
   .see-all {
     font-size: 16px;
     padding: 7px 18px;
+    visibility: hidden;
   }
   
   .see-all2 {

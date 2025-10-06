@@ -36,9 +36,9 @@ const getCategoryConfig = (t) => ({
     iconColor: "#4ecdc4",
     backgroundColor: "#000",
   },
-  arcade: {
-    name: t('arcadeGames'),
-    title: t('arcadeTitle'),
+  reflex: {
+    name: t('reflexGames'),
+    title: t('reflexTitle'),
     icon: FaGamepad,
     iconColor: "#ffd93d",
     backgroundColor: "#85c443",
@@ -67,7 +67,7 @@ const gameData = {
     { name: "Maighty Raju", img: "/images/gmighty_raju.png", link: "#" },
     { name: "Bouncy Cubs", img: "/images/gbouncy_cubs.png", link: "#" },
   ],
-  arcade: [
+  reflex: [
     { name: "Beary Rapids", img: "/images/gbeary_rapids.png", link: "#" },
     { name: "44 Chats", img: "/images/g44chats.png", link: "#" },
   ]
@@ -101,7 +101,7 @@ function Box({ categoryName, showAllGames = false }) {
     e.preventDefault();
     navigate(`/category/${categoryKey}`);
   };
-
+ 
   return (
     <section className="games" style={{ backgroundColor: backgroundColor }}>
       {/* Main section title */}

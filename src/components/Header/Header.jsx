@@ -95,13 +95,13 @@ function Header() {
             <div className="dropdown-content">
               <Link className="categorys" to="/category/action">{t('actionGames')}</Link>
               <Link className="categorys" to="/category/adventure">{t('adventureGames')}</Link>
-              <Link className="categorys" to="/category/arcade">{t('arcadeGames')}</Link>
+              <Link className="categorys" to="/category/reflex">{t('reflexGames')}</Link>
               <Link className="categorys" to="/category/sports">{t('sportsGames')}</Link>
               <Link className="categorys" to="/category/puzzle">{t('puzzleGames')}</Link>
             </div>
           </div>
 
-          <Link className="my-account links" to="/">{t('myAccount')}</Link>
+          <Link className="my-account links" to="/my-account">{t('myAccount')}</Link>
           <Link className="links logout" onClick={handleLogout}>{t('logout')}</Link>
           
           {/* Simplified Language Toggle Button */}
@@ -136,13 +136,13 @@ function Header() {
           <div className={`mobile-dropdown-content ${isDropdownOpen ? 'open' : ''}`}>
             <Link className="categorys" to="/category/action" onClick={closeMobileMenu}>{t('actionGames')}</Link>
             <Link className="categorys" to="/category/adventure" onClick={closeMobileMenu}>{t('adventureGames')}</Link>
-            <Link className="categorys" to="/category/arcade" onClick={closeMobileMenu}>{t('arcadeGames')}</Link>
+            <Link className="categorys" to="/category/reflex" onClick={closeMobileMenu}>{t('reflexGames')}</Link>
             <Link className="categorys" to="/category/sports" onClick={closeMobileMenu}>{t('sportsGames')}</Link>
             <Link className="categorys" to="/category/puzzle" onClick={closeMobileMenu}>{t('puzzleGames')}</Link>
           </div>
         </div>
 
-        <Link className="links my-account" to="/" onClick={closeMobileMenu}>{t('myAccount')}</Link>
+        <Link className="links my-account" to="/my-account" onClick={closeMobileMenu}>{t('myAccount')}</Link>
         <button className="active links logout" onClick={() => { handleLogout(); closeMobileMenu(); }}>{t('logout')}</button>
         
         {/* Simplified Mobile Language Toggle Button */}

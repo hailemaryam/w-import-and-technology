@@ -9,10 +9,10 @@ function Home() {
         <div>
 
             <Hero />
-            <Box categoryName="action" />
-            <Box categoryName="puzzle" />
             <Box categoryName="adventure" />
-            <Box categoryName="arcade" />
+            <Box categoryName="puzzle" />
+            <Box categoryName="action" />
+            <Box categoryName="reflex" />
             <Box categoryName="sports" />
 
             <About />

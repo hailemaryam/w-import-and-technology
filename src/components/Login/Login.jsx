@@ -1,58 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../contexts/LanguageContext";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function LoginPage() {
   const { login, isLoading } = useAuth();
   const navigate = useNavigate();
-  const [lang, setLang] = useState(sessionStorage.getItem("lang") || "en");
   const [phone, setPhone] = useState("");
   const [pin, setPin] = useState("");
 
   const [messages, setMessages] = useState({ error: "", success: "" });
   const [agreeTnc, setAgreeTnc] = useState(false);
 
-  const i18n = {
-    en: {
-      welcome: "WELCOME TO KIDOPIA",
-      login: "Login",
-      description: "Enter your phone number and PIN to access your account",
-      phone_placeholder: "Enter your phone number",
-      pin_placeholder: "Enter your PIN",
-      invalid_phone: "Please enter a valid phone number",
-      pin_required: "PIN is required",
-      login_success: "Login successful! 🎉 Redirecting...",
-      login_error: "Login failed. Please check your credentials.",
-      consent: "By continuing, you agree to Ethio telecom's",
-      terms: "terms and conditions",
-      login_btn: "LOGIN",
-      trial: "Enjoy a 3-day free trial for your first Registration",
-      contact: "Contact Us",
-      help: "Help Desk : 251 970 305 059"
-    },
-    am: {
-      welcome: "እንኳን ወደ Kidopia በደህና መጡ",
-      login: "ለመመዝገብ",
-      description: "የስልክ ቁጥርዎን እና ፒን ያስገቡ",
-      phone_placeholder: "የስልክ ቁጥርዎን ያስገቡ",
-      pin_placeholder: "ፒንዎን ያስገቡ",
-      invalid_phone: "እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ",
-      pin_required: "ፒን ያስፈልጋል",
-      login_success: "ግባ ተሳክቷል! 🎉 በቅርብ ጊዜ እየተሻገረ ነው...",
-      login_error: "ግባ አልተሳካም። እባክዎ የይለፍ ቃልዎን ያረጋግጡ።",
-      consent: "በመቀጠል፤ የኢትዮ ቴሌኮም ዉሎችን ተስማምተዋል",
-      terms: "ደንቦች",
-      login_btn: "ግባ",
-      trial: "ለመጀመሪያ ምዝገባዎ 3 ቀን በነፃ ይጠቀሙ",
-      contact: "ያግኙን",
-      help: "Help Desk : 251 970 305 059"
-    }
-  };
-
+  const { t, currentLang } = useLanguage();
   useEffect(() => {
-    sessionStorage.setItem("lang", lang);
-  }, [lang]);
+    sessionStorage.setItem("lang", currentLang);
+  }, [currentLang]);
+  const [localLoading, setLocalLoading] = useState(false);
 
   const validatePhone = (phone) => {
     // Remove any non-digit characters and check if it's a valid phone number
@@ -69,29 +34,29 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     console.log('Login form submitted with:', { phone, pin: pin ? '***' : 'empty' });
-    
+
     if (!phone || !pin) {
-      setMessages({ 
-        error: !phone ? t.invalid_phone : t.pin_required, 
-        success: "" 
+      setMessages({
+        error: !phone ? t.invalid_phone : t.pin_required,
+        success: ""
       });
       return;
     }
 
     if (!validatePhone(phone)) {
-      setMessages({ 
-        error: t.invalid_phone, 
-        success: "" 
+      setMessages({
+        error: t.invalid_phone,
+        success: ""
       });
       return;
     }
 
     if (!agreeTnc) {
-      setMessages({ 
-        error: "Please agree to terms and conditions", 
-        success: "" 
+      setMessages({
+        error: "Please agree to terms and conditions",
+        success: ""
       });
       return;
     }
@@ -99,27 +64,29 @@ export default function LoginPage() {
     // Format phone number for email
     const emailForFrappe = formatPhoneForEmail(phone);
     console.log('Calling login function with:', { email: emailForFrappe, password: '***' });
-    
+
+  // Start loading
+  setLocalLoading(true);
     const result = await login(emailForFrappe, pin);
-    console.log('Login result:', result);
     
+  // Stop loading
+  setLocalLoading(false);
+    console.log('Login result:', result);
+
     if (result.success) {
-      setMessages({ 
-        error: "", 
-        success: t.login_success 
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
+      setMessages({ error: "", success: t("login_success") });
+      setTimeout(() => navigate("/"), 1500);
     } else {
-      setMessages({ 
-        error: result.error || t.login_error, 
-        success: "" 
-      });
+      if (result.error?.toLowerCase().includes("not found") || result.error?.toLowerCase().includes("unregistered")) {
+        setMessages({ error: t("please_register"), success: "" }); // use t() here
+      } else {
+        setMessages({ error: result.error|| t("login_error"), success: "" });
+      }
     }
+       
   };
 
-  const t = i18n[lang];
+
 
   return (
     <div className="kidopia-login-page">
@@ -129,16 +96,26 @@ export default function LoginPage() {
           <div className="kidopia-hero-left">
             <img src="/images/images.svg" alt="Kidopia Characters" />
           </div>
-          
+
           <div className="kidopia-card">
             <div className="kidopia-card-header">
-              {t.welcome}
+              {t('welcome')}
             </div>
             <div className="kidopia-card-inner">
               <div className="kidopia-login-container">
-                <h2>{t.login}</h2>
-                <p>{t.description}</p>
-
+                <h2>{t('login')}</h2>
+                <p>{t('description')}</p>
+                <ul className="subscription-list">
+                  <li>{t('daily')}</li>
+                  <li>{t('weekly')}</li>
+                  <li>{t('monthly')}</li>
+                </ul>
+                {/* Display Error Message */}
+                {messages.error && (
+                  <div className="kidopia-message kidopia-error">
+                    {messages.error}
+                  </div>
+                )}
                 {/* Phone Input */}
                 <div className="kidopia-input-group">
                   <span>+251</span>
@@ -146,7 +123,7 @@ export default function LoginPage() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
-                    placeholder={t.phone_placeholder}
+                    placeholder={t('phone_placeholder')}
                     maxLength="15"
                     required
                   />
@@ -158,14 +135,10 @@ export default function LoginPage() {
                     type="password"
                     value={pin}
                     onChange={(e) => setPin(e.target.value)}
-                    placeholder={t.pin_placeholder}
+                    placeholder={t('pin_placeholder')}
                     required
                   />
                 </div>
-
-                {/* Messages */}
-                {messages.error && <div className="kidopia-message kidopia-error">{messages.error}</div>}
-                {messages.success && <div className="kidopia-message kidopia-success">{messages.success}</div>}
 
                 {/* Consent */}
                 <div className="kidopia-consent-line">
@@ -176,10 +149,10 @@ export default function LoginPage() {
                     onChange={(e) => setAgreeTnc(e.target.checked)}
                   />
                   <label htmlFor="kidopia-tnc-checkbox">
-                    {t.consent}{" "}
-                    <a href="/terms" target="_blank" rel="noopener noreferrer">
-                      {t.terms}
-                    </a>
+                    {t('consent')}{" "}
+                    <Link to="/terms" className="consent" target="_blank" rel="noopener noreferrer">
+                      {t('terms')}
+                    </Link>
                   </label>
                 </div>
 
@@ -187,13 +160,15 @@ export default function LoginPage() {
                 <button
                   className="kidopia-btn-login"
                   onClick={handleLogin}
-                  disabled={isLoading || !phone || !pin || !agreeTnc}
+                  disabled={localLoading || !phone || !pin || !agreeTnc}
                 >
-                  {isLoading ? "Logging in..." : t.login_btn}
+                  {localLoading ? <span className="loading-text">{t('logging_in')}</span> : t('login_btn')}
                 </button>
 
+
+
                 <p className="kidopia-freeTrial">
-                  {t.trial}
+                  {t('trial')}
                 </p>
               </div>
             </div>
