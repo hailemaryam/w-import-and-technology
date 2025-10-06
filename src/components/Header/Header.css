@@ -264,21 +264,19 @@
 /* Tablet (1024px and below) */
 @media (max-width: 1024px) {
   .header {
-    height: 17vh;
-    max-height: 100px;
+    height: 10vh;
     margin: 0;
     padding: 0;
   }
   .nav-shell {
     height: 10vh;
-    height: 50px;
     margin: 0;
     padding: 0;
   }
   
   .cap img {
     max-width: 100%;
-    height: 20vh;
+    height: 10vh;
   }
   
   .green-bar .links {
@@ -290,21 +288,20 @@
 /* Small Tablet (980px and below) */
 @media (max-width: 980px) {
   .nav-shell {
-    height: 20vh;
+    height: 12vh;
     margin: 0;
     padding: 0;
   }
   
   .header {
-    height: 20vh;
-    min-height: 70px;
+    height: 12vh;
     margin: 0;
     padding: 0;
   }
 
   .cap img {
     max-width: 100%;
-    height: 20vh;
+    height: 12vh;
   }
   .green-bar .links {
     font-size: clamp(13px, 1vh, 17px);
