@@ -46,43 +46,39 @@ export const LanguageProvider = ({ children }) => {
       privacyPolicy: "Privacy Policy",
       faq: "FAQ",
       copyright: "© ETHIO TELECOM KIDOPIA 2025, ALL RIGHTS RESERVED",
-      // Banner
-      termsTitle: "TERMS AND CONDITIONS",
-      termsDescription: "Welcome to our website! These terms and conditions outline the rules and regulations for the use of our website.",
+      // Updated Terms and Conditions from Excel
+      termsTitle: "Terms and Conditions",
+      termsDescription: "Welcome to Kidopia Terms and Condition!",
 
-      // Sections
-      section1: "1. INTRODUCTION",
-      section1Content: "By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use the website if you do not accept all of the terms and conditions stated on this page.",
+      welcomeTitle: "1. Introduction",
+      welcomeContent: "These Terms and Condition govern your use of our website and services provided by Vision Tech One member PLC (\"we,\" \"us,\" or \"our\") available at https://kidopia.et/Drr/ethtelco/login.php. By using our Services, you agree to comply with these Terms and Condition. Please read them carefully.",
 
-      section2: "2. INTELLECTUAL PROPERTY RIGHTS",
-      section2Content: "Other than the content you own, under these terms, Vision Tech. Trading One Member P.L.C and/or its licensors own all the intellectual property rights and materials contained in this website. You are granted a limited license only for purposes of viewing the material contained on this website.",
+      userRegistrationTitle: "2. User Registration and Eligibility",
+      userRegistrationContent: "To access the Games, users must register with accurate and valid information.",
 
-      section3: "3. RESTRICTIONS",
-      section3Content: "You are specifically restricted from all of the following:",
-      restriction1: "Publishing any website material in any other media;",
-      restriction2: "Selling, sublicensing and/or otherwise commercializing any website material;",
-      restriction3: "Publicly performing and/or showing any website material;",
-      restriction4: "Using this website in any way that is or may be damaging to this website;",
-      restriction5: "Using this website contrary to applicable laws and regulations, or in any way may cause harm to the website, or to any person or business entity;",
-      restriction6: "Engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this website;",
-      restriction7: "Using this website to engage in any advertising or marketing.",
-      restriction8: "Certain areas of this website are restricted from being accessed by you and Vision Tech. Trading One Member P.L.C may further restrict access by you to any areas of this website, at any time, in absolute discretion.",
+      subscriptionTitle: "3. Subscription Details",
+      subscriptionContent1: "These games require a subscription. You will receive a 3-day free trial.",
+      subscriptionContent2: "After the trial period, your subscription will automatically renew at the rate corresponding to your selected package.",
+      subscriptionPackages: "Our subscription packages are",
+      dailyPackage: "3 ETB per day",
+      weeklyPackage: "15 ETB per week",
+      monthlyPackage: "75 ETB per month",
+      paymentInfo: "Payment is processed through Ethio Telecom.",
+      unsubscribeTitle: "Users can unsubscribe by sending the following messages to 8117",
+      unsubscribeDaily: "\"stop A\" for daily subscription",
+      unsubscribeWeekly: "\"stop B\" for weekly subscription",
+      unsubscribeMonthly: "\"stop C\" for monthly subscription",
 
-      section4: "4. KIDOPIA",
-      section4Content: "\"KIDOPIA\" shall mean any audio, video, text, images or other material you choose to display on this website. By displaying Your Content, you grant Vision Tech. Trading One Member P.L.C a non-exclusive, worldwide irrevocable, sub-licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.",
+      technicalRequirementsTitle: "4. Technical Requirements",
+      technicalRequirementsContent1: "Participants are responsible for meeting hardware (laptop, phones, tablet) and internet connection requirements.",
+      technicalRequirementsContent2: "Technical issues on the player's end will cause interruption and it makes the game delayed.",
 
-      section5: "5. NO WARRANTIES",
-      section5Content: "This website is provided \"as is,\" with all faults, and Vision Tech. Trading One Member P.L.C express no representations or warranties, of any kind related to this website or the materials contained on this website.",
+      ruleChangesTitle: "5. Rule Changes and Notification",
+      ruleChangesContent: "Participants will be promptly notified of any rule changes.",
 
-      section6: "6. LIMITATION OF LIABILITY",
-      section6Content: "In no event shall Vision Tech. Trading One Member P.L.C, nor any of its officers, directors and employees, be held liable for anything arising out of or in any way connected with your use of this website whether such liability is under contract. Vision Tech. Trading One Member P.L.C, including its officers, directors and employees shall not be held liable for any indirect, consequential or special liability arising out of or in any way related to your use of this website.",
-
-      section7: "7. INDEMNIFICATION",
-      section7Content: "You hereby indemnify to the fullest extent Vision Tech. Trading One Member P.L.C from and against any and/or all liabilities, costs, demands, causes of action, damages and expenses arising in any way related to your breach of any of the provisions of these terms.",
-
-      section8: "8. SEVERABILITY",
-      section8Content: "If any provision of these terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.",
-
+      contactInfoTitle: "6. Contact Information",
+      contactInfoContent: "If you have any questions or concerns related to our Services contact; Support@kidopia.et",
+      closingMessage: "Thank you for using Kidopia!",
       // Footer
       termsConditions: "Terms & Conditions",
       welcome: "WELCOME TO KIDOPIA",
@@ -139,41 +135,40 @@ export const LanguageProvider = ({ children }) => {
       privacyPolicy: "የግለሰቦች ፖሊሲ",
       faq: "FAQ", // You can add Amharic translation if needed
       copyright: "© ኢትዮ ቴሌኮም KIDOPIA 2025፣ መብቱ በህግ የተጠበቀ ነው።",
-      // Banner
-      termsTitle: "ውልና ሁኔታዎች",
-      termsDescription: "እንኳን ወደ ድረ-ገጻችን በደህና መጡ! እነዚህ ውልና ሁኔታዎች የድረ-ገጻችንን አጠቃቀም ደንቦችን እና ደንብ ይገልጻሉ።",
-      // Sections
-      section1: "1. መግቢያ",
-      section1Content: "ይህን ድረ-ገጽ በመግባት፣ እነዚህን ውልና ሁኔታዎች በሙሉ እንደተቀበሉ እንደምንያምን ነው። በዚህ ገጽ ላይ የተጠቀሱትን ውልና ሁኔታዎች ሁሉ ካልተቀበሉ ከዚህ ድረ-ገጽ መጠቀም አትቀጥሉ።",
+      // Updated Terms and Conditions from Excel (Amharic)
+      termsTitle: "ውሎች እና ሁኔታዎች",
+      termsDescription: "እንኳን ወደ Kidopia ውሎች እና ሁኔታዎች በደህና መጡ፡፡",
 
-      section2: "2. የንብረት መብቶች",
-      section2Content: "እርስዎ የምትያዙትን ይዘት ከሌለ በስተቀር፣ በእነዚህ ውሎች መሠረት፣ Vision Tech. Trading One Member P.L.C እና/ወይም ፈቃደኞቹ በዚህ ድረ-ገጽ ውስጥ የተካተቱትን ሁሉንም የንብረት መብቶች እና ቁሳቁሶች ይያዙ። በዚህ ድረ-ገጽ ውስጥ የተካተቱትን ቁሳቁሶች ለመመልከት ብቻ የተገደበ ፍቃድ ተሰጥቷል።",
+      welcomeTitle: "1. መግቢያ",
+      welcomeContent: "እነዚህ የአገልግሎት ውሎች እና ሁኔታዎች ለእርስዎ በ Vision Tech One member PLC አማካኝነት የቀረበውን አገልግሎት የምትጠቀሙበትን ሁኔታ ይመራል ፡፡ ይህንንም በ፡ https://kidopia.et/Drr/ethtelco/login.php ላይ ማግኘት ትችላላችሁ ፡፡ የእኛን አገልግሎቶች በመጠቀም እነዚህን ውሎች እና ሁኔታዎች ለመከተል ተስማምተዋል ፡፡ እባክዎትን በጥንቃቄ ያንብቡአቸው ፡፡",
 
-      section3: "3. ገደቦች",
-      section3Content: "ከሚከተሉት ነገሮች በተለይ እንዲገደቡ ተከልክላል።",
-      restriction1: "የድረ-ገጽ ቁሳቁስን በማንኛውም ሌላ ሚዲያ ማተም።",
-      restriction2: "የድረ-ገጽ ቁሳቁስን መሸጥ፣ የፍቃድ ስር ማዋል ወይም በሌላ መንገድ ማንገበር።",
-      restriction3: "የድረ-ገጽ ቁሳቁስን በህዝብ ፊት መከበር ወይም ማሳየት።",
-      restriction4: "ይህን ድረ-ገጽ በማንኛውም መንገድ ለድረ-ገጹ ጉዳት ሊያመጣ በሚችል መልኩ መጠቀም።",
-      restriction5: "ይህን ድረ-ገጽ በሕግና በደንብ የሚቃለል መልኩ መጠቀም ወይም በማንኛውም መንገድ ድረ-ገጹን ወይም ሰውን ወይም ንግድ አካልን ጉዳት ሊያደርስ የሚችል መጠቀም።",
-      restriction6: "በዚህ ድረ-ገጽ ጋር የተያያዘ የመረጃ መቆፈር፣ ማሰባሰብ፣ መሰረዝ ወይም ማንኛውም ተመሳሳይ እንቅስቃሴ መሳተፍ።",
-      restriction7: "ይህን ድረ-ገጽ ማስታወቂያ ወይም ገበያ ለማካሄድ መጠቀም።",
-      restriction8: "በዚህ ድረ-ገጽ ውስጥ አንዳንድ አካባቢዎች ከእርስዎ ማግኘት ተከልክለዋል፣ እና Vision Tech. Trading One Member P.L.C በሙሉ ፍላጎቱ ላይ በማንኛውም ጊዜ በዚህ ድረ-ገጽ ማንኛውንም አካባቢ ላይ ከእርስዎ የመድረስ መብትን ተጨማሪ ሊገድብ ይችላል።",
+      userRegistrationTitle: "2. የተጠቃሚ ምዝገባ እና ብቁነት",
+      userRegistrationContent: "ጨዋታዎችን ለማግኘት ተጠቃሚዎች ትክክለኛ እና አግባብነት ያላቸው መረጃ በመያዝ ሊመዘገቡ ይገባል፡፡",
 
-      section4: "4. KIDOPIA",
-      section4Content: "\"KIDOPIA\" በዚህ ድረ-ገጽ ላይ የምታሳዩትን የድምፅ፣ ቪዲዮ፣ ጽሑፍ፣ ምስሎች ወይም ሌሎች ቁሳቁሶች ማለት ነው። ይዘትዎን በማሳየት፣ Vision Tech. Trading One Member P.L.C ለመጠቀም፣ ለመባዛት፣ ለማስተካከል፣ ለማታተም፣ ለመተርጎም እና በማንኛውም ሚዲያ ለማስተላለፍ አለመቋረጥ የማይቻል፣ የአለም አቀፍ፣ የማይወሰን ፍቃድ ይሰጣል።",
+      subscriptionTitle: "3. የምዝገባ ዝርዝሮች",
+      subscriptionContent1: "እነዚህ ጨዋታዎች የደንበኝነት ምዝገባን ይፈልጋሉ። የ3-ቀን ነጻ የሙከራ ጊዜ ያገኛሉ።",
+      subscriptionContent2: "ከሙከራ ጊዜው በኋላ፣ የደንበኝነት ምዝገባዎ በመረጡት ጥቅል መጠን በራስ-ሰር ይታደሳል።",
+      subscriptionPackages: "የእኛ የደንበኝነት ምዝገባ ጥቅሎች የሚከተሉት ናቸው፦",
+      dailyPackage: "በቀን 3 ብር",
+      weeklyPackage: "በሳምንት 15 ብር",
+      monthlyPackage: "በወር 75 ብር",
+      paymentInfo: "ክፍያ የሚካሄደው በኢትዮ ቴሌኮም በኩል ነው።",
+      unsubscribeTitle: "ተጠቃሚዎች ከደንበኝነት ምዝገባው ለመውጣት (ለመሰረዝ) የሚከተሉትን መልዕክቶች ወደ 8117 መላክ ይችላሉ፦",
+      unsubscribeDaily: "ለዕለታዊ ምዝገባ \"stop A\"",
+      unsubscribeWeekly: "ለሳምንታዊ ምዝገባ \"stop B\"",
+      unsubscribeMonthly: "ለወርሃዊ ምዝገባ \"stop C\"",
 
-      section5: "5. ማረጋገጫ የለም",
-      section5Content: "ይህ ድረ-ገጽ \"እንደሆነ እንዲሁ\" በሁሉም እንክልናዎች ተሰጥቶ ነው፣ Vision Tech. Trading One Member P.L.C በዚህ ድረ-ገጽ ወይም በዚህ ድረ-ገጽ ውስጥ በተካተቱት ቁሳቁሶች ላይ ማንኛውንም ዓይነት መወከል ወይም ማረጋገጫ አያደርግም።",
+      technicalRequirementsTitle: "4. የቴክኒክ መስፈርቶች",
+      technicalRequirementsContent1: "ተጫዋቾች የሀርድ ዌር { ስልኮች፤ላፕቶፖች፤ታብሌቶች} እና የኢንተርኔት ግንኙነት መስፈርቶችን የማሟላት ሀላፊነት አለባቸው፡፡",
+      technicalRequirementsContent2: "በተጫዋቾች በኩል ያሉ የቴክኒክ ጉዳቶች ጨዋታው እንዲቋረጥ ወይም እንዲዘገይ ያደርገዋል፡፡",
 
-      section6: "6. የኃላፊነት ገደብ",
-      section6Content: "በማንኛውም ጊዜ Vision Tech. Trading One Member P.L.C እና ሰራተኞቹ ከዚህ ድረ-ገጽ አጠቃቀምዎ ጋር የተያያዘ ወይም የሚመነጨው ማንኛውም ኃላፊነት አይደለባቸውም። ከዚህ ድረ-ገጽ አጠቃቀምዎ ጋር የተያያዘ የተዘዋዋሪ፣ ተከታይ ወይም ልዩ ኃላፊነት አይሰጡም።",
+      ruleChangesTitle: "5. የህግ ለውጦች እና ማሳወቂያ",
+      ruleChangesContent: "ተጫዋቾች ማንኛወም የህግ ለውጥ በተመለከተ በአፋጣኝ ማሳወቂያ የሚሰጣቸው ይሆናል፡፡",
 
-      section7: "7. ክፍያ",
-      section7Content: "ከእነዚህ ውሎች የተነሳ የሚበሰሉ ማንኛውንም ኃላፊነት፣ ወጪ፣ ጉዳት፣ ክፍያ እና ጉዳይ Vision Tech. Trading One Member P.L.C ከማንኛውም ተጽእኖ ማስቀነስ ይህን በሙሉ ያስረካችሁ።",
+      contactInfoTitle: "6. የግንኙነት መረጃ",
+      contactInfoContent: "ከአገልግሎቶቻችን ጋር በተያያዘ ለሚነሱ ጥያቄዎች እንዲሁም ተጨማሪ መረጃ በ Support@kidopia.et ያግኙናል።",
 
-      section8: "8. ማካፈል",
-      section8Content: "በማንኛውም ሕግ መሠረት የእነዚህ ውሎች አንዱ ከማይሰራ ከተገኘ፣ ይህ ውል ቀሪውን አንደኛ ያልተጎዳ ሆኖ ይቀጥላል።",
+      closingMessage: "Kidopiaን ስለተጠቀሙ እናመሰግናለን።",
 
       // Footer
       termsConditions: "ውሎች እና ሁኔታዎች",

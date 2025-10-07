@@ -1,78 +1,75 @@
 import React from "react";
-import { useLanguage } from "../../contexts/LanguageContext";  // ✅ use hook, not provider
-import './TermsAndConditions.css'
-
-
+import { useLanguage } from "../../contexts/LanguageContext";
+import './TermsAndConditions.css';
 
 const TermsAndConditions = () => {
-  const { t } = useLanguage();  // ✅ correct
+  const { t } = useLanguage();
 
   return (
     <div className="terms-page">
-
+      {/* Banner Section */}
       <div className="terms-banner">
         <h1>{t("termsTitle")}</h1>
         <p>{t("termsDescription")}</p>
       </div>
 
-      {/* Section 1 */}
-      <div className="section-title2">{t("section1")}</div>
+      {/* Introduction Section */}
+      <div className="section-title2">{t("welcomeTitle")}</div>
       <div className="section-content">
-        <p>{t("section1Content")}</p>
+        <p>{t("welcomeContent")}</p>
       </div>
 
-      {/* Section 2 */}
-      <div className="section-title2">{t("section2")}</div>
+      {/* User Registration Section */}
+      <div className="section-title2">{t("userRegistrationTitle")}</div>
       <div className="section-content">
-        <p>{t("section2Content")}</p>
+        <p>{t("userRegistrationContent")}</p>
       </div>
 
-      {/* Section 3 */}
-      <div className="section-title2">{t("section3")}</div>
+      {/* Subscription Details Section */}
+      <div className="section-title2">{t("subscriptionTitle")}</div>
       <div className="section-content">
-        <p>{t("section3Content")}</p>
+        <p>{t("subscriptionContent1")}</p>
+        <p>{t("subscriptionContent2")}</p>
+        <p><strong>{t("subscriptionPackages")}:</strong></p>
         <ul>
-          <li>{t("restriction1")}</li>
-          <li>{t("restriction2")}</li>
-          <li>{t("restriction3")}</li>
-          <li>{t("restriction4")}</li>
-          <li>{t("restriction5")}</li>
-          <li>{t("restriction6")}</li>
-          <li>{t("restriction7")}</li>
-          <li>{t("restriction8")}</li>
+          <li>{t("dailyPackage")}</li>
+          <li>{t("weeklyPackage")}</li>
+          <li>{t("monthlyPackage")}</li>
+        </ul>
+        <p>{t("paymentInfo")}</p>
+        <p><strong>{t("unsubscribeTitle")}:</strong></p>
+        <ul>
+          <li>{t("unsubscribeDaily")}</li>
+          <li>{t("unsubscribeWeekly")}</li>
+          <li>{t("unsubscribeMonthly")}</li>
         </ul>
       </div>
 
-      {/* Section 4 */}
-      <div className="section-title2">{t("section4")}</div>
+      {/* Technical Requirements Section */}
+      <div className="section-title2">{t("technicalRequirementsTitle")}</div>
       <div className="section-content">
-        <p>{t("section4Content")}</p>
+        <p>{t("technicalRequirementsContent1")}</p>
+        <p>{t("technicalRequirementsContent2")}</p>
       </div>
 
-      {/* Section 5 */}
-      <div className="section-title2">{t("section5")}</div>
+      {/* Rule Changes Section */}
+      <div className="section-title2">{t("ruleChangesTitle")}</div>
       <div className="section-content">
-        <p>{t("section5Content")}</p>
+        <p>{t("ruleChangesContent")}</p>
       </div>
 
-      {/* Section 6 */}
-      <div className="section-title2">{t("section6")}</div>
+      {/* Contact Information Section */}
+      <div className="section-title2">{t("contactInfoTitle")}</div>
       <div className="section-content">
-        <p>{t("section6Content")}</p>
+        <p>{t("contactInfoContent")}</p>
       </div>
 
-      {/* Section 7 */}
-      <div className="section-title2">{t("section7")}</div>
+      {/* Closing Message */}
       <div className="section-content">
-        <p>{t("section7Content")}</p>
+        <p style={{textAlign: 'center', fontWeight: 'bold', marginTop: '20px'}}>
+          {t("closingMessage")}
+        </p>
       </div>
-
-      {/* Section 8 */}
-      <div className="section-title2">{t("section8")}</div>
-      <div className="section-content">
-        <p>{t("section8Content")}</p>
-      </div>
-
     </div>
   );
 };
