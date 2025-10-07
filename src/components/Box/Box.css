@@ -3,7 +3,7 @@
   color: #85c443;
   font-size: 30px;
   font-weight: 300;
-  margin: 10px 20px 20px;
+  margin: 10px 10px 20px;
   font-family: 'Chakra Petch', sans-serif !important;
   display: flex;
   align-items: center; /* Fixed: changed from 'left' to 'center' */
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 20px 20px;
+  margin: 10px 10px 20px;
   margin-bottom: 14px;
   gap: 12px;
   width: 100%;
@@ -73,7 +73,7 @@
 .games {
   background: #111;
   color: #fff;
-  padding: 8% 130px 6% 130px;
+  padding: 5vh 21vh 5vh;
   margin-top: auto;
 }
 
@@ -94,7 +94,7 @@
 /* Mobile Box Section - Enhanced Responsive Design */
 @media (max-width: 768px) {
   .games {
-    padding: 6% 20px !important;
+    padding: 5vh 20px !important;
   }
   
   .section-title {
@@ -164,7 +164,7 @@
 /* Small Mobile Devices */
 @media (max-width: 480px) {
   .games {
-    padding: 20% 15px !important;
+    padding: 5vh 15px !important;
   }
   
   .section-title {
@@ -208,7 +208,7 @@
 /* Very Small Devices */
 @media (max-width: 320px) {
   .games {
-    padding: 15px 10px !important;
+    padding: 5vh 1vh !important;
   }
   
   .section-title {
@@ -253,7 +253,7 @@
   }
   
   .games {
-    padding: 40px 60px !important;
+    padding: 5vh 60px !important;
   }
   
   .section-title-h2 {
@@ -266,7 +266,10 @@
 }
 
 /* Large Desktop Screens */
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
+  .games{
+    padding: 5vh 60px !important;
+  }
   .section-title-h2 {
     font-size: 3.2rem !important;
   }

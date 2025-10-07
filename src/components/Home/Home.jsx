@@ -9,15 +9,15 @@ function Home() {
         <div>
 
             <Hero />
-            <Box categoryName="adventure" />
-            <Box categoryName="puzzle" />
-            <Box categoryName="action" />
-            <Box categoryName="reflex" />
-            <Box categoryName="sports" />
+            <Box categoryName="adventure" index={0} />
+            <Box categoryName="puzzle" index={1} />
+            <Box categoryName="action" index={2} />
+            <Box categoryName="reflex" index={3} />
+            <Box categoryName="sports" index={4} />
 
             <About />
-            
-  
+
+
 
 
         </div>

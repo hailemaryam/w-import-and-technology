@@ -5,48 +5,45 @@ import { useLanguage } from '../../contexts/LanguageContext.jsx';
 import GameCard from "./GameCard/Gamecard";
 import "./Box.css";
 
-// Category configuration - titles and metadata
-const getCategoryConfig = (t) => ({
+// Known categories with their specific icons only
+const KNOWN_CATEGORIES = {
   action: {
-    name: t('actionGames'),
-    title: t('actionTitle'),
     icon: FaFistRaised,
-    iconColor: "#ff8c42",
-    backgroundColor: "#000"
   },
   adventure: {
-    name: t('adventureGames'),
-    title: t('adventureTitle'),
     icon: FaHiking,
-    iconColor: "#85c443",
-    backgroundColor: "#000",
   },
   puzzle: {
-    name: t('puzzleGames'),
-    title: t('puzzleTitle'),
     icon: FaPuzzlePiece,
-    iconColor: "#ff6b6b",
-    backgroundColor: "#85c443",
-    textColor: "#000"
   },
   sports: {
-    name: t('sportsGames'),
-    title: t('sportsTitle'),
     icon: FaFootballBall,
-    iconColor: "#4ecdc4",
-    backgroundColor: "#000",
   },
   reflex: {
-    name: t('reflexGames'),
-    title: t('reflexTitle'),
     icon: FaGamepad,
-    iconColor: "#ffd93d",
-    backgroundColor: "#85c443",
-    textColor: "#000"
   }
-});
+};
 
-// Game data for each category (no translation needed for game names unless you want to)
+// Background colors in sequence: black, green, black, green...
+const BACKGROUND_COLORS = ["#000", "#85c443"];
+
+// Text colors that contrast with backgrounds
+const TEXT_COLORS = ["#fff", "#fff"];
+const HEADER_COLORS = ["#85c443", "#fff"];
+
+// Specific icon colors for known categories
+const KNOWN_CATEGORY_COLORS = {
+  action: "#ff8c42",
+  adventure: "#85c443",
+  puzzle: "#ff6b6b",
+  sports: "#4ecdc4",
+  reflex: "#ffd93d"
+};
+
+// Default icon color for unknown categories
+const DEFAULT_ICON_COLOR = "#85c443";
+
+// Game data for each category (fallback when API data is not available)
 const gameData = {
   action: [
     { name: "Potty Plan", img: "/images/gpotty_plan.jpg", link: "https://www.kidopia.et/esportsmix/content/Action/game1.html" },
@@ -73,65 +70,85 @@ const gameData = {
   ]
 };
 
-function Box({ categoryName, showAllGames = false }) {
+function Box({ categoryName, showAllGames = false, categoryData = [], index = 0 }) {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
-  console.log("Box received categoryName:", categoryName);
+  console.log("Box received categoryName:", categoryName, "with data:", categoryData);
 
   // Use lowercase for consistency
   const categoryKey = categoryName?.toLowerCase() || "action";
 
-  // Get category configuration with translations
-  const categoryConfig = getCategoryConfig(t);
-  const category = categoryConfig[categoryKey] || {
-    name: t(categoryKey + 'Games') || categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1),
-    title: t(categoryKey + 'Title') || `${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)} –----`,
-    icon: FaGamepad,
-    color: "#ff8c42"
-  };
+  // Get background and text colors based on index (0,1,0,1,0,1...)
+  const colorIndex = index % BACKGROUND_COLORS.length;
+  const backgroundColor = BACKGROUND_COLORS[colorIndex];
+  const textColor = TEXT_COLORS[colorIndex];
+  const headerColor = HEADER_COLORS[colorIndex];
 
-  const { name, title, icon: IconComponent, iconColor, backgroundColor, textColor } = category;
+  // Check if this is a known category
+  const knownCategory = KNOWN_CATEGORIES[categoryKey];
 
-  // If showAllGames is true (category page), show all games. If false (homepage), show limited games.
-  const allGames = gameData[categoryKey] || [];
+  // Use known category icon or fallback to FaGamepad
+  const IconComponent = knownCategory?.icon || FaGamepad;
+
+  // Use known category specific color or fallback to default icon color
+  const iconColor = KNOWN_CATEGORY_COLORS[categoryKey] || DEFAULT_ICON_COLOR;
+
+  // Get name and title from API data first, then fallback to translations
+  const name = categoryData.name || t(categoryKey + 'Games') || categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
+  const title = categoryData.title || t(categoryKey + 'Title') || `${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)} Games`;
+
+  // Games data: First try API data, then fallback to hardcoded gameData
+  const apiGames = categoryData.games || [];
+  const fallbackGames = gameData[categoryKey] || [];
+  const allGames = apiGames.length > 0 ? apiGames : fallbackGames;
   const games = showAllGames ? allGames : allGames.slice(0, 4);
 
   const handleSeeAllClick = (e) => {
     e.preventDefault();
     navigate(`/category/${categoryKey}`);
   };
- 
+
   return (
     <section className="games" style={{ backgroundColor: backgroundColor }}>
       {/* Main section title */}
-      <h2 className="section-title" style={{ color: textColor }}>{title}</h2>
+      <h2 className="section-title" style={{ color: headerColor }}>{title}</h2>
 
       {/* Header with icon, name, and see-all in one line */}
       <div className="section-header">
         <div className="title-container">
-          <IconComponent className="clr" style={{ color: iconColor }}  size="2em" />
+          <IconComponent className="clr" style={{ color: iconColor }} size="2em" />
           <h2 className="section-title-h2" style={{ color: textColor }}>
             {name}
           </h2>
         </div>
-
         {/* Show "See All" link that navigates to internal category page */}
         {!showAllGames && (
           <a
             className="see-all"
             href={`/category/${categoryKey}`}
             onClick={handleSeeAllClick}
+            style={{ color: textColor }}
           >
             {t('seeAll')}
           </a>
         )}
+
+
+
       </div>
 
       <div className="game-grid">
         {games.map((game, index) => (
           <GameCard key={index} {...game} />
         ))}
+
+        {/* Show message if no games available */}
+        {games.length === 0 && (
+          <div className="no-games-message" style={{ color: textColor }}>
+            {t('noGamesAvailable') || 'No games available yet'}
+          </div>
+        )}
       </div>
     </section>
   );

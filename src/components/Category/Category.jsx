@@ -15,9 +15,22 @@ function Category() {
     );
   }
 
+  // For category pages, we can use a fixed index or determine based on category
+  const getCategoryIndex = (category) => {
+    const categoryOrder = ['action', 'adventure', 'puzzle', 'sports', 'reflex'];
+    const index = categoryOrder.indexOf(category.toLowerCase());
+    return index >= 0 ? index : 0;
+  };
+
+  const categoryIndex = getCategoryIndex(categoryName);
+
   return (
     <div>
-      <Box categoryName={categoryName} showAllGames={true} />
+      <Box 
+        categoryName={categoryName} 
+        showAllGames={true} 
+        index={categoryIndex} 
+      />
     </div>
   );
 }
