@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from '../../contexts/LanguageContext.jsx';
 import GameCard from "./GameCard/Gamecard";
 import "./Box.css";
+import { useFrappeGetDocList } from "frappe-react-sdk";
 
 // Known categories with their specific icons only
 const KNOWN_CATEGORIES = {
@@ -43,32 +44,7 @@ const KNOWN_CATEGORY_COLORS = {
 // Default icon color for unknown categories
 const DEFAULT_ICON_COLOR = "#85c443";
 
-// Game data for each category (fallback when API data is not available)
-const gameData = {
-  action: [
-    { name: "Potty Plan", img: "/images/gpotty_plan.jpg", link: "https://www.kidopia.et/esportsmix/content/Action/game1.html" },
-    { name: "Turtules", img: "/images/gturtles.jpg", link: "https://www.kidopia.et/esportsmix/content/Action/game2.html" },
-    { name: "Mighty Raju", img: "/images/gmighty_raju.png", link: "https://www.kidopia.et/esportsmix/content/Action/game3.html" },
-  ],
-  adventure: [
-    { name: "Avalaunch", img: "/images/gava_launch.png", link: "https://www.kidopia.et/esportsmix/content/Adventure/Avalaunch/index.html" },
-    { name: "A Dungeon Adventure for Brave", img: "/images/logo.jpg", link: "https://www.kidopia.et/esportsmix/content/Adventure/ADungeonAdventurefortheBrave/index.html" },
-    { name: "Alien Rivals", img: "/images/logo(1).png", link: "https://www.kidopia.et/esportsmix/content/Adventure/AlienRivals/index.html" },
-    { name: "Angry Betty", img: "/images/logo(2).png", link: "https://www.kidopia.et/esportsmix/content/Adventure/AngryBetty/index.html" },
-  ],
-  puzzle: [
-    { name: "Lung Defender", img: "/images/logo(3).png", link: "#" },
-    { name: "Water Sons", img: "/images/gwater_sons.png", link: "#" },
-  ],
-  sports: [
-    { name: "Maighty Raju", img: "/images/gmighty_raju.png", link: "#" },
-    { name: "Bouncy Cubs", img: "/images/gbouncy_cubs.png", link: "#" },
-  ],
-  reflex: [
-    { name: "Beary Rapids", img: "/images/gbeary_rapids.png", link: "#" },
-    { name: "44 Chats", img: "/images/g44chats.png", link: "#" },
-  ]
-};
+// NOTE: Static fallback game data removed per requirement to load from API
 
 function Box({ categoryName, showAllGames = false, categoryData = [], index = 0 }) {
   const navigate = useNavigate();
@@ -94,15 +70,44 @@ function Box({ categoryName, showAllGames = false, categoryData = [], index = 0 
   // Use known category specific color or fallback to default icon color
   const iconColor = KNOWN_CATEGORY_COLORS[categoryKey] || DEFAULT_ICON_COLOR;
 
-  // Get name and title from API data first, then fallback to translations
-  const name = categoryData.name || t(categoryKey + 'Games') || categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
-  const title = categoryData.title || t(categoryKey + 'Title') || `${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)} Games`;
+  // Load Category details from Frappe (Game Catagory)
+  const {
+    data: categoryDocs,
+    isLoading: isCategoryLoading,
+    error: categoryError,
+  } = useFrappeGetDocList('Game Catagory', {
+    fields: ['name', 'category_name', 'priority', 'icon', 'icon_color'],
+    filters: [['category_name', 'like', `%${categoryKey}%`]],
+    limit: 1,
+  });
 
-  // Games data: First try API data, then fallback to hardcoded gameData
-  const apiGames = categoryData.games || [];
-  const fallbackGames = gameData[categoryKey] || [];
-  const allGames = apiGames.length > 0 ? apiGames : fallbackGames;
-  const games = showAllGames ? allGames : allGames.slice(0, 4);
+  const categoryDoc = categoryDocs && categoryDocs.length > 0 ? categoryDocs[0] : null;
+
+  // Compute display name/title from category document or language fallback
+  const name = (categoryDoc && categoryDoc.category_name) || t(categoryKey + 'Games') || categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
+  const title = t(categoryKey + 'Title') || `${categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)} Games`;
+
+  // Load Games from Frappe (Game List) filtered by category
+  const {
+    data: gameDocs,
+    isLoading: isGamesLoading,
+    error: gamesError,
+  } = useFrappeGetDocList('Game List', {
+    fields: ['title', 'image', 'location', 'game_category'],
+    // Attempt a case-insensitive filter match on the category name
+    filters: [['game_category', 'like', `%${categoryKey}%`]],
+    orderBy: { field: 'modified', order: 'desc' },
+    limit: showAllGames ? 100 : 4,
+  });
+
+  // Map API fields to component props: title->name, image->img, location->link
+  const gamesFromApi = (gameDocs || []).map((g) => ({
+    name: g.title,
+    img: g.image,
+    link: g.location,
+  }));
+
+  const games = gamesFromApi;
 
   const handleSeeAllClick = (e) => {
     e.preventDefault();
@@ -137,6 +142,18 @@ function Box({ categoryName, showAllGames = false, categoryData = [], index = 0 
 
 
       </div>
+
+      {/* Loading and error states */}
+      {(isCategoryLoading || isGamesLoading) && (
+        <div className="loading" style={{ color: textColor }}>
+          {t('loading') || 'Loading...'}
+        </div>
+      )}
+      {(categoryError || gamesError) && (
+        <div className="error" style={{ color: textColor }}>
+          {t('failedToLoad') || 'Failed to load data.'}
+        </div>
+      )}
 
       <div className="game-grid">
         {games.map((game, index) => (
