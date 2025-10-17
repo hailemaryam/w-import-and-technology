@@ -104,6 +104,7 @@ function Header() {
             </div>
 
             <Link className="my-account links" to="/my-account">{t('myAccount')}</Link>
+            <Link className='links' to='/about'>{t('about')}</Link>
             <Link className="links logout" onClick={handleLogout}>{t('logout')}</Link>
             
             {/* Simplified Language Toggle Button */}
@@ -111,7 +112,7 @@ function Header() {
               className="toggle-lang links" 
               onClick={toggleLanguage}
             >
-              {currentLang === 'en' ? 'አማርኛ|English' : 'English|አማርኛ'}
+              {currentLang === 'en' ? 'አማርኛ' : 'English'}
             </button>
           </nav>
 

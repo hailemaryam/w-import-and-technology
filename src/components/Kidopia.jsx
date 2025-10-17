@@ -10,6 +10,7 @@ import MyAccount from "./MyAccount/MyAccount";
 import ProtectedRoute from "./ProtectedRoute";
 import { Routes, Route, useLocation } from "react-router-dom"; // ADD useLocation
 import { LanguageProvider } from "../contexts/LanguageContext";
+import About from "./About/About";
 
 function Kidopia() {
   const location = useLocation(); // NEW: to detect current route
@@ -40,6 +41,11 @@ function Kidopia() {
             <Route path="/my-account" element={
               <ProtectedRoute>
                 <MyAccount />
+              </ProtectedRoute>
+            } />
+            <Route path="/about" element={
+              <ProtectedRoute>
+                <About />
               </ProtectedRoute>
             } />
           </Routes>

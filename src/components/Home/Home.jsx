@@ -1,6 +1,5 @@
 import Hero from "./Hero/Hero";
 import Box from "../Box/Box";
-import About from "./About/About";
 
 function Home() {
 
@@ -14,12 +13,6 @@ function Home() {
             <Box categoryName="education" index={2} />
             <Box categoryName="reflex" index={3} />
             <Box categoryName="sports" index={4} />
-
-            <About />
-
-
-
-
         </div>
     )
 }

@@ -7,13 +7,15 @@
     gap: 5vh;
     flex-wrap: wrap;
     min-height: 20vh;
-    padding: 4vh 5vw;
+    padding: 0vh 5vw;
+    margin-top: 11vh;
 }
 
 .about img {
     padding-left: 0;
     margin: 0;
-    width: 40%;
+    width: 50%;
+    height: 100%;
     height: auto;
     object-fit: contain;
 }
@@ -49,7 +51,7 @@
 @media (max-width: 1024px) {
     .about {
         gap: 3vh;
-        padding: 3vh 5vw;
+        padding: 3vh 5vw;   
     }
     
     .about img {
