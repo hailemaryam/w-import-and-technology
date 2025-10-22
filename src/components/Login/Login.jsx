@@ -18,8 +18,8 @@ export default function LoginPage() {
   // OTP state
   const [isSending, setIsSending] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(0);
-  const [buttonText, setButtonText] = useState(t("send_code") || "Send OTP");
-  const [otpSent, setOtpSent] = useState(false); // ✅ Track if OTP is sent
+  const [buttonText, setButtonText] = useState(t("send_code") || "SEND OTP");
+  const [otpSent, setOtpSent] = useState(false);
 
   useEffect(() => {
     sessionStorage.setItem("lang", currentLang);
@@ -32,21 +32,57 @@ export default function LoginPage() {
     return () => clearInterval(timer);
   }, [secondsLeft]);
 
+  // Update button text based on countdown
   useEffect(() => {
-    if (secondsLeft === 0 && isSending) {
-      setIsSending(false);
+    if (secondsLeft > 0) {
+      setButtonText(`Re-send in ${secondsLeft}s`);
+    } else if (otpSent) {
       setButtonText(t("resend_code") || "Re-Send OTP");
+      setIsSending(false);
+    } else {
+      setButtonText(t("send_code") || "SEND OTP");
     }
-  }, [secondsLeft, isSending, t]);
+  }, [secondsLeft, otpSent, t]);
 
   const validatePhone = (phone) => {
     const cleanPhone = phone.replace(/\D/g, "");
     return cleanPhone.length >= 9 && cleanPhone.length <= 15;
   };
 
+  const handleSendOtp = async () => {
+    if (!phone || !validatePhone(phone)) {
+      setMessages({ error: t("invalid_phone"), success: "" });
+      return;
+    }
+
+    setMessages({ error: "", success: "" });
+    setIsSending(true);
+    try {
+      const res = await sendOtp("251" + phone);
+      if (res.success) {
+        setOtpSent(true);
+        setSecondsLeft(60);
+        setMessages({ error: "", success: t("sent_code") || "OTP Sent Successfully" });
+      } else {
+        setMessages({ error: res.error || "Failed to send code", success: "" });
+        setIsSending(false);
+      }
+    } catch {
+      setMessages({ error: "Failed to send code. Please try again.", success: "" });
+      setIsSending(false);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // ✅ Terms & Conditions first
+    if (!agreeTnc) {
+      setMessages({ error: "Please agree to terms and conditions", success: "" });
+      return;
+    }
+
+    // Validate inputs
     if (!phone || !pin) {
       setMessages({
         error: !phone ? t("invalid_phone") : t("pin_required"),
@@ -60,22 +96,13 @@ export default function LoginPage() {
       return;
     }
 
-    if (!agreeTnc) {
-      setMessages({
-        error: "Please agree to terms and conditions",
-        success: "",
-      });
-      return;
-    }
-
+    // OTP must be sent first
     if (!otpSent) {
-      setMessages({
-        error: "Please request an OTP first",
-        success: "",
-      });
+      setMessages({ error: "Please request an OTP first", success: "" });
       return;
     }
 
+    // Proceed to verify
     setLocalLoading(true);
     const result = await verifyOtp("251" + phone, pin);
     setLocalLoading(false);
@@ -90,37 +117,8 @@ export default function LoginPage() {
       ) {
         setMessages({ error: t("please_register"), success: "" });
       } else {
-        setMessages({
-          error: result.error || t("login_error"),
-          success: "",
-        });
+        setMessages({ error: result.error || t("login_error"), success: "" });
       }
-    }
-  };
-
-  const handleSendOtp = async () => {
-    if (!phone || !validatePhone(phone)) {
-      setMessages({ error: t("invalid_phone"), success: "" });
-      return;
-    }
-
-    setMessages({ error: "", success: "" });
-    const res = await sendOtp("251" + phone);
-
-    if (res.success) {
-      setIsSending(true);
-      setSecondsLeft(30);
-      setButtonText("Sent!");
-      setOtpSent(true); // ✅ enable login
-      setMessages({
-        error: "",
-        success: t("sent_code") || "OTP Sent Successfully",
-      });
-    } else {
-      setMessages({
-        error: res.error || "Failed to send code",
-        success: "",
-      });
     }
   };
 
@@ -147,14 +145,10 @@ export default function LoginPage() {
                 </ul>
 
                 {messages.error && (
-                  <div className="kidopia-message kidopia-error">
-                    {messages.error}
-                  </div>
+                  <div className="kidopia-message kidopia-error">{messages.error}</div>
                 )}
                 {messages.success && (
-                  <div className="kidopia-message kidopia-success">
-                    {messages.success}
-                  </div>
+                  <div className="kidopia-message kidopia-success">{messages.success}</div>
                 )}
 
                 {/* Phone Input */}
@@ -163,55 +157,48 @@ export default function LoginPage() {
                   <input
                     type="tel"
                     value={phone}
-                    onChange={(e) =>
-                      setPhone(e.target.value.replace(/\D/g, ""))
-                    }
+                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
                     placeholder={t("phone_placeholder")}
                     maxLength="15"
                     required
+                    style={{ borderColor: messages.error ? "#d32f2f" : "var(--primary-green)" }}
                   />
                 </div>
 
                 {/* OTP Input + Button */}
-                <div
-                  className="kidopia-input-group otp-field"
-                  style={{ position: "relative" }}
-                >
+                <div className="kidopia-input-group otp-field" style={{ position: "relative" }}>
                   <input
-                    type="password"
+                    type="text"
                     value={pin}
                     onChange={(e) => setPin(e.target.value)}
                     placeholder={t("pin_placeholder")}
                     required
                     className="otp-input"
                     style={{ paddingRight: "120px" }}
+                    disabled={!otpSent} // OTP input disabled until OTP sent
                   />
 
                   <button
                     type="button"
                     onClick={handleSendOtp}
-                    disabled={isSending || sendingOtp || !validatePhone(phone)}
-                    className={`otp-send-btn ${
-                      isSending || sendingOtp ? "disabled" : "active"
-                    }`}
+                    disabled={isSending || sendingOtp}
+                    className={`otp-send-btn ${isSending || sendingOtp ? "disabled" : "active"}`}
                     style={{
                       position: "absolute",
                       right: "10px",
                       top: "50%",
                       transform: "translateY(-50%)",
-                      padding: "12px 14px",
-                      borderRadius: "8px",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      backgroundColor:
-                        isSending || sendingOtp ? "#ccc" : "#8DC63F",
-                      color: isSending || sendingOtp ? "#666" : "#fff",
-                      cursor:
-                        isSending || sendingOtp ? "not-allowed" : "pointer",
-                      transition: "0.3s all",
+                      background: "transparent",
+                      border: "none",
+                      padding: 0,
+                      fontSize: "0.9rem",
+                      textDecoration: "none",
+                      color: isSending || sendingOtp ? "#999" : "#8DC63F",
+                      cursor: isSending || sendingOtp ? "not-allowed" : "pointer",
+                      transition: "color 0.3s ease",
                     }}
                   >
-                    {isSending ? `${secondsLeft}s` : buttonText}
+                    {buttonText}
                   </button>
                 </div>
 
@@ -225,12 +212,7 @@ export default function LoginPage() {
                   />
                   <label htmlFor="kidopia-tnc-checkbox">
                     {t("consent")}{" "}
-                    <Link
-                      to="/terms"
-                      className="consent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <Link to="/terms" className="consent" target="_blank" rel="noopener noreferrer">
                       {t("terms")}
                     </Link>
                   </label>
@@ -240,18 +222,9 @@ export default function LoginPage() {
                 <button
                   className="kidopia-btn-login"
                   onClick={handleLogin}
-                  disabled={
-                    localLoading ||
-                    checkingOtp ||
-                    !phone ||
-                    !pin ||
-                    !agreeTnc ||
-                    !otpSent // ✅ disable until OTP is sent
-                  }
+                  disabled={localLoading || checkingOtp} // Always clickable, but validations inside handleLogin
                 >
-                  {localLoading || checkingOtp
-                    ? t("verifying") || "Verifying..."
-                    : t("login_btn") || "Verify OTP"}
+                  {localLoading || checkingOtp ? t("verifying") || "Verifying..." : t("login_btn") || "Verify OTP"}
                 </button>
 
                 <p className="kidopia-freeTrial">{t("trial")}</p>

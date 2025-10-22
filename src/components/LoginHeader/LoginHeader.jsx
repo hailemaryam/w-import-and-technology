@@ -19,7 +19,7 @@ function LoginHeader() {
             className="login-lang-btn" 
             onClick={toggleLanguage}
           >
-            {currentLang === 'en' ? 'አማርኛ|English' : 'English|አማርኛ'}
+            {currentLang === 'en' ? 'አማርኛ' : 'English'}
           </button>
         </div>
       </div>
