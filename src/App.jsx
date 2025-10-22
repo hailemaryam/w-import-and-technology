@@ -12,7 +12,11 @@ console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
 
 function App() {
   return (
-    <FrappeProvider url={frappeUrl}>
+    <FrappeProvider 
+      url={frappeUrl}
+      enableCSRF={true}
+      csrfTokenPath="/api/method/frappe.auth.get_csrf_token"
+    >
       <AuthProvider>
         <Router>
           <Kidopia />
