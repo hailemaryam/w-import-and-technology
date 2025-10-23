@@ -4,6 +4,13 @@
   font-weight: 400;
 }
 
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport for iPad/iOS */
+  min-height: -webkit-fill-available; /* Safari iOS fallback */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,10 +20,15 @@
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   overflow-x: hidden;
 }
 
 #root {
   width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   overflow-x: hidden;
 }

@@ -20,3 +20,11 @@ body, html {
   font-family: 'Arial', sans-serif; /* Adjust as needed */
   width: 100%;
 }
+
+/* Main layout area */
+.page-main {
+  width: 100%;
+  min-height: 100%;
+}
+
+

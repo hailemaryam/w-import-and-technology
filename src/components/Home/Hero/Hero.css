@@ -110,7 +110,7 @@
 /* Large Tablet (1024px and below) */
 @media (max-width: 1024px) {
   .hero {
-    min-height: 70vh;
+    min-height: 55vh;
     height: auto;
     padding: 2.5rem 0;
   }

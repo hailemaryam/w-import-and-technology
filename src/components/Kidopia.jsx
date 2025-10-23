@@ -1,6 +1,8 @@
 import "./Kidopia.css";
 import Header from "./Header/Header";
-import LoginHeader from "./LoginHeader/LoginHeader"; // NEW
+import LoginHeader from "./LoginHeader/LoginHeader"; 
+import TermsHeader from "./TermsHeader/TermsHeader";
+
 import Home from "./Home/Home";
 import Footer from "./Footer/Footer";
 import Login from "./Login/Login";
@@ -8,23 +10,29 @@ import Category from "./Category/Category";
 import TermsAndConditions from "./TermsAndConditions/TermsAndConditions";
 import MyAccount from "./MyAccount/MyAccount";
 import ProtectedRoute from "./ProtectedRoute";
-import { Routes, Route, useLocation } from "react-router-dom"; // ADD useLocation
+import { Routes, Route, useLocation } from "react-router-dom"; 
 import { LanguageProvider } from "../contexts/LanguageContext";
+import { useAuth } from "../contexts/AuthContext";
 import About from "./About/About";
 
 function Kidopia() {
-  const location = useLocation(); // NEW: to detect current route
+  const location = useLocation(); 
+  const { isAuthenticated } = useAuth();
 
-  // NEW: Check if current route is login page
   const isLoginPage = location.pathname === '/login';
+  const isTermsPage = location.pathname === '/terms';
+  const usesFixedHeader = !isLoginPage && !(isTermsPage && !isAuthenticated);
 
   return (
     <div>
       <LanguageProvider>
-        {/* NEW: Conditional Header - LoginHeader for login page, regular Header for others */}
-        {isLoginPage ? <LoginHeader /> : <Header />}
+        {isLoginPage
+          ? <LoginHeader />
+          : isTermsPage
+            ? (isAuthenticated ? <Header /> : <TermsHeader />)
+            : <Header />}
       
-        <main>
+        <main className={usesFixedHeader ? 'page-main has-fixed-header' : 'page-main'}>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/terms" element={<TermsAndConditions />} />
