@@ -75,6 +75,12 @@
   font-weight: 800;
 }
 
+/* Active state inside desktop dropdown list */
+.dropdown-content .categorys.active {
+  color: #fff;
+  background: #8DC63F;
+}
+
 /* ===== DROPDOWN MENUS ===== */
 .dropdown {
   position: relative;
@@ -146,6 +152,11 @@
   font-size: clamp(16px, 2vh, 20px);
   font-weight: 500;
   text-decoration: none;
+}
+
+/* Active state in mobile top bar */
+.mobile-top-bar .links.active {
+  font-weight: 800;
 }
 
 /* ===== HAMBURGER ROW ===== */
@@ -245,6 +256,12 @@
   width: 100%;
 }
 
+/* Active state for generic links in mobile nav (e.g., About, My Account) */
+.mobile-nav .links.active {
+  color: #fff;
+  background: #8DC63F;
+}
+
 /* Mobile Dropdown Container */
 .mobile-dropdown-container {
   display: flex;
@@ -264,6 +281,12 @@
   cursor: pointer;
   text-align: center;
   border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2);
+}
+
+/* Active state for button-styled links in mobile nav */
+.mobile-dropdown-btn.links.active {
+  color: #fff;
+  background: #8DC63F;
 }
 
 .mobile-dropdown-content {
