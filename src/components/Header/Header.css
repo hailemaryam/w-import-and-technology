@@ -15,7 +15,7 @@
 
 /* ===== HEADER & NAVIGATION LAYOUT ===== */
 .header {
-  background: #8DC63F;
+  background: #811114;
   height: 12vh;
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
 /* Active state inside desktop dropdown list */
 .dropdown-content .categorys.active {
   color: #fff;
-  background: #8DC63F;
+  background: #811114;
 }
 
 /* ===== DROPDOWN MENUS ===== */
@@ -105,14 +105,14 @@
 .categorys {
   display: block;
   padding: 1vh 1vw;
-  color: #8DC63F;
+  color: #811114;
   font-size: clamp(14px, 1.8vh, 20px);
   text-decoration: none;
 }
 
 .categorys:hover {
   color: #fff;
-  background: #8DC63F;
+  background: #811114;
 }
 
 .dropdown:hover .dropdown-content {
@@ -252,7 +252,7 @@
   padding: 1.5vh 3vw;
   border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2);
   text-decoration: none;
-  color: #8DC63F;
+  color: #811114;
   font-size: clamp(16px, 2vh, 20px);
   background: none;
   border: none;
@@ -264,7 +264,7 @@
 /* Active state for generic links in mobile nav (e.g., About, My Account) */
 .mobile-nav .links.active {
   color: #fff;
-  background: #8DC63F;
+  background: #811114;
 }
 
 /* Mobile Dropdown Container */
@@ -281,7 +281,7 @@
   width: 100%;
   background: none;
   border: none;
-  color: #8DC63F;
+  color: #811114;
   font-size: clamp(16px, 2vh, 20px);
   padding: 1.5vh 3vw;
   cursor: pointer;
@@ -294,7 +294,7 @@
 /* Active state for button-styled links in mobile nav */
 .mobile-dropdown-btn.links.active {
   color: #fff;
-  background: #8DC63F;
+  background: #811114;
 }
 
 .mobile-dropdown-content {
@@ -319,7 +319,7 @@
   padding: 1.2vh 3vw;
   border-bottom: 0.1vh solid rgba(141, 198, 63, 0.2);
   text-decoration: none;
-  color: #8DC63F;
+  color: #811114;
   font-size: clamp(14px, 1.8vh, 18px);
   transition: all 0.3s ease;
   width: 100%;
@@ -330,7 +330,7 @@
 .mobile-nav .categorys:hover,
 .mobile-nav .categorys.active {
   color: #fff;
-  background: #8DC63F;
+  background: #811114;
 }
 /* Update responsive breakpoints */
 @media (max-width: 1024px) {

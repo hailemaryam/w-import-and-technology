@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Login.css";
+import "./login.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function LoginPage() {
+export default function WImportAndTechnologyLogin() {
   const { sendOtp, verifyOtp, sendingOtp, checkingOtp } = useAuth();
   const navigate = useNavigate();
   const { t, currentLang } = useLanguage();
@@ -32,7 +32,6 @@ export default function LoginPage() {
     return () => clearInterval(timer);
   }, [secondsLeft]);
 
-  // Update button text based on countdown
   useEffect(() => {
     if (secondsLeft > 0) {
       setButtonText(`${t("resend_code")} ${t("in")} ${secondsLeft}s`);
@@ -54,7 +53,6 @@ export default function LoginPage() {
       setMessages({ error: t("invalid_phone"), success: "" });
       return;
     }
-
     setMessages({ error: "", success: "" });
     setIsSending(true);
     try {
@@ -73,92 +71,59 @@ export default function LoginPage() {
     }
   };
 
-const handleLogin = async (e) => {
-  e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-
-
-  // ✅ 2. Validate phone presence
-  if (!phone) {
-    setMessages({
-      error: t("phone_required") || "Phone number is required",
-      success: "",
-    });
-    return;
-  }
-
-  // ✅ 3. Validate phone format
-  if (!validatePhone(phone)) {
-    setMessages({
-      error: t("invalid_phone") || "Please enter a valid phone number",
-      success: "",
-    });
-    return;
-  }
-    // ✅ 1. Check Terms & Conditions
-  if (!agreeTnc) {
-    setMessages({
-      error: t("agreeInc") || "Please agree to terms and conditions",
-      success: "",
-    });
-    return;
-  }
-
-  // ✅ 4. Validate OTP/PIN
-  if (!pin) {
-    setMessages({
-      error: t("pin_required") || "Please enter your OTP/PIN",
-      success: "",
-    });
-    return;
-  }
-
-  // ✅ 5. Ensure OTP was sent
-  if (!otpSent) {
-    setMessages({
-      error: "Please request an OTP first",
-      success: "",
-    });
-    return;
-  }
-
-  // ✅ 6. Verify OTP
-  setLocalLoading(true);
-  const result = await verifyOtp("251" + phone, pin);
-  setLocalLoading(false);
-
-  if (result.success) {
-    setMessages({ error: "", success: t("login_success") || "Login successful!" });
-    setTimeout(() => navigate("/"), 1500);
-  } else {
-    if (
-      result.error?.toLowerCase().includes("not found") ||
-      result.error?.toLowerCase().includes("unregistered")
-    ) {
-      setMessages({ error: t("please_register") || "User not found, please register.", success: "" });
-    } else {
-      setMessages({
-        error: result.error || t("login_error") || "Login failed. Please try again.",
-        success: "",
-      });
+    if (!phone) {
+      setMessages({ error: t("phone_required") || "Phone number is required", success: "" });
+      return;
     }
-  }
-};
+    if (!validatePhone(phone)) {
+      setMessages({ error: t("invalid_phone") || "Please enter a valid phone number", success: "" });
+      return;
+    }
+    if (!agreeTnc) {
+      setMessages({ error: t("agreeInc") || "Please agree to terms and conditions", success: "" });
+      return;
+    }
+    if (!pin) {
+      setMessages({ error: t("pin_required") || "Please enter your OTP/PIN", success: "" });
+      return;
+    }
+    if (!otpSent) {
+      setMessages({ error: "Please request an OTP first", success: "" });
+      return;
+    }
 
+    setLocalLoading(true);
+    const result = await verifyOtp("251" + phone, pin);
+    setLocalLoading(false);
+
+    if (result.success) {
+      setMessages({ error: "", success: t("login_success") || "Login successful!" });
+      setTimeout(() => navigate("/"), 1500);
+    } else {
+      if (result.error?.toLowerCase().includes("not found") || result.error?.toLowerCase().includes("unregistered")) {
+        setMessages({ error: t("please_register") || "User not found, please register.", success: "" });
+      } else {
+        setMessages({ error: result.error || t("login_error") || "Login failed. Please try again.", success: "" });
+      }
+    }
+  };
 
   return (
-    <div className="kidopia-login-page">
-      <section className="kidopia-hero">
-        <div className="kidopia-container kidopia-hero-inner">
-          <div className="kidopia-hero-left">
-            <img src="/images/images.svg" alt="Kidopia Characters" />
+    <div className="w-import-login-page">
+      <section className="w-import-hero">
+        <div className="w-import-container w-import-hero-inner">
+          <div className="w-import-hero-left">
+            <img src="/images/images.svg" alt="Characters" />
           </div>
 
-          <div className="kidopia-card">
-            <div className="kidopia-card-header">{t("welcome")}</div>
+          <div className="w-import-card">
+            <div className="w-import-card-header">{t("welcome")}</div>
 
-            <div className="kidopia-card-inner">
-              <div className="kidopia-login-container">
+            <div className="w-import-card-inner">
+              <div className="w-import-login-container">
                 <h2>{t("login")}</h2>
                 <p>{t("description")}</p>
 
@@ -168,15 +133,10 @@ const handleLogin = async (e) => {
                   <li>{t("monthly")}</li>
                 </ul>
 
-                {messages.error && (
-                  <div className="kidopia-message kidopia-error">{messages.error}</div>
-                )}
-                {messages.success && (
-                  <div className="kidopia-message kidopia-success">{messages.success}</div>
-                )}
+                {messages.error && <div className="w-import-message w-import-error">{messages.error}</div>}
+                {messages.success && <div className="w-import-message w-import-success">{messages.success}</div>}
 
-                {/* Phone Input */}
-                <div className="kidopia-input-group">
+                <div className="w-import-input-group">
                   <span>+251</span>
                   <input
                     type="tel"
@@ -189,8 +149,7 @@ const handleLogin = async (e) => {
                   />
                 </div>
 
-                {/* OTP Input + Button */}
-                <div className="kidopia-input-group otp-field" style={{ position: "relative" }}>
+                <div className="w-import-input-group otp-field" style={{ position: "relative" }}>
                   <input
                     type="text"
                     value={pin}
@@ -199,9 +158,8 @@ const handleLogin = async (e) => {
                     required
                     className="otp-input"
                     style={{ paddingRight: "120px" }}
-                    disabled={!otpSent} // OTP input disabled until OTP sent
+                    disabled={!otpSent}
                   />
-
                   <button
                     type="button"
                     onClick={handleSendOtp}
@@ -217,7 +175,7 @@ const handleLogin = async (e) => {
                       padding: 0,
                       fontSize: "0.9rem",
                       textDecoration: "none",
-                      color: isSending || sendingOtp ? "#999" : "#8DC63F",
+                      color: isSending || sendingOtp ? "#999" : "#811114",
                       cursor: isSending || sendingOtp ? "not-allowed" : "pointer",
                       transition: "color 0.3s ease",
                     }}
@@ -225,15 +183,15 @@ const handleLogin = async (e) => {
                     {buttonText}
                   </button>
                 </div>
-                {/* Consent */}
-                <div className="kidopia-consent-line">
+
+                <div className="w-import-consent-line">
                   <input
                     type="checkbox"
-                    id="kidopia-tnc-checkbox"
+                    id="w-import-tnc-checkbox"
                     checked={agreeTnc}
                     onChange={(e) => setAgreeTnc(e.target.checked)}
                   />
-                  <label htmlFor="kidopia-tnc-checkbox">
+                  <label htmlFor="w-import-tnc-checkbox">
                     <span className="consent-text">{t("consent")}{" "}</span>
                     <Link to="/terms" className="consent" target="_blank" rel="noopener noreferrer">
                       {t("terms")}
@@ -241,16 +199,15 @@ const handleLogin = async (e) => {
                   </label>
                 </div>
 
-                {/* Verify OTP */}
                 <button
-                  className="kidopia-btn-login"
+                  className="w-import-btn-login"
                   onClick={handleLogin}
-                  disabled={localLoading || checkingOtp} // Always clickable, but validations inside handleLogin
+                  disabled={localLoading || checkingOtp}
                 >
                   {localLoading || checkingOtp ? t("verifying") || "Verifying..." : t("login_btn") || "Verify OTP"}
                 </button>
 
-                <p className="kidopia-freeTrial">{t("trial")}</p>
+                <p className="w-import-freeTrial">{t("trial")}</p>
               </div>
             </div>
           </div>

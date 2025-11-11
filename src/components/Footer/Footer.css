@@ -3,7 +3,7 @@
   background: #323334;
   color: #c6ff74;
   padding: 10px 0;
-  border-top: 2px solid #85c443;
+  border-top: 2px solid #811114;
   margin-top: auto;
   width: 100%;
   text-align: center;
@@ -25,7 +25,7 @@
 }
 
 .footer-link {
-  color: #c6ff74;
+  color: #fff;
   font-size: 15px;
   font-weight: 400;
   text-decoration: none;
@@ -48,7 +48,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: #85c443;
+  background: #811114;
   transition: width 0.3s ease;
 }
 
@@ -92,7 +92,7 @@
 
 /* Accessibility Focus */
 .footer-link:focus {
-  outline: 2px solid #85c443;
+  outline: 2px solid #811114;
   outline-offset: 4px;
   border-radius: 2px;
 }

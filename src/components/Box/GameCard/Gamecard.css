@@ -1,7 +1,7 @@
 .game-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #85c443;
+  border: 1px solid #811114;
   background: #222121;
   border-radius: 8px;
   overflow: hidden;
@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: center;
   font-size: clamp(12px, 1.5vw, 15px); /* Responsive font size */
-  background: #98CC52;
+  background: #811114;
   border-radius: 30px;
   margin: 10px 0; /* Simplified margin */
   padding: clamp(8px, 2vw, 10px) clamp(10px, 2vw, 12px); /* Responsive padding */

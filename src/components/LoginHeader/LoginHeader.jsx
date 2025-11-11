@@ -10,7 +10,7 @@ function LoginHeader() {
       <div className="login-header-container">
         {/* Logo on the Left */}
         <div className="login-logo">
-          <img src="/images/ethio_logo.svg" alt="Ethio-Tel" className="login-logo-img" />
+          <img src="/images/w.jpg" alt="Ethio-Tel" className="login-logo-img" />
         </div>
         
         {/* Language Toggle on the Right */}

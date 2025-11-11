@@ -23,7 +23,7 @@ export const LanguageProvider = ({ children }) => {
   const translations = {
     en: {
       home: "Home",
-      gameCategory: "Game Category",
+      Category: "Category",
       educationGames: "Education Games",
       adventureGames: "Adventure Games",
       reflexGames: "Reflex Games",
@@ -123,7 +123,7 @@ export const LanguageProvider = ({ children }) => {
     },
     am: {
       home: "ዋና ገፅ",
-      gameCategory: "የጨዋታ ምድብ",
+      Category: "የጨዋታ ምድብ",
       educationGames: "ትምህርታዊ ጨዋታዎች",
       adventureGames: "አድንቬንቸር ጨዋታዎች",
       reflexGames: "ሪፍሌክስ ጨዋታዎች",

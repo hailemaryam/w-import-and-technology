@@ -104,7 +104,7 @@ function Header() {
               {t('home')}
             </NavLink>
             <div className="dropdown">
-              <span className="dropbtn links">{t('gameCategory')} ▾</span>
+              <span className="dropbtn links">{t('Category')} ▾</span>
               <div className="dropdown-content">
                 <NavLink className={({ isActive }) => `categorys ${isActive ? 'active' : ''}`} to="/category/adventure">{t('adventureGames')}</NavLink>
                 <NavLink className={({ isActive }) => `categorys ${isActive ? 'active' : ''}`} to="/category/education">{t('educationGames')}</NavLink>
@@ -163,7 +163,7 @@ function Header() {
           {/* Mobile Dropdown Container */}
           <div className="mobile-dropdown-container">
             <button className="mobile-dropdown-btn" onClick={toggleMobileDropdown}>
-              {t('gameCategory')} {isDropdownOpen ? '▴' : '▾'}
+              {t('Category')} {isDropdownOpen ? '▴' : '▾'}
             </button>
             {/* Dropdown content now appears right below the button */}
             <div className={`mobile-dropdown-content ${isDropdownOpen ? 'open' : ''}`}>

@@ -26,23 +26,23 @@ const KNOWN_CATEGORIES = {
 };
 
 // Background colors in sequence: black, green, black, green...
-const BACKGROUND_COLORS = ["#000", "#85c443"];
+const BACKGROUND_COLORS = ["#000", "#811114"];
 
 // Text colors that contrast with backgrounds
 const TEXT_COLORS = ["#fff", "#fff"];
-const HEADER_COLORS = ["#85c443", "#fff"];
+const HEADER_COLORS = ["#811114", "#fff"];
 
 // Specific icon colors for known categories
 const KNOWN_CATEGORY_COLORS = {
   education: "#ff8c42",
-  adventure: "#85c443",
+  adventure: "#811114",
   puzzle: "#ff6b6b",
   sports: "#4ecdc4",
   reflex: "#ffd93d"
 };
 
 // Default icon color for unknown categories
-const DEFAULT_ICON_COLOR = "#85c443";
+const DEFAULT_ICON_COLOR = "#811114";
 
 // NOTE: Static fallback game data removed per requirement to load from API
 

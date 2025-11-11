@@ -1,4 +1,4 @@
-import "./Kidopia.css";
+import "./WImportAndTechnology.css"; // renamed CSS file
 import Header from "./Header/Header";
 import LoginHeader from "./LoginHeader/LoginHeader"; 
 import TermsHeader from "./TermsHeader/TermsHeader";
@@ -15,7 +15,7 @@ import { LanguageProvider } from "../contexts/LanguageContext";
 import { useAuth } from "../contexts/AuthContext";
 import About from "./About/About";
 
-function Kidopia() {
+function WImportAndTechnology() {
   const location = useLocation(); 
   const { isAuthenticated } = useAuth();
 
@@ -59,11 +59,10 @@ function Kidopia() {
           </Routes>
         </main>
         
-        
         <Footer />
       </LanguageProvider>
     </div>
   )
 }
 
-export default Kidopia;
+export default WImportAndTechnology;
