@@ -176,7 +176,24 @@ export const LanguageProvider = ({ children }) => {
       newsletterSuccess: 'Thank you for subscribing!',
       newsletterError: 'Subscription failed. Please try again.',
       emailRequired: 'Email is required',
-      invalidEmail: 'Please enter a valid email address'
+      invalidEmail: 'Please enter a valid email address',
+      // Add these to your existing English translations:
+      myAccount_description: 'Manage your account settings and subscription',
+      accountInformation: 'Account Information',
+      subscriptionManagement: 'Subscription Management',
+      manageSubscription: 'Manage Subscription',
+      currentPlan: 'Current Plan',
+      dailySubscription: 'Daily Subscription',
+      day: 'day',
+      quickActions: 'Quick Actions',
+      viewReadingHistory: 'View Reading History',
+      favoriteArticles: 'Favorite Articles',
+      notificationSettings: 'Notification Settings',
+      needHelp: 'Need Help?',
+      contactSupport: 'Contact our support team',
+      emailSupport: 'Email Support',
+      callSupport: 'Call Support',
+      allRightsReserved: 'All rights reserved'
     },
     am: {
       home: "ዋና ገፅ",
@@ -337,7 +354,24 @@ export const LanguageProvider = ({ children }) => {
       newsletterSuccess: 'ለመመዝገብ እናመሰግናለን!',
       newsletterError: 'መመዝገብ አልተሳካም። እባክዎ እንደገና ይሞክሩ።',
       emailRequired: 'ኢሜል ያስፈልጋል',
-      invalidEmail: 'እባክዎ ትክክለኛ ኢሜል አድራሻ ያስገቡ'
+      invalidEmail: 'እባክዎ ትክክለኛ ኢሜል አድራሻ ያስገቡ',
+      // Add these to your existing Amharic translations:
+      myAccount_description: 'የመለያ ቅንብሮችዎን እና የደንበኝነት ምዝገባዎን ያስተዳድሩ',
+      accountInformation: 'የመለያ መረጃ',
+      subscriptionManagement: 'የደንበኝነት ምዝገባ አስተዳደር',
+      manageSubscription: 'የደንበኝነት ምዝገባ አስተዳድር',
+      currentPlan: 'አሁን ያለው እቅድ',
+      dailySubscription: 'ዕለታዊ ደንበኝነት',
+      day: 'ቀን',
+      quickActions: 'ፈጣን እርምጃዎች',
+      viewReadingHistory: 'የንባብ ታሪክ ይመልከቱ',
+      favoriteArticles: 'የሚወዷቸው ጽሑፎች',
+      notificationSettings: 'የማሳወቂያ ቅንብሮች',
+      needHelp: 'እርዳታ ይፈልጋሉ?',
+      contactSupport: 'ከደጋፊ ቡድናችን ጋር ይገናኙ',
+      emailSupport: 'ኢሜል ላክ',
+      callSupport: 'ይደውሉ',
+      allRightsReserved: 'ሁሉም መብቶች ተጠብቀዋል'
     }
   };
 

@@ -3,81 +3,93 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Mock data - replace with actual API data
   const popularPosts = [
     {
       id: 1,
-      title: "5 Daily Beauty Routines for Glowing Skin",
-      excerpt: "Discover the essential beauty tips that will transform your skin in just one week...",
+      title: language === 'am' ? "የሚያማም ቆዳ የሚያገኙት ዕለታዊ 5 የውበት ስልቶች" : "5 Daily Beauty Routines for Glowing Skin",
+      excerpt: language === 'am' ? "በአንድ ሳምንት ውስጥ ቆዳዎን የሚቀይሩ መሠረታዊ የውበት ምክሮችን ያግኙ..." : "Discover the essential beauty tips that will transform your skin in just one week...",
       category: "health-tips",
       subcategory: "beauty",
       image: "/images/beauty1.jpg",
-      author: "Dr. Sarah Johnson",
+      author: language === 'am' ? "ዶ/ር ሳራ ጆንሰን" : "Dr. Sarah Johnson",
       date: "2024-01-15",
-      readTime: "4 min read",
+      readTime: language === 'am' ? "4 ደቂቃ ንባብ" : "4 min read",
       likes: 234
     },
     {
       id: 2,
-      title: "Local Football Team Wins Championship",
-      excerpt: "Our local heroes bring home the trophy after an incredible season finale...",
+      title: language === 'am' ? "አካባቢያዊ እግር ኳስ ቡድን ሻምፕዮናት አሸነፈ" : "Local Football Team Wins Championship",
+      excerpt: language === 'am' ? "አዳምማ ከመጨረሻ ጨዋታ በኋላ ውስብስብ የዘመን ሽልማት አምጥተዋል..." : "Our local heroes bring home the trophy after an incredible season finale...",
       category: "sport-news", 
       subcategory: "local-sports",
       image: "/images/sport1.jpg",
-      author: "Mike Thompson",
+      author: language === 'am' ? "ማይክ ቶምፕሰን" : "Mike Thompson",
       date: "2024-01-14",
-      readTime: "3 min read",
+      readTime: language === 'am' ? "3 ደቂቃ ንባብ" : "3 min read",
       likes: 189
     },
     {
       id: 3,
-      title: "Traditional Ethiopian Injera Recipe",
-      excerpt: "Learn the authentic way to make perfect injera at home with our step-by-step guide...",
+      title: language === 'am' ? "ባህላዊ የኢትዮጵያ እንጀራ አሰራር" : "Traditional Ethiopian Injera Recipe",
+      excerpt: language === 'am' ? "በደረጃ በደረጃ መመሪያችን በቤት ሙሉ እንጀራ ለመስራት ይማሩ..." : "Learn the authentic way to make perfect injera at home with our step-by-step guide...",
       category: "food-preparation",
       subcategory: "ethiopian-food",
       image: "/images/food1.jpg",
-      author: "Chew Mariam",
+      author: language === 'am' ? "ሹፍ ማርያም" : "Chef Mariam",
       date: "2024-01-13",
-      readTime: "6 min read",
+      readTime: language === 'am' ? "6 ደቂቃ ንባብ" : "6 min read",
       likes: 312
     },
     {
       id: 4,
-      title: "Morning Yoga for Better Health",
-      excerpt: "Start your day right with these 10-minute yoga routines that boost energy and focus...",
+      title: language === 'am' ? "ለተሻለ ጤና የጠዋት የዮጋ ልምምድ" : "Morning Yoga for Better Health",
+      excerpt: language === 'am' ? "ኃይልና ትኩረት የሚጨምሩ 10-ደቂቃ የዮጋ ስልቶች በመስራት ቀንዎን በትክክል ይጀምሩ..." : "Start your day right with these 10-minute yoga routines that boost energy and focus...",
       category: "health-tips",
       subcategory: "health",
       image: "/images/health1.jpg",
-      author: "Yoga Master Alex",
+      author: language === 'am' ? "የዮጋ አለቃ አሌክስ" : "Yoga Master Alex",
       date: "2024-01-12",
-      readTime: "5 min read",
+      readTime: language === 'am' ? "5 ደቂቃ ንባብ" : "5 min read",
       likes: 167
+    },
+    {
+      id: 5,
+      title: language === 'am' ? "ለተሻለ ጤና የጠዋት የዮጋ ልምምድ" : "Morning Yoga for Better Health",
+      excerpt: language === 'am' ? "ኃይልና ትኩረት የሚጨምሩ 10-ደቂቃ የዮጋ ስልቶች በመስራት ቀንዎን በትክክል ይጀምሩ..." : "Start your day right with these 10-minute yoga routines that boost energy and focus...",
+      category: "health-tips",
+      subcategory: "health",
+      image: "/images/health3.jpg",
+      author: language === 'am' ? "የዮጋ አለቃ አሌክስ" : "Yoga Master Alex",
+      date: "2024-01-12",
+      readTime: language === 'am' ? "5 ደቂቃ ንባብ" : "5 min read",
+      likes: 300
     }
   ];
 
   const categories = [
     {
       name: "health-tips",
-      title: "Health & Beauty",
-      description: "Tips for wellness and beauty",
+      title: language === 'am' ? "ጤና እና ውበት" : "Health & Beauty",
+      description: language === 'am' ? "ለጤና እና ውበት ምክሮች" : "Tips for wellness and beauty",
       icon: "💄",
       color: "#811114",
       count: 24
     },
     {
       name: "sport-news", 
-      title: "Sports News",
-      description: "Local and international sports",
+      title: language === 'am' ? "የስፖርት ዜና" : "Sports News",
+      description: language === 'am' ? "አካባቢያዊ እና ዓለም አቀፍ ስፖርቶች" : "Local and international sports",
       icon: "⚽",
       color: "#2E7D32",
       count: 18
     },
     {
       name: "food-preparation",
-      title: "Food & Recipes", 
-      description: "Traditional and international cuisine",
+      title: language === 'am' ? "ምግብ እና አሰራሮች" : "Food & Recipes", 
+      description: language === 'am' ? "ባህላዊ እና ዓለም አቀፍ ምግቦች" : "Traditional and international cuisine",
       icon: "🍴",
       color: "#FF6B35",
       count: 32
@@ -90,25 +102,48 @@ function Home() {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">
-            Welcome to <span className="brand">W-IMP</span> Blog
+            {language === 'am' ? 'ወደ ' : 'Welcome to '}
+            <span className="brand-highlight">W-Import and Technology</span>
+            {language === 'am' ? ' ብሎግ በደህና መጡ' : ' Blog'}
           </h1>
           <p className="hero-subtitle">
-            Your daily dose of health tips, sports news, and delicious recipes
+            {language === 'am' 
+              ? 'የጤና ምክሮች፣ የስፖርት ዜና እና ጣፋጭ አሰራሮች ዕለታዊ ዝግጅትዎ'
+              : 'Your daily dose of health tips, sports news, and delicious recipes'
+            }
           </p>
           <div className="hero-search">
             <input 
               type="text" 
-              placeholder="Search articles..." 
+              placeholder={t('searchPlaceholder')} 
               className="search-input"
             />
-            <button className="search-btn">Search</button>
+            <button className="search-btn">{t('search')}</button>
           </div>
         </div>
         <div className="hero-image">
-          <div className="hero-graphic">
-            <div className="graphic-item health">💄</div>
-            <div className="graphic-item sports">⚽</div>
-            <div className="graphic-item food">🍴</div>
+          <div className="hero-images-grid">
+            <div className="hero-image-item">
+              <img src="/images/health3.jpg" alt={t('health')} />
+              <div className="image-overlay">
+                <span className="image-icon">💄</span>
+                <span className="image-text">{t('health')}</span>
+              </div>
+            </div>
+            <div className="hero-image-item">
+              <img src="/images/sport3.jpg" alt={t('sports')} />
+              <div className="image-overlay">
+                <span className="image-icon">⚽</span>
+                <span className="image-text">{t('sports')}</span>
+              </div>
+            </div>
+            <div className="hero-image-item">
+              <img src="/images/food2.jpg" alt={t('food')} />
+              <div className="image-overlay">
+                <span className="image-icon">🍴</span>
+                <span className="image-text">{t('food')}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -116,8 +151,8 @@ function Home() {
       {/* Popular Posts Section */}
       <section className="popular-section">
         <div className="section-header">
-          <h2>🔥 Popular Posts</h2>
-          <p>Most read articles this week</p>
+          <h2>🔥 {t('popularPosts')}</h2>
+          <p>{t('mostRead')}</p>
         </div>
         
         <div className="popular-grid">
@@ -127,8 +162,8 @@ function Home() {
                 <img src={post.image} alt={post.title} />
                 <div className="category-badge" style={{ backgroundColor: categories.find(c => c.name === post.category)?.color }}>
                   {categories.find(c => c.name === post.category)?.icon}
-                  {post.category === 'health-tips' ? 'Health' : 
-                   post.category === 'sport-news' ? 'Sports' : 'Food'}
+                  {post.category === 'health-tips' ? t('health') : 
+                   post.category === 'sport-news' ? t('sports') : t('food')}
                 </div>
               </div>
               
@@ -145,7 +180,7 @@ function Home() {
                   </div>
                   <div className="post-stats">
                     <span className="read-time">{post.readTime}</span>
-                    <span className="likes">❤️ {post.likes}</span>
+                    <span className="likes">❤️ {post.likes} {t('likes')}</span>
                   </div>
                 </div>
               </div>
@@ -155,7 +190,7 @@ function Home() {
 
         <div className="section-footer">
           <Link to="/posts" className="view-all-btn">
-            View All Posts →
+            {t('viewAllPosts')}
           </Link>
         </div>
       </section>
@@ -163,8 +198,8 @@ function Home() {
       {/* Categories Section */}
       <section className="categories-section">
         <div className="section-header">
-          <h2>📚 Categories</h2>
-          <p>Explore articles by topic</p>
+          <h2>📚 {t('categories')}</h2>
+          <p>{t('exploreTopics')}</p>
         </div>
         
         <div className="categories-grid">
@@ -179,29 +214,13 @@ function Home() {
               <div className="category-info">
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>
-                <span className="post-count">{category.count} articles</span>
+                <span className="post-count">
+                  {category.count} {t('articles')}
+                </span>
               </div>
               <div className="category-arrow">→</div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="newsletter-section">
-        <div className="newsletter-content">
-          <div className="newsletter-text">
-            <h2>📧 Stay Updated</h2>
-            <p>Get the latest articles delivered to your inbox daily</p>
-          </div>
-          <div className="newsletter-form">
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              className="newsletter-input"
-            />
-            <button className="subscribe-btn">Subscribe</button>
-          </div>
         </div>
       </section>
     </div>

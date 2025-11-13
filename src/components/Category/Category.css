@@ -1,77 +1,67 @@
-/* Mobile Category Section */
+.category-page {
+  min-height: 100vh;
+  background: var(--light-bg);
+  padding-top: 80px;
+}
+
+.category-header {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-light) 100%);
+  color: var(--white);
+  padding: 60px 5%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.category-icon-large {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.category-info h1 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.category-info p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.posts-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .category-container {
-        padding: 15px 10px;
-    }
-    
-    .category-title {
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-        padding: 0 10px;
-    }
-    
-    .games-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 5px;
-    }
-    
-    .game-card {
-        margin-bottom: 10px;
-    }
-    
-    .game-card img {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-    }
-    
-    .game-card h3 {
-        font-size: 14px;
-        padding: 8px 5px;
-    }
+  .category-header {
+    padding: 40px 5%;
+  }
+  
+  .category-icon-large {
+    font-size: 3rem;
+  }
 }
 
-/* Small Mobile Devices */
 @media (max-width: 480px) {
-    .category-container {
-        padding: 10px 5px;
-    }
-    
-    .category-title {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-    
-    .games-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 0;
-    }
-    
-    .game-card img {
-        height: 150px;
-    }
-    
-    .game-card h3 {
-        font-size: 16px;
-        padding: 10px;
-    }
-}
-
-/* Very Small Devices */
-@media (max-width: 320px) {
-    .category-title {
-        font-size: 18px;
-    }
-    
-    .game-card img {
-        height: 120px;
-    }
-    
-    .game-card h3 {
-        font-size: 14px;
-        padding: 8px;
-    }
+  .category-header {
+    padding: 30px 4%;
+  }
+  
+  .category-info h1 {
+    font-size: 2.2rem;
+  }
+  
+  .category-info p {
+    font-size: 1.1rem;
+  }
 }

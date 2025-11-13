@@ -1,7 +1,6 @@
 import "./WImportAndTechnology.css"; // renamed CSS file
 import Header from "./Header/Header";
 import LoginHeader from "./LoginHeader/LoginHeader"; 
-import TermsHeader from "./TermsHeader/TermsHeader";
 
 import Home from "./Home/Home";
 import Footer from "./Footer/Footer";
@@ -28,7 +27,7 @@ function WImportAndTechnology() {
         {isLoginPage
           ? <LoginHeader />
           : isTermsPage
-            ? (isAuthenticated ? <Header /> : <TermsHeader />)
+            ? (isAuthenticated ? <Header /> : <LoginHeader />)
             : <Header />}
       
         <main className={usesFixedHeader ? 'page-main has-fixed-header' : 'page-main'}>

@@ -1,76 +1,110 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useLanguage } from "../../contexts/LanguageContext";
-import { useFrappeGetDocList, useFrappeAuth } from "frappe-react-sdk";
-import "./MyAccount.css";
+import './MyAccount.css';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function MyAccount() {
-  const { t } = useLanguage();
-  const navigate = useNavigate();
-  const { currentUser } = useFrappeAuth();
-  console.log(currentUser)
-  // Get stored phone from OTP login
-  const storedPhone = typeof window !== 'undefined' ? localStorage.getItem('kidopia_phone') : '';
+function MyAccount() {
+  const { t, currentLang } = useLanguage();
+  const { currentUser, logout } = useAuth();
 
-  // Fetch subscription by stored phone number
-  const { data: subscriptions, error, isLoading } = useFrappeGetDocList(
-    "Subscription",
-    {
-      fields: ["phone_number", "registration_date", "status", "subscription_type"],
-      filters: storedPhone ? [["phone_number", "=", storedPhone]] : [],
-      limit: 1,
-    }
-  );
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString(currentLang === 'am' ? 'am-ET' : 'en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
-  const account = subscriptions?.[0] || null;
-
-  const handleBack = () => navigate(-1);
-  const handleUnsubscribe = () => alert(t("unsubscribe") + " successful");
-
-  if (!storedPhone && !currentUser) return <div>{t("please_login")}</div>;
-
-  if (isLoading) return <div>{t("loading")}...</div>;
-  if (error) return <div>{t("error_loading_data")}</div>;
-  if (!account) return <div>{t("no_subscription_found")}</div>;
+  const handleUnsubscribe = async (type) => {
+    // This would integrate with your backend
+    alert(`${t('unsubscribe')} ${type}`);
+  };
 
   return (
-    <div className="account-page">
-      <div className="account-card">
-        <h1 className="account-header">{t("myAccount_header")}</h1>
+    <div className="my-account-page">
+      <div className="account-container">
+        {/* Header */}
+        <div className="account-header">
+          <h1>👤 {t('myAccount_header')}</h1>
+          <p>{t('myAccount_description')}</p>
+        </div>
 
-        <div className="account-info">
-          <div className="account-row">
-            <span className="label">{t("phone_number")}:</span>
-            <span className="value">{account.phone_number}</span>
+        {/* Account Info Card */}
+        <div className="account-card">
+          <div className="card-header">
+            <h2>{t('accountInformation')}</h2>
           </div>
-
-          <div className="account-row">
-            <span className="label">{t("registration_date")}:</span>
-            <span className="value">{account.registration_date}</span>
-          </div>
-
-          <div className="account-row">
-            <span className="label">{t("status")}:</span>
-            <span className={`value status ${account.status?.toLowerCase()}`}>
-              {t(account.status?.toLowerCase())}
-            </span>
-          </div>
-
-          <div className="account-row">
-            <span className="label">{t("subscription_type")}:</span>
-            <span className="value">{account.subscription_type}</span>
+          
+          <div className="account-details">
+            <div className="detail-item">
+              <span className="detail-label">📱 {t('phone_number')}</span>
+              <span className="detail-value">{currentUser?.phone || 'N/A'}</span>
+            </div>
+            
+            <div className="detail-item">
+              <span className="detail-label">📅 {t('registration_date')}</span>
+              <span className="detail-value">
+                {currentUser?.registrationDate ? formatDate(currentUser.registrationDate) : 'N/A'}
+              </span>
+            </div>
+            
+            <div className="detail-item">
+              <span className="detail-label">🟢 {t('status')}</span>
+              <span className={`status-badge ${currentUser?.status === 'active' ? 'active' : 'inactive'}`}>
+                {currentUser?.status === 'active' ? t('active') : t('inactive')}
+              </span>
+            </div>
+            
+            <div className="detail-item">
+              <span className="detail-label">💳 {t('subscription_type')}</span>
+              <span className="detail-value">{currentUser?.subscriptionType || t('dailySubscription')}</span>
+            </div>
           </div>
         </div>
 
-        <div className="account-buttons">
-          <button className="btn back" onClick={handleBack}>
-            {t("back")}
-          </button>
-          <button className="btn unsubscribe" onClick={handleUnsubscribe}>
-            {t("unsubscribe")}
-          </button>
+        {/* Subscription Management */}
+        <div className="account-card">
+          <div className="card-header">
+            <h2>🔄 {t('subscriptionManagement')}</h2>
+          </div>
+          
+          <div className="subscription-actions">
+            <div className="action-item">
+              <span className="action-text">{t('manageSubscription')}</span>
+              <button 
+                className="action-btn secondary"
+                onClick={() => handleUnsubscribe('all')}
+              >
+                {t('unsubscribe')}
+              </button>
+            </div>
+            
+            <div className="subscription-info">
+              <h4>{t('currentPlan')}</h4>
+              <div className="plan-details">
+                <span className="plan-name">📦 {t('dailySubscription')}</span>
+                <span className="plan-price">3 ETB / {t('day')}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        {/* Support Section */}
+        <div className="support-section">
+          <h3>💬 {t('needHelp')}</h3>
+          <p>{t('contactSupport')}: <strong>251 976 957 649</strong></p>
+          <div className="support-actions">
+            <button className="support-btn">
+              📧 {t('emailSupport')}
+            </button>
+            <button className="support-btn">
+              📞 {t('callSupport')}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default MyAccount;
