@@ -6,8 +6,9 @@ import { FrappeProvider } from "frappe-react-sdk";
 import { AuthProvider } from "./contexts/AuthContext";
 import { useEffect } from 'react';
 
-// Use proxy URL for development, direct URL for production
-const frappeUrl = import.meta.env.DEV ? 'http://localhost:5173' : 'http://amhaservice.et';
+// For development: use empty string to leverage Vite proxy
+// For production: use your actual domain
+const frappeUrl = import.meta.env.DEV ? '' : 'http://amhaservice.et';
 
 console.log('Frappe URL:', frappeUrl);
 console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
