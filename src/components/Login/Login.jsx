@@ -48,29 +48,41 @@ export default function WImportAndTechnologyLogin() {
     return cleanPhone.length >= 9 && cleanPhone.length <= 15;
   };
 
+  // --- SEND OTP ---
   const handleSendOtp = async () => {
     if (!phone || !validatePhone(phone)) {
       setMessages({ error: t("invalid_phone"), success: "" });
       return;
     }
+
     setMessages({ error: "", success: "" });
     setIsSending(true);
+
     try {
-      const res = await sendOtp("251" + phone);
-      if (res.success) {
+      // Use the correct key 'phone_number'
+      const res = await sendOtp({ phone_number: "251" + phone });
+
+      if (res?.message) {
         setOtpSent(true);
         setSecondsLeft(60);
-        setMessages({ error: "", success: t("sent_code") || "OTP Sent Successfully" });
+        setMessages({
+          error: "",
+          success: t("sent_code") || "OTP Sent Successfully",
+        });
       } else {
-        setMessages({ error: res.error || "Failed to send code", success: "" });
+        setMessages({
+          error: res.error || "Failed to send OTP",
+          success: "",
+        });
         setIsSending(false);
       }
-    } catch {
-      setMessages({ error: "Failed to send code. Please try again.", success: "" });
+    } catch (err) {
+      setMessages({ error: "Failed to send OTP. Please try again.", success: "" });
       setIsSending(false);
     }
   };
 
+  // --- VERIFY OTP / LOGIN ---
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -96,18 +108,37 @@ export default function WImportAndTechnologyLogin() {
     }
 
     setLocalLoading(true);
-    const result = await verifyOtp("251" + phone, pin);
-    setLocalLoading(false);
 
-    if (result.success) {
-      setMessages({ error: "", success: t("login_success") || "Login successful!" });
-      setTimeout(() => navigate("/"), 1500);
-    } else {
-      if (result.error?.toLowerCase().includes("not found") || result.error?.toLowerCase().includes("unregistered")) {
-        setMessages({ error: t("please_register") || "User not found, please register.", success: "" });
+    try {
+      const result = await verifyOtp({
+        phone_number: "251" + phone,
+        otp: pin,
+      });
+
+      setLocalLoading(false);
+
+      if (result?.message?.otp) {
+        setMessages({ error: "", success: t("login_success") || "Login successful!" });
+        setTimeout(() => navigate("/"), 1500);
       } else {
-        setMessages({ error: result.error || t("login_error") || "Login failed. Please try again.", success: "" });
+        if (
+          result.error?.toLowerCase().includes("not found") ||
+          result.error?.toLowerCase().includes("unregistered")
+        ) {
+          setMessages({
+            error: t("please_register") || "User not found, please register.",
+            success: "",
+          });
+        } else {
+          setMessages({
+            error: result.error || t("login_error") || "Login failed. Please try again.",
+            success: "",
+          });
+        }
       }
+    } catch {
+      setLocalLoading(false);
+      setMessages({ error: "Login failed. Please try again.", success: "" });
     }
   };
 

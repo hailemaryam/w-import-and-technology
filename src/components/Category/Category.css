@@ -7,7 +7,7 @@
 .category-header {
   background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-light) 100%);
   color: var(--white);
-  padding: 60px 5%;
+  padding: 0px 5%;
   text-align: center;
   margin-bottom: 40px;
 }

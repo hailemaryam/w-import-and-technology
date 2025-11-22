@@ -259,3 +259,101 @@
 .w-import-footer-inner a:hover {
   color: darken(var(--primary-red), 15%);
 }
+
+/* ===== Responsive Styles for Mobile ===== */
+@media (max-width: 768px) {
+  /* Stack hero content vertically */
+  .w-import-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+    text-align: center;
+  }
+
+  /* Move the image/logo below the card */
+  .w-import-hero-left {
+    order: 2; /* place it after the card */
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .w-import-hero-left img {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Card width adjustment */
+  .w-import-card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Login headings smaller */
+  .w-import-login-container h2 {
+    font-size: clamp(20px, 5vw, 24px);
+  }
+
+  .w-import-login-container p {
+    font-size: clamp(12px, 4vw, 14px);
+  }
+
+  /* Input group adjustments */
+  .w-import-input-group,
+  .w-import-otp-wrap {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* OTP button smaller on mobile */
+  .otp-send-btn {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+
+  /* Buttons smaller */
+  .w-import-btn-login {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  /* Subscription list adjustments */
+  .subscription-list li {
+    font-size: 13px;
+    margin-left: 0;
+  }
+
+  /* Messages */
+  .w-import-message {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+}
+
+/* ===== Extra small devices ===== */
+@media (max-width: 480px) {
+  .w-import-hero-left img {
+    max-width: 100%;
+  }
+
+  .w-import-card-inner {
+    padding: 16px;
+  }
+
+  .w-import-login-container h2 {
+    font-size: 18px;
+  }
+
+  .w-import-login-container p {
+    font-size: 12px;
+  }
+
+  .w-import-btn-login {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .otp-send-btn {
+    font-size: 0.7rem;
+    padding: 4px 6px;
+  }
+}

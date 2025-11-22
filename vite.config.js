@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: '/api', // use relative path for production
+        target: 'http://amhaservice.et', // actual backend URL
         changeOrigin: true,
         secure: false,
         configure: (proxy) => {
@@ -20,17 +20,17 @@ export default defineConfig({
         },
       },
       '/method': {
-        target: '/method', // relative path
+        target: 'http://amhaservice.et',
         changeOrigin: true,
         secure: false,
       },
       '/resource': {
-        target: '/resource', // relative path
+        target: 'http://amhaservice.et',
         changeOrigin: true,
         secure: false,
       },
       '/files': {
-        target: '/files', // relative path
+        target: 'http://amhaservice.et',
         changeOrigin: true,
         secure: false,
       },

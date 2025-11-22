@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import WImportAndTechnology from './components/WImportAndTechnology';
 import ScrollToTopButton from './components/ScrollToTop/ScrollToTop';
 import { HashRouter as Router, useLocation } from "react-router-dom";
@@ -6,9 +6,13 @@ import { FrappeProvider } from "frappe-react-sdk";
 import { AuthProvider } from "./contexts/AuthContext";
 import { useEffect } from 'react';
 
-// For development: use empty string to leverage Vite proxy
-// For production: use your actual domain
-const frappeUrl = import.meta.env.DEV ? '' : 'http://amhaservice.et';
+// Base URL for Frappe API
+// DEV: empty string to leverage Vite proxy
+// PROD: actual domain
+const frappeUrl = import.meta.env.DEV 
+  ? 'http://localhost:5173' // or your Vite dev server proxy base
+  : 'http://amhaservice.et';
+
 
 console.log('Frappe URL:', frappeUrl);
 console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
@@ -25,7 +29,7 @@ function RouteScrollToTop() {
 
 function App() {
   return (
-    <FrappeProvider 
+    <FrappeProvider
       url={frappeUrl}
       enableCSRF={true}
       csrfTokenPath="/api/method/frappe.auth.get_csrf_token"
