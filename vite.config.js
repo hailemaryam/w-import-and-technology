@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://196.189.155.194:8000',
+        target: '/api', // use relative path for production
         changeOrigin: true,
         secure: false,
         configure: (proxy) => {
@@ -20,17 +20,17 @@ export default defineConfig({
         },
       },
       '/method': {
-        target: 'http://196.189.155.194:8000',
+        target: '/method', // relative path
         changeOrigin: true,
         secure: false,
       },
       '/resource': {
-        target: 'http://196.189.155.194:8000',
+        target: '/resource', // relative path
         changeOrigin: true,
         secure: false,
       },
       '/files': {
-        target: 'http://196.189.155.194:8000',
+        target: '/files', // relative path
         changeOrigin: true,
         secure: false,
       },
