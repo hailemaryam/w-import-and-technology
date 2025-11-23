@@ -160,8 +160,6 @@ export default function WImportAndTechnologyLogin() {
 
                 <ul className="subscription-list">
                   <li>{t("daily")}</li>
-                  <li>{t("weekly")}</li>
-                  <li>{t("monthly")}</li>
                 </ul>
 
                 {messages.error && <div className="w-import-message w-import-error">{messages.error}</div>}
