@@ -1,3 +1,4 @@
+// src/components/Home/Home.jsx
 import './Home.css';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -11,15 +12,8 @@ function Home() {
 
   // Fetch ALL posts to get accurate category counts
   const { data: allPosts, isLoading: allPostsLoading } = useFrappeGetDocList('Post', {
-    fields: ['name', 'postcategory'],
-    limit: 1000 // Fetch all posts for counting
-  });
-
-  // Fetch recent posts for display (limited to 3)
-  const { data: recentPosts, isLoading: recentPostsLoading, error } = useFrappeGetDocList('Post', {
-    fields: ['name', 'title', 'titleam', 'description', 'descriptionam', 'image', 'postcategory'],
-    orderBy: { field: 'creation', order: 'desc' },
-    limit: 3
+    fields: ['name', 'title', 'titleam', 'description', 'descriptionam', 'image', 'postcategory', 'creation'],
+    limit: 1000 // Fetch all posts for counting and category selection
   });
 
   // Calculate category counts when allPosts changes
@@ -41,14 +35,27 @@ function Home() {
     }
   }, [allPosts]);
 
-  // Safe formatting with fallbacks for recent posts
-  const formattedPosts = (recentPosts || []).map(post => ({
+  // Select the latest post per category for the Most Read section
+  const postsByCategory = {
+    'health-tips': null,
+    'sport-news': null,
+    'food-preparation': null
+  };
+
+  (allPosts || []).forEach(post => {
+    if (post.postcategory && postsByCategory[post.postcategory] === null) {
+      postsByCategory[post.postcategory] = post;
+    }
+  });
+
+  // Format posts for display
+  const formattedPosts = Object.values(postsByCategory).map(post => ({
     id: post?.name || `post-${Math.random()}`,
     title: currentLang === 'am' ? (post?.titleam || post?.title || 'No title') : (post?.title || 'No title'),
     excerpt: currentLang === 'am' ? (post?.descriptionam || post?.description || 'No description') : (post?.description || 'No description'),
     category: post?.postcategory,
     image: post?.image || "/images/placeholder.jpg"
-  }));
+  })).filter(Boolean); // Remove nulls if any category has no posts
 
   const categories = [
     {
@@ -77,23 +84,12 @@ function Home() {
     }
   ];
 
-  // Loading state - only show loading if we're loading recent posts (what users see)
-  if (recentPostsLoading) {
+  // Loading state - only show loading if we're loading allPosts
+  if (allPostsLoading) {
     return (
       <div className="homepage">
         <div className="loading">
           {currentLang === 'am' ? 'በመጫን ላይ...' : 'Loading posts...'}
-        </div>
-      </div>
-    );
-  }
-
-  // Error state
-  if (error) {
-    return (
-      <div className="homepage">
-        <div className="error">
-          {currentLang === 'am' ? 'ጽሑፎችን ማምጣት አልተሳካም:' : 'Failed to load posts:'} {error.message}
         </div>
       </div>
     );
@@ -151,7 +147,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent Posts Section using Posts component */}
+      {/* Most Read / Posts Section */}
       <section className="our-section">
         <div className="section-header">
           <h2>📰 {currentLang === 'am' ? 'የእኛ ጽሑፎች' : 'Our Posts'}</h2>
