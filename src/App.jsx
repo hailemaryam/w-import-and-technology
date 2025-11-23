@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 // DEV: empty string to leverage Vite proxy
 // PROD: actual domain
 const frappeUrl = import.meta.env.DEV 
-  ? 'http://amhaservice.et' // ✅ CORRECT - point to your backend in both environments
+  ? window.location.origin
   : 'http://amhaservice.et';
 
 console.log('Frappe URL:', frappeUrl);
