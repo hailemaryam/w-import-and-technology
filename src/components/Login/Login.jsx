@@ -21,11 +21,12 @@ export default function WImportAndTechnologyLogin() {
   const [buttonText, setButtonText] = useState(t("send_code") || "SEND OTP");
   const [otpSent, setOtpSent] = useState(false);
 
+  // Save current language in session
   useEffect(() => {
     sessionStorage.setItem("lang", currentLang);
   }, [currentLang]);
 
-  // Countdown timer
+  // Countdown timer for OTP resend
   useEffect(() => {
     if (secondsLeft <= 0) return;
     const timer = setInterval(() => setSecondsLeft((prev) => prev - 1), 1000);
@@ -51,7 +52,7 @@ export default function WImportAndTechnologyLogin() {
   // --- SEND OTP ---
   const handleSendOtp = async () => {
     if (!phone || !validatePhone(phone)) {
-      setMessages({ error: t("invalid_phone"), success: "" });
+      setMessages({ error: t("invalid_phone") || "Invalid phone number", success: "" });
       return;
     }
 
@@ -59,10 +60,14 @@ export default function WImportAndTechnologyLogin() {
     setIsSending(true);
 
     try {
-      // Use the correct key 'phone_number'
-      const res = await sendOtp({ phone_number: "251" + phone });
+      const res = await sendOtp("251" + phone);
 
-      if (res?.message) {
+      // Handle the API response
+      if (
+        res?.success ||
+        res?.message?.message === "OTP sent successfully" ||
+        res?.data?.message === "OTP sent successfully"
+      ) {
         setOtpSent(true);
         setSecondsLeft(60);
         setMessages({
@@ -71,13 +76,19 @@ export default function WImportAndTechnologyLogin() {
         });
       } else {
         setMessages({
-          error: res.error || "Failed to send OTP",
+          error: res?.error || 
+                 res?.message?.message || 
+                 res?.data?.message || 
+                 "Failed to send OTP",
           success: "",
         });
         setIsSending(false);
       }
     } catch (err) {
-      setMessages({ error: "Failed to send OTP. Please try again.", success: "" });
+      setMessages({ 
+        error: err?.message || "Failed to send OTP. Please try again.", 
+        success: "" 
+      });
       setIsSending(false);
     }
   };
@@ -110,35 +121,32 @@ export default function WImportAndTechnologyLogin() {
     setLocalLoading(true);
 
     try {
-      const result = await verifyOtp({
-        phone_number: "251" + phone,
-        otp: pin,
-      });
+      const result = await verifyOtp("251" + phone, pin);
 
-      setLocalLoading(false);
-
-      if (result?.message?.otp) {
+      // ✅ UPDATED: Handle checkOTP response format
+      if (
+        result?.success ||
+        result?.message?.message === "Successful OTP" ||
+        result?.data?.message === "Successful OTP"
+      ) {
         setMessages({ error: "", success: t("login_success") || "Login successful!" });
         setTimeout(() => navigate("/"), 1500);
       } else {
-        if (
-          result.error?.toLowerCase().includes("not found") ||
-          result.error?.toLowerCase().includes("unregistered")
-        ) {
-          setMessages({
-            error: t("please_register") || "User not found, please register.",
-            success: "",
-          });
-        } else {
-          setMessages({
-            error: result.error || t("login_error") || "Login failed. Please try again.",
-            success: "",
-          });
-        }
+        setMessages({
+          error: result?.error || 
+                result?.message?.message || 
+                "Invalid OTP",
+          success: "",
+        });
       }
-    } catch {
+
       setLocalLoading(false);
-      setMessages({ error: "Login failed. Please try again.", success: "" });
+    } catch (err) {
+      setLocalLoading(false);
+      setMessages({ 
+        error: err?.message || "Login failed. Please try again.", 
+        success: "" 
+      });
     }
   };
 
@@ -221,7 +229,7 @@ export default function WImportAndTechnologyLogin() {
                     onChange={(e) => setAgreeTnc(e.target.checked)}
                   />
                   <label htmlFor="w-import-tnc-checkbox">
-                    <span className="consent-text">{t("consent")}{" "}</span>
+                    <span className="consent-text">{t("consent")} </span>
                     <Link to="/terms" className="consent" target="_blank" rel="noopener noreferrer">
                       {t("terms")}
                     </Link>

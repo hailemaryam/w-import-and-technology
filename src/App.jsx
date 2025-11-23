@@ -10,9 +10,8 @@ import { useEffect } from 'react';
 // DEV: empty string to leverage Vite proxy
 // PROD: actual domain
 const frappeUrl = import.meta.env.DEV 
-  ? 'http://localhost:5173' // or your Vite dev server proxy base
+  ? 'http://amhaservice.et' // ✅ CORRECT - point to your backend in both environments
   : 'http://amhaservice.et';
-
 
 console.log('Frappe URL:', frappeUrl);
 console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
@@ -31,7 +30,7 @@ function App() {
   return (
     <FrappeProvider
       url={frappeUrl}
-      enableCSRF={true}
+      enableCSRF={false}
       csrfTokenPath="/api/method/frappe.auth.get_csrf_token"
     >
       <AuthProvider>

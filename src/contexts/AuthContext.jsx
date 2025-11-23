@@ -4,7 +4,13 @@ import { useFrappeAuth, useFrappePostCall } from 'frappe-react-sdk';
 const AuthContext = createContext();
 
 // HMR-friendly hook
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
 export const AuthProvider = ({ children }) => {
   const { login, logout, currentUser, isLoading, error } = useFrappeAuth();
@@ -20,7 +26,9 @@ export const AuthProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    setIsAuthenticated(!!currentUser || !!otpPhone);
+    // User is authenticated if either Frappe user exists OR OTP phone is verified
+    const authenticated = !!(currentUser || otpPhone);
+    setIsAuthenticated(authenticated);
   }, [currentUser, otpPhone]);
 
   const handleLogin = async (email, password) => {
@@ -47,41 +55,83 @@ export const AuthProvider = ({ children }) => {
 
   const sendOtp = async (phoneNumber) => {
     try {
-      const res = await callSendOtp({ phone_number: phoneNumber });
-      return { success: true, data: res?.message };
+      const result = await callSendOtp({ 
+        phone_number: phoneNumber 
+      });
+      
+      // ✅ Handle the API response format: {"message": {"message": "OTP sent successfully", "otp": 8345}}
+      if (result?.message?.message === "OTP sent successfully") {
+        return { 
+          success: true, 
+          data: result,
+          message: result.message 
+        };
+      } else {
+        return { 
+          success: false, 
+          error: result?.message?.message || 'Failed to send OTP' 
+        };
+      }
     } catch (err) {
-      return { success: false, error: err.message || 'Failed to send OTP' };
+      return { 
+        success: false, 
+        error: err.message || 'Failed to send OTP. Please try again.' 
+      };
     }
   };
 
   const verifyOtp = async (phoneNumber, otp) => {
     try {
-      const res = await callCheckOtp({ phone_number: phoneNumber, otp });
-      setOtpPhone(phoneNumber);
-      localStorage.setItem('kidopia_phone', phoneNumber);
-      setIsAuthenticated(true);
-      return { success: true, data: res?.message };
+      const result = await callCheckOtp({ 
+        phone_number: phoneNumber, 
+        otp: otp 
+      });
+      
+      // ✅ Handle the API response format: {"message": {"message": "Successful OTP"}}
+      if (result?.message?.message === "Successful OTP") {
+        setOtpPhone(phoneNumber);
+        localStorage.setItem('kidopia_phone', phoneNumber);
+        setIsAuthenticated(true);
+        return { 
+          success: true, 
+          data: result,
+          message: result.message 
+        };
+      } else {
+        return { 
+          success: false, 
+          error: result?.message?.message || 'Invalid OTP' 
+        };
+      }
     } catch (err) {
-      return { success: false, error: err.message || 'Invalid OTP' };
+      return { 
+        success: false, 
+        error: err.message || 'Invalid OTP. Please try again.' 
+      };
     }
   };
 
+  const value = {
+    // Auth state
+    isAuthenticated,
+    currentUser,
+    isLoading,
+    error,
+    
+    // OTP state
+    sendingOtp,
+    checkingOtp,
+    otpPhone,
+    
+    // Methods
+    login: handleLogin,
+    logout: handleLogout,
+    sendOtp,
+    verifyOtp,
+  };
+
   return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        currentUser,
-        isLoading,
-        error,
-        sendingOtp,
-        checkingOtp,
-        otpPhone,
-        login: handleLogin,
-        logout: handleLogout,
-        sendOtp,
-        verifyOtp,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
