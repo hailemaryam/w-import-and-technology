@@ -7,13 +7,13 @@ import Posts from '../Posts/Posts';
 import { useEffect, useState } from 'react';
 
 function Home() {
-  const { currentLang } = useLanguage();
+  const { t, currentLang } = useLanguage();
   const [categoryCounts, setCategoryCounts] = useState({});
 
   // Fetch ALL posts to get accurate category counts
   const { data: allPosts, isLoading: allPostsLoading } = useFrappeGetDocList('Post', {
     fields: ['name', 'title', 'titleam', 'description', 'descriptionam', 'image', 'postcategory', 'creation'],
-    limit: 1000 // Fetch all posts for counting and category selection
+    limit: 1000
   });
 
   // Calculate category counts when allPosts changes
@@ -48,48 +48,48 @@ function Home() {
     }
   });
 
-  // Format posts for display
+  // Format posts for display - Use currentLang for Frappe data
   const formattedPosts = Object.values(postsByCategory).map(post => ({
     id: post?.name || `post-${Math.random()}`,
     title: currentLang === 'am' ? (post?.titleam || post?.title || 'No title') : (post?.title || 'No title'),
     excerpt: currentLang === 'am' ? (post?.descriptionam || post?.description || 'No description') : (post?.description || 'No description'),
     category: post?.postcategory,
     image: post?.image || "/images/placeholder.jpg"
-  })).filter(Boolean); // Remove nulls if any category has no posts
+  })).filter(Boolean);
 
   const categories = [
     {
       name: "health-tips",
-      title: currentLang === 'am' ? "ጤና እና ውበት" : "Health & Beauty",
-      description: currentLang === 'am' ? "ለጤና እና ውበት ምክሮች" : "Tips for wellness and beauty",
+      title: t('healthTips'), // Use t() for UI text
+      description: t('healthAdvice'), // Use t() for UI text
       icon: "💊",
       color: "#811114",
       count: categoryCounts['health-tips'] || 0
     },
     {
       name: "sport-news", 
-      title: currentLang === 'am' ? "የስፖርት ዜና" : "Sports News",
-      description: currentLang === 'am' ? "አካባቢያዊ እና ዓለም አቀፍ ስፖርቶች" : "Local and international sports",
+      title: t('sportNews'), // Use t() for UI text
+      description: t('foreignSports'), // Use t() for UI text
       icon: "⚽",
       color: "#2E7D32",
       count: categoryCounts['sport-news'] || 0
     },
     {
       name: "food-preparation",
-      title: currentLang === 'am' ? "ምግብ እና አሰራሮች" : "Food & Recipes", 
-      description: currentLang === 'am' ? "ባህላዊ እና ዓለም አቀፍ ምግቦች" : "Traditional and international cuisine",
+      title: t('foodPreparation'), // Use t() for UI text
+      description: t('ethiopianFood'), // Use t() for UI text
       icon: "🍴",
       color: "#FF6B35",
       count: categoryCounts['food-preparation'] || 0
     }
   ];
 
-  // Loading state - only show loading if we're loading allPosts
+  // Loading state - Use t() for UI text
   if (allPostsLoading) {
     return (
       <div className="homepage">
         <div className="loading">
-          {currentLang === 'am' ? 'በመጫን ላይ...' : 'Loading posts...'}
+          {t('loadingPosts')}
         </div>
       </div>
     );
@@ -97,76 +97,73 @@ function Home() {
 
   return (
     <div className="homepage">
-      {/* Hero Section */}
+      {/* Hero Section - Use t() for UI text */}
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">
-            {currentLang === 'am' ? 'ወደ ' : 'Welcome to '}
+            {t('welcome')}
             <span className="brand-highlight">W-Import and Technology</span>
-            {currentLang === 'am' ? ' ብሎግ በደህና መጡ' : ' Blog'}
+            {t('blog')}
           </h1>
           <p className="hero-subtitle">
-            {currentLang === 'am' 
-              ? 'የጤና ምክሮች፣ የስፖርት ዜና እና ጣፋጭ አሰራሮች ዕለታዊ ዝግጅትዎ'
-              : 'Your daily dose of health tips, sports news, and delicious recipes'
-            }
+            {t('heroSubtitle')}
           </p>
           <div className="hero-search">
             <input 
               type="text" 
-              placeholder={currentLang === 'am' ? 'ጽሑፎችን ይፈልጉ...' : 'Search posts...'} 
+              placeholder={t('searchPlaceholder')} 
               className="search-input"
             />
             <button className="search-btn">
-              {currentLang === 'am' ? 'ፈልግ' : 'Search'}
+              {t('search')}
             </button>
           </div>
         </div>
         <div className="hero-images-grid">
           <div className="hero-image-item">
-            <img src="/images/health3.jpg" alt={currentLang === 'am' ? 'ጤና' : 'Health'} />
+            <img src="/images/health3.jpg" alt={t('health')} />
             <div className="image-overlay">
               <span className="image-icon">💊</span>
-              <span className="image-text">{currentLang === 'am' ? 'ጤና' : 'Health'}</span>
+              <span className="image-text">{t('health')}</span>
             </div>
           </div>
           <div className="hero-image-item">
-            <img src="/images/sport3.jpg" alt={currentLang === 'am' ? 'ስፖርት' : 'Sports'} />
+            <img src="/images/sport3.jpg" alt={t('sports')} />
             <div className="image-overlay">
               <span className="image-icon">⚽</span>
-              <span className="image-text">{currentLang === 'am' ? 'ስፖርት' : 'Sports'}</span>
+              <span className="image-text">{t('sports')}</span>
             </div>
           </div>
           <div className="hero-image-item">
-            <img src="/images/food2.jpg" alt={currentLang === 'am' ? 'ምግብ' : 'Food'} />
+            <img src="/images/food2.jpg" alt={t('food')} />
             <div className="image-overlay">
               <span className="image-icon">🍴</span>
-              <span className="image-text">{currentLang === 'am' ? 'ምግብ' : 'Food'}</span>
+              <span className="image-text">{t('food')}</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Most Read / Posts Section */}
+      {/* Most Read / Posts Section - Use t() for UI text */}
       <section className="our-section">
         <div className="section-header">
-          <h2>📰 {currentLang === 'am' ? 'የእኛ ጽሑፎች' : 'Our Posts'}</h2>
-          <p>{currentLang === 'am' ? 'በጣም የሚነበቡ' : 'Most Read'}</p>
+          <h2>📰 {t('OurPosts')}</h2>
+          <p>{t('mostRead')}</p>
         </div>
         
         <Posts 
           posts={formattedPosts}
-          title={currentLang === 'am' ? 'የእኛ ጽሑፎች' : 'Our Posts'}
-          subtitle={currentLang === 'am' ? 'በጣም የሚነበቡ' : 'Most Read'}
+          title={t('OurPosts')}
+          subtitle={t('mostRead')}
           showViewAll={false}
         />
       </section>
 
-      {/* Categories Section */}
+      {/* Categories Section - Use t() for UI text */}
       <section className="categories-section">
         <div className="section-header">
-          <h2>📚 {currentLang === 'am' ? 'ምድቦች' : 'Categories'}</h2>
-          <p>{currentLang === 'am' ? 'ርዕሰ ጉዳዮችን ያስሱ' : 'Explore Topics'}</p>
+          <h2>📚 {t('categories')}</h2>
+          <p>{t('exploreTopics')}</p>
         </div>
         
         <div className="categories-grid">
@@ -182,7 +179,7 @@ function Home() {
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>
                 <span className="post-count">
-                  {category.count} {currentLang === 'am' ? 'ጽሑፎች' : 'articles'}
+                  {category.count} {t('articles')}
                 </span>
               </div>
               <div className="category-arrow">→</div>

@@ -7,38 +7,28 @@ import { useEffect, useState } from 'react';
 
 function Category() {
   const { categoryName } = useParams();
-  const { currentLang } = useLanguage();
+  const { t, currentLang } = useLanguage(); // Add currentLang
   
-  const [currentLanguage, setCurrentLanguage] = useState('en');
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10); // Number of posts per page
-
-  useEffect(() => {
-    if (currentLang) {
-      setCurrentLanguage(currentLang);
-    }
-  }, [currentLang]);
+  const [postsPerPage] = useState(10);
 
   // Reset to page 1 when category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [categoryName]);
 
-  // Fetch posts from Frappe with better error handling
+  // Fetch posts from Frappe
   const { data: posts, isLoading, error } = useFrappeGetDocList('Post', {
     fields: ['name', 'title', 'titleam', 'description', 'descriptionam', 'image', 'postcategory'],
     filters: [['postcategory', '=', categoryName]],
     limit: 1000
   });
 
-  console.log('Posts from Frappe:', posts);
-  console.log('Error:', error);
-
-  // Safe formatting with fallbacks
+  // Format posts for display - Use currentLang for Frappe data
   const formattedPosts = (posts || []).map(post => ({
     id: post?.name || `post-${Math.random()}`,
-    title: currentLanguage === 'am' ? (post?.titleam || post?.title || 'No title') : (post?.title || 'No title'),
-    excerpt: currentLanguage === 'am' ? (post?.descriptionam || post?.description || 'No description') : (post?.description || 'No description'),
+    title: currentLang === 'am' ? (post?.titleam || post?.title || 'No title') : (post?.title || 'No title'),
+    excerpt: currentLang === 'am' ? (post?.descriptionam || post?.description || 'No description') : (post?.description || 'No description'),
     category: categoryName,
     image: post?.image || '/default-image.jpg'
   }));
@@ -49,7 +39,6 @@ function Category() {
   const currentPosts = formattedPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(formattedPosts.length / postsPerPage);
 
-  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -57,13 +46,11 @@ function Category() {
     });
   };
 
-  // Change page with scroll to top
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
     scrollToTop();
   };
 
-  // Next page with scroll to top
   const nextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -71,7 +58,6 @@ function Category() {
     }
   };
 
-  // Previous page with scroll to top
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -79,34 +65,28 @@ function Category() {
     }
   };
 
-  // Generate page numbers to show
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 5; // Maximum page numbers to display
+    const maxPagesToShow = 5;
     
     if (totalPages <= maxPagesToShow) {
-      // Show all pages if total pages are less than maxPagesToShow
       for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
       }
     } else {
-      // Show limited pages with ellipsis
       if (currentPage <= 3) {
-        // Near the start
         for (let i = 1; i <= 4; i++) {
           pageNumbers.push(i);
         }
         pageNumbers.push('...');
         pageNumbers.push(totalPages);
       } else if (currentPage >= totalPages - 2) {
-        // Near the end
         pageNumbers.push(1);
         pageNumbers.push('...');
         for (let i = totalPages - 3; i <= totalPages; i++) {
           pageNumbers.push(i);
         }
       } else {
-        // In the middle
         pageNumbers.push(1);
         pageNumbers.push('...');
         for (let i = currentPage - 1; i <= currentPage + 1; i++) {
@@ -120,37 +100,36 @@ function Category() {
     return pageNumbers;
   };
 
-  // Category info
+  // Category info - Use currentLang for category titles/descriptions (like Frappe data)
   const categoryInfo = {
     "food-preparation": {
-      title: currentLanguage === 'am' ? "ምግብ እና አሰራሮች" : "Food & Recipes",
-      description: currentLanguage === 'am' ? "ሁሉም የምግብ አሰራር ጽሑፎች" : "All food and recipe articles",
+      title: currentLang === 'am' ? "ምግብ እና አሰራሮች" : "Food & Recipes",
+      description: currentLang === 'am' ? "ሁሉም የምግብ አሰራር ጽሑፎች" : "All food and recipe articles",
       icon: "🍴"
     },
     "sport-news": {
-      title: currentLanguage === 'am' ? "የስፖርት ዜና" : "Sports News",
-      description: currentLanguage === 'am' ? "ሁሉም የስፖርት ዜና ጽሑፎች" : "All sports news articles", 
+      title: currentLang === 'am' ? "የስፖርት ዜና" : "Sports News",
+      description: currentLang === 'am' ? "ሁሉም የስፖርት ዜና ጽሑፎች" : "All sports news articles", 
       icon: "⚽"
     },
     "health-tips": {
-      title: currentLanguage === 'am' ? "ጤና እና ውበት" : "Health & Beauty",
-      description: currentLanguage === 'am' ? "ሁሉም የጤና እና ውበት ጽሑፎች" : "All health and beauty articles",
+      title: currentLang === 'am' ? "ጤና እና ውበት" : "Health & Beauty",
+      description: currentLang === 'am' ? "ሁሉም የጤና እና ውበት ጽሑፎች" : "All health and beauty articles",
       icon: "💊"
     }
   }[categoryName] || {
-    title: currentLanguage === 'am' ? "ምድብ" : "Category",
-    description: currentLanguage === 'am' ? "ሁሉም የዚህ ምድብ ጽሑፎች" : "All articles in this category", 
+    title: currentLang === 'am' ? "ምድብ" : "Category",
+    description: currentLang === 'am' ? "ሁሉም የዚህ ምድብ ጽሑፎች" : "All articles in this category", 
     icon: "📁"
   };
 
-  // Check if we have a network or SDK error
   if (error) {
     return (
       <div className="category-page">
         <div className="error-message">
-          <h2>{currentLanguage === 'am' ? "ስህተት ተፈጥሯል" : "An error occurred"}</h2>
-          <p>{currentLanguage === 'am' ? "ጽሑፎችን ማምጣት አልተሳካም" : "Failed to load posts"}</p>
-          <p>{error?.message || 'Unknown error'}</p>
+          <h2>{t('errorOccurred')}</h2> {/* Use t() for UI text */}
+          <p>{t('failedToLoadPosts')}</p> {/* Use t() for UI text */}
+          <p>{error?.message || t('unknownError')}</p> {/* Use t() for UI text */}
         </div>
       </div>
     );
@@ -165,8 +144,8 @@ function Category() {
           <h1>{categoryInfo.title}</h1>
           <p>{categoryInfo.description}</p>
           <span className="posts-count">
-            {formattedPosts.length} {currentLanguage === 'am' ? 'ጽሑፎች' : 'articles'}
-            {totalPages > 1 && ` • ${currentLanguage === 'am' ? 'ገጽ' : 'Page'} ${currentPage} ${currentLanguage === 'am' ? 'ከ' : 'of'} ${totalPages}`}
+            {formattedPosts.length} {t('articles')} {/* Use t() for UI text */}
+            {totalPages > 1 && ` • ${t('page')} ${currentPage} ${t('of')} ${totalPages}`} {/* Use t() for UI text */}
           </span>
         </div>
       </section>
@@ -174,7 +153,7 @@ function Category() {
       {/* Posts Component */}
       {isLoading ? (
         <div className="loading-container">
-          <p>{currentLanguage === 'am' ? "በመጫን ላይ..." : "Loading posts..."}</p>
+          <p>{t('loadingPosts')}</p> {/* Use t() for UI text */}
         </div>
       ) : (
         <>
@@ -185,21 +164,19 @@ function Category() {
             showViewAll={false}
           />
           
-          {/* Pagination Controls */}
+          {/* Pagination Controls - Use t() for UI text */}
           {totalPages > 1 && (
             <div className="pagination-container">
               <div className="pagination">
-                {/* Previous Button */}
                 <button 
                   onClick={prevPage} 
                   disabled={currentPage === 1}
                   className={`pagination-btn pagination-prev ${currentPage === 1 ? 'disabled' : ''}`}
                 >
                   <span className="pagination-arrow">←</span>
-                  {currentLanguage === 'am' ? 'ያለፈ' : 'Previous'}
+                  {t('previous')}
                 </button>
                 
-                {/* Page Numbers */}
                 <div className="pagination-numbers">
                   {getPageNumbers().map((number, index) => (
                     number === '...' ? (
@@ -218,23 +195,14 @@ function Category() {
                   ))}
                 </div>
                 
-                {/* Next Button */}
                 <button 
                   onClick={nextPage} 
                   disabled={currentPage === totalPages}
                   className={`pagination-btn pagination-next ${currentPage === totalPages ? 'disabled' : ''}`}
                 >
-                  {currentLanguage === 'am' ? 'ቀጣይ' : 'Next'}
+                  {t('next')}
                   <span className="pagination-arrow">→</span>
                 </button>
-              </div>
-              
-              {/* Page Info */}
-              <div className="pagination-info">
-                {currentLanguage === 'am' 
-                  ? `ከ${indexOfFirstPost + 1}-${Math.min(indexOfLastPost, formattedPosts.length)} ከ${formattedPosts.length} ጽሑፎች`
-                  : `Showing ${indexOfFirstPost + 1}-${Math.min(indexOfLastPost, formattedPosts.length)} of ${formattedPosts.length} posts`
-                }
               </div>
             </div>
           )}
