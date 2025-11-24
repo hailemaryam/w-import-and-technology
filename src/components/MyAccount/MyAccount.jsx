@@ -100,11 +100,6 @@ function MyAccount() {
             </div>
 
             <div className="detail-item">
-              <span className="detail-label">📅 {t('registration_date') || "Registration Date"}</span>
-              <span className="detail-value">{formatDate(account.registration_date)}</span>
-            </div>
-
-            <div className="detail-item">
               <span className="detail-label">🟢 {t('status') || "Status"}</span>
               <span
                 className={`status-badge ${

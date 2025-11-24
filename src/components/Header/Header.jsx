@@ -28,10 +28,18 @@ function Header() {
   };
 
   const handleLogout = async () => {
+    // IMMEDIATELY redirect to login page
+    navigate('/login');
+
+    // THEN clear auth state (this will happen in background)
     const result = await logout();
-    if (result.success) {
-      navigate('/login');
-    }
+
+    // Force clear all storage
+    localStorage.removeItem('w_phone');
+    localStorage.removeItem('otpSent');
+    localStorage.removeItem('otpPhone');
+
+    return result;
   };
 
   // Close mobile menu when clicking outside
@@ -80,7 +88,7 @@ function Header() {
             >
               {t('home')}
             </NavLink>
-            
+
             {/* Categories Dropdown - ONLY PLACE FOR CATEGORIES */}
             <div className="dropdown">
               <span className="dropbtn links">{t('categories')} ▾</span>
@@ -120,7 +128,7 @@ function Header() {
           <div className="mobile-logo-container">
             <img src="/images/w.jpg" className="mobile-logo-img" alt="Daily Blog" />
           </div>
-          
+
           <div className="mobile-hamburger-container">
             <button
               ref={hamburgerRef}
@@ -150,9 +158,9 @@ function Header() {
 
         <div className="mobile-nav-content">
           {/* Home Link */}
-          <NavLink 
-            className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`} 
-            to="/" 
+          <NavLink
+            className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`}
+            to="/"
             onClick={closeMobileMenu}
           >
             {t('home')}
@@ -163,28 +171,28 @@ function Header() {
             <div className="mobile-category-header">
               <h3>{t('categories')}</h3>
             </div>
-            
-            <NavLink 
-              className={({ isActive }) => `mobile-nav-item category-item ${isActive ? 'active' : ''}`} 
-              to="/category/health-tips" 
+
+            <NavLink
+              className={({ isActive }) => `mobile-nav-item category-item ${isActive ? 'active' : ''}`}
+              to="/category/health-tips"
               onClick={closeMobileMenu}
             >
               <span className="category-icon">💄</span>
               {t('healthTips')}
             </NavLink>
 
-            <NavLink 
-              className={({ isActive }) => `mobile-nav-item category-item ${isActive ? 'active' : ''}`} 
-              to="/category/sport-news" 
+            <NavLink
+              className={({ isActive }) => `mobile-nav-item category-item ${isActive ? 'active' : ''}`}
+              to="/category/sport-news"
               onClick={closeMobileMenu}
             >
               <span className="category-icon">⚽</span>
               {t('sportNews')}
             </NavLink>
 
-            <NavLink 
-              className={({ isActive }) => `mobile-nav-item category-item ${isActive ? 'active' : ''}`} 
-              to="/category/food-preparation" 
+            <NavLink
+              className={({ isActive }) => `mobile-nav-item category-item ${isActive ? 'active' : ''}`}
+              to="/category/food-preparation"
               onClick={closeMobileMenu}
             >
               <span className="category-icon">🍴</span>
@@ -194,9 +202,9 @@ function Header() {
 
           {/* Account & Other Links */}
           <div className="mobile-account-section">
-            <NavLink 
-              className={({ isActive }) => `mobile-nav-item account-item ${isActive ? 'active' : ''}`} 
-              to="/my-account" 
+            <NavLink
+              className={({ isActive }) => `mobile-nav-item account-item ${isActive ? 'active' : ''}`}
+              to="/my-account"
               onClick={closeMobileMenu}
             >
               <span className="account-icon">👤</span>
@@ -206,8 +214,8 @@ function Header() {
 
           {/* Action Buttons */}
           <div className="mobile-actions-section">
-            <button 
-              className="mobile-nav-item language-btn" 
+            <button
+              className="mobile-nav-item language-btn"
               onClick={() => {
                 toggleLanguage();
                 closeMobileMenu();
@@ -217,8 +225,8 @@ function Header() {
               {currentLang === 'en' ? 'Switch to Amharic' : 'Switch to English'}
             </button>
 
-            <button 
-              className="mobile-nav-item logout-btn" 
+            <button
+              className="mobile-nav-item logout-btn"
               onClick={() => {
                 handleLogout();
                 closeMobileMenu();

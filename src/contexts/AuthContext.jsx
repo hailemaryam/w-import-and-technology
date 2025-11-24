@@ -15,7 +15,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const { login, logout, currentUser, isLoading, error } = useFrappeAuth();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [otpPhone, setOtpPhone] = useState(() => localStorage.getItem('kidopia_phone') || '');
+  const [otpPhone, setOtpPhone] = useState(() => localStorage.getItem('w_phone') || '');
 
   // ✅ Use the correct backend API paths
   const { call: callSendOtp, loading: sendingOtp } = useFrappePostCall(
@@ -46,7 +46,9 @@ export const AuthProvider = ({ children }) => {
       await logout();
       setIsAuthenticated(false);
       setOtpPhone('');
-      localStorage.removeItem('kidopia_phone');
+      localStorage.removeItem('w_phone');
+      localStorage.removeItem('otpSent');
+      localStorage.removeItem('otpPhone');
       return { success: true };
     } catch (err) {
       return { success: false, error: err.message || 'Logout failed' };
@@ -86,7 +88,7 @@ export const AuthProvider = ({ children }) => {
       // ✅ Handle the API response format: {"message": {"message": "Successful OTP"}}
       if (result?.message?.message === "Successful OTP") {
         setOtpPhone(phoneNumber);
-        localStorage.setItem('kidopia_phone', phoneNumber);
+        localStorage.setItem('w_phone', phoneNumber);
         setIsAuthenticated(true);
         return { 
           success: true, 

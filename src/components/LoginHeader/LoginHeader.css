@@ -62,7 +62,7 @@
     }
     
     .login-logo-img {
-      height: 35px;
+      height: 50px;
     }
     
     .login-logo-text {
@@ -77,15 +77,15 @@
   
   @media (max-width: 480px) {
     .login-header {
-      padding: 1rem 0;
+      margin: 10px 0;
     }
     
     .login-logo-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
     
     .login-logo-img {
-      height: 30px;
+      height: 40px;
     }
     
     .login-lang-btn {

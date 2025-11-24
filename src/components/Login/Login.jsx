@@ -289,16 +289,16 @@ export default function WImportAndTechnologyLogin() {
           </div>
 
           <div className="w-import-card">
-            <div className="w-import-card-header">{t("welcome")}</div>
+            <div className="w-import-card-header">{t("welcomel")}</div>
 
             <div className="w-import-card-inner">
               <div className="w-import-login-container">
                 <h2>{t("login")}</h2>
                 <p>{t("description")}</p>
 
-                <ul className="subscription-list">
-                  <li>{t("daily")}</li>
-                </ul>
+                <p className="subscription-list">
+                  {t("daily")}
+                </p>
 
                 {messages.error && <div className="w-import-message w-import-error">{messages.error}</div>}
                 {messages.success && <div className="w-import-message w-import-success">{messages.success}</div>}

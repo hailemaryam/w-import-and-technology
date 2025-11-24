@@ -98,6 +98,7 @@
 
 /* ===== Login Container ===== */
 .w-import-login-container h2 {
+  text-align: center;
   font-size: clamp(24px, 3vw, 28px);
   font-weight: 700;
   margin-bottom: 8px;
@@ -105,16 +106,17 @@
 }
 
 .w-import-login-container p {
+  text-align: center;
   font-size: clamp(14px, 1.6vw, 16px);
   color: var(--text-dark);
   margin-bottom: 12px;
   line-height: 1.5;
 }
 
-.subscription-list li {
-  text-align: left;
+.subscription-list {
   margin-left: 5%;
   font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: bolder ;
   color: var(--text-dark);
 }
 
@@ -312,7 +314,7 @@
 
   /* Buttons smaller */
   .w-import-btn-login {
-    padding: 14px;
+    padding: 20px;
     font-size: 14px;
   }
 
@@ -348,7 +350,7 @@
   }
 
   .w-import-btn-login {
-    padding: 12px;
+    padding: 17px;
     font-size: 13px;
   }
 
