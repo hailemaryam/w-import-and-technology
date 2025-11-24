@@ -5,11 +5,40 @@
   padding-top: 0px;
 }
 
+/* Back Button */
+.back-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #811117;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(129, 17, 23, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.back-button:hover {
+  background: #6a0e14;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(129, 17, 23, 0.4);
+}
+
 /* Hero Section */
 .terms-hero {
   background: linear-gradient(135deg, #811117 0%, #6a0e14 50%, #500a0f 100%);
   color: white;
-  padding: 80px 0;
+  padding: 100px 0 80px 0;
   text-align: center;
   margin-bottom: 0;
 }
@@ -20,21 +49,23 @@
   padding: 0 20px;
 }
 
-.hero-title {
+.hero-titlet {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   line-height: 1.1;
 }
 
-.hero-subtitle {
+.hero-subtitlet {
   font-size: 1.4rem;
-  opacity: 0.9;
+  opacity: 0.95;
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
   font-weight: 400;
+  color: #f8f9fa;
 }
 
 /* Main Content */
@@ -108,27 +139,29 @@
   gap: 10px;
 }
 
-/* Packages Grid */
+/* Single Package Display */
 .packages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 20px;
   margin-top: 20px;
 }
 
 .package-card {
   background: white;
-  padding: 25px;
+  padding: 25px 30px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 2px solid #e9ecef;
+  border: 2px solid #811117;
   transition: all 0.3s ease;
+  min-width: 200px;
 }
 
 .package-card:hover {
-  border-color: #811117;
+  border-color: #6a0e14;
   transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(129, 17, 23, 0.2);
 }
 
 .package-icon {
@@ -138,50 +171,47 @@
 }
 
 .package-text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #495057;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #811117;
 }
 
-/* Payment Box */
-.info-box.payment {
-  background: linear-gradient(135deg, #e8f5e8, #d4edda);
-  border-left-color: #28a745;
-}
-
-.info-box.payment h3 {
-  color: #155724;
-}
-
-/* Unsubscribe Box */
+/* Subscription Instructions Box */
 .info-box.unsubscribe {
-  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-  border-left-color: #ffc107;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-left-color: #811117;
+  margin-top: 30px;
 }
 
 .info-box.unsubscribe h3 {
-  color: #856404;
+  color: #811117;
+  font-size: 1.4rem;
 }
 
 .unsubscribe-options {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 20px;
 }
 
 .option {
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 15px;
+  padding: 20px;
   background: white;
-  border-radius: 10px;
-  border: 2px solid #ffeaa7;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.option:hover {
+  border-color: #811117;
+  transform: translateX(5px);
 }
 
 .option-badge {
-  background: #811117;
-  color: white;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -190,6 +220,26 @@
   justify-content: center;
   font-weight: 700;
   font-size: 1.1rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.option-badge.subscribe {
+  background: #28a745;
+}
+
+.option-badge.unsubscribe {
+  background: #dc3545;
+}
+
+.option-badge.shortcode {
+  background: #6c757d;
+}
+
+.option span:last-child {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #495057;
 }
 
 /* Closing Card */
@@ -237,15 +287,25 @@
 
 @media (max-width: 768px) {
   .terms-page {
-    padding-top: 70px;
+    padding-top: 80px;
+  }
+  
+  .back-container {
+    top: 15px;
+    left: 15px;
+  }
+  
+  .back-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
   }
   
   .terms-hero {
-    padding: 60px 0;
+    padding: 80px 0 60px 0;
   }
   
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
   
   .hero-subtitle {
@@ -270,11 +330,29 @@
   }
   
   .packages-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .package-card {
+    width: 100%;
+    max-width: 300px;
   }
   
   .info-box {
     padding: 25px;
+  }
+  
+  .unsubscribe-options {
+    gap: 12px;
+  }
+  
+  .option {
+    padding: 15px;
+  }
+  
+  .option span:last-child {
+    font-size: 1rem;
   }
   
   .closing-card {
@@ -288,11 +366,11 @@
 
 @media (max-width: 480px) {
   .terms-hero {
-    padding: 50px 0;
+    padding: 70px 0 50px 0;
   }
   
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   .hero-subtitle {
@@ -302,6 +380,9 @@
   .card-title {
     padding: 20px;
     font-size: 1.2rem;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
   
   .card-content {
@@ -316,6 +397,13 @@
     padding: 20px;
   }
   
+  .option {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 15px;
+  }
+  
   .closing-card {
     padding: 30px 20px;
   }
@@ -327,4 +415,23 @@
   .closing-text {
     font-size: 1.1rem;
   }
+  
+  .back-button {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* High contrast improvements for better readability */
+.card-content strong {
+  color: #811117;
+  font-weight: 700;
+}
+
+.info-box h3 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

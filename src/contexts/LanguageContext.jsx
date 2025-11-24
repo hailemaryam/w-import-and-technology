@@ -21,51 +21,45 @@ export const LanguageProvider = ({ children }) => {
   const translations = {
     en: {
       home: "Home",
+      heroSubtitle: "Your daily source for food recipes, sports updates, and health & beauty advice",
       Category: "Category",
       myAccount: "My Account",
       logout: "Logout",
       languageToggle: "En | አማርኛ",
       about: "About Us",
       aboutW_Import_and_Technology: "ABOUT W Import and Technology ----",
-      aboutTitle: "EXPERIENCE NEXT-LEVEL ENTERTAINMENT WITH W Import and Technology – YOUR ULTIMATE PREMIUM HTML5 GAMING PORTAL.",
-      aboutDescription: "Play hundreds of top-tier games instantly, no downloads, no delays, just pure enjoyment. Fast, elegant, and compatible with any device, W Import and Technology transforms every moment into a gaming adventure.",
       copyright: "© ETHIO TELECOM W Import and Technology 2025, ALL RIGHTS RESERVED",
-      // Updated Terms and Conditions from Excel
+      
+      // UPDATED Terms and Conditions
       termsTitle: "Terms and Conditions",
-      termsDescription: "Welcome to W Import and Technology Terms and Condition!",
-
+      termsDescription: "Welcome to W Import and Technology Terms and Conditions!",
       welcomeTitle: "1. Introduction",
-      welcomeContent: "These Terms and Condition govern your use of our website and services provided by Vision Tech One member PLC (\"we,\" \"us,\" or \"our\") available at https://W Import and Technology.et/Drr/ethtelco/login.php. By using our Services, you agree to comply with these Terms and Condition. Please read them carefully.",
-
+      welcomeContent1: "These Terms and Conditions govern your use of our website and services provided by W Import and Technology ",
+      welcomeContent2: ". By using our Services, you agree to comply with these Terms and Conditions. Please read them carefully.",
       userRegistrationTitle: "2. User Registration and Eligibility",
-      userRegistrationContent: "To access the Games, users must register with accurate and valid information.",
-
+      userRegistrationContent: "To access the Services, users must register with accurate and valid information.",
       subscriptionTitle: "3. Subscription Details",
-      subscriptionContent1: "These games require a subscription. You will receive a 3-day free trial.",
+      subscriptionContent1: "These Servcies require a subscription. You will receive a 3-day free trial.",
       subscriptionContent2: "After the trial period, your subscription will automatically renew at the rate corresponding to your selected package.",
-      subscriptionPackages: "Our subscription packages are",
-      dailyPackage: "3 ETB per day",
-      weeklyPackage: "15 ETB per week",
-      monthlyPackage: "75 ETB per month",
+      subscriptionPackages: "Our subscription package:",
+      dailyPackage: "2 ETB per day",
       paymentInfo: "Payment is processed through Ethio Telecom.",
-      unsubscribeTitle: "Users can unsubscribe by sending the following messages to 9735",
-      unsubscribeDaily: "\"stop A\" for daily subscription",
-      unsubscribeWeekly: "\"stop B\" for weekly subscription",
-      unsubscribeMonthly: "\"stop C\" for monthly subscription",
-
+      subscribeInstruction: "To subscribe: Send 'OK' to 9735",
+      unsubscribeInstruction: "To unsubscribe: Send 'STOP' to 9735",
+      shortcodeInfo: "Shortcode: 9735",
       technicalRequirementsTitle: "4. Technical Requirements",
-      technicalRequirementsContent1: "Participants are responsible for meeting hardware (laptop, phones, tablet) and internet connection requirements.",
-      technicalRequirementsContent2: "Technical issues on the player's end will cause interruption and it makes the game delayed.",
-
+      technicalRequirementsContent1: "Participants are responsible for meeting hardware and internet requirements.",
+      technicalRequirementsContent2: "Technical issues on the customer's end will cause interruption or delay.",
       ruleChangesTitle: "5. Rule Changes and Notification",
       ruleChangesContent: "Participants will be promptly notified of any rule changes.",
-
       contactInfoTitle: "6. Contact Information",
-      contactInfoContent: "If you have any questions or concerns related to our Services contact; Support@W Import and Technology.et",
+      contactInfoContent: "If you have questions or concerns about our services, contact kalebmenbere@gmail.com",
       closingMessage: "Thank you for using W Import and Technology!",
-      // Footer
+      backButton: "Back to Home",
+
+      // Footer & Login
       termsConditions: "Terms & Conditions",
-      welcome: "WELCOME TO W IMPORT AND TECHNOLOGY",
+      welcome: "WELCOME TO ",
       login: "Login",
       send_code: "SEND CODE",
       resend_code: "RE-SEND CODE",
@@ -87,7 +81,7 @@ export const LanguageProvider = ({ children }) => {
       login_btn: "LOGIN",
       trial: "Enjoy a 3-day free trial for your first Registration",
       help: "Help Desk : 251 970 305 059",
-      daily: "To subscribe daily (2 birr) send Ok to 9735",
+      daily: "To subscribe daily (1 birr) send OK to 9735",
       logging_in: "Logging in...",
       myAccount_header: "My Account",
       phone_number: "Phone Number",
@@ -100,7 +94,6 @@ export const LanguageProvider = ({ children }) => {
       unsubscribe: "Unsubscribe",
       loading: "Loading...",
       failedToLoad: "Failed to load data.",
-      noGamesAvailable: "No games available yet",
       in: "in",
       
       // BLOG WEBSITE TRANSLATIONS
@@ -155,7 +148,8 @@ export const LanguageProvider = ({ children }) => {
       newsletterError: 'Subscription failed. Please try again.',
       emailRequired: 'Email is required',
       invalidEmail: 'Please enter a valid email address',
-      // Add these to your existing English translations:
+      
+      // Account Management
       myAccount_description: 'Manage your account settings and subscription',
       accountInformation: 'Account Information',
       subscriptionManagement: 'Subscription Management',
@@ -184,6 +178,7 @@ export const LanguageProvider = ({ children }) => {
       of: 'of',
       previous: 'Previous',
       next: 'Next',
+      
       // PostDetails translations
       errorLoadingPost: 'Error loading post',
       postNotFound: 'Post not found',
@@ -195,51 +190,42 @@ export const LanguageProvider = ({ children }) => {
     },
     am: {
       home: "ዋና ገፅ",
+      heroSubtitle: "የዕለት ተዕለት ምግብ አሰራር፣ የስፖርት ዝመና እና የጤና እና ውበት ምክሮች ምንጭዎ",
       Category: "የጨዋታ ምድብ",
       myAccount: "መለያ",
       logout: "ውጣ",
       languageToggle: "En | አማርኛ",
       about: "ስለ እኛ",
-      aboutW_Import_and_Technology: "ስለ ኪዶፒያ ----",
-      aboutTitle: "የቀጣይ ደረጃ መዝናኛን ከW Import and Technology ጋር ይለማመዱ - የእርስዎ የመጨረሻው ፕሪሚየም HTML5 ጨዋታ መግቢያ።",
-      aboutDescription: "አዝናኝ አስተማሪ እንዲሁም አንድ ደረጃ ከፍ ያለ ከ100 በላይ ጌሞች ከ ኪዶፒያ ቀርቦሎታል፡፡ ጌሞቹን ማውረድ ሳይጠበቅቦት በቀጥታ ከፍጥነት ጋር በስልኮ፡ በላፕቶፖ እና በታብሌቶ ይዝናኑ፡፡",
-      privacyPolicy: "የግለሰቦች ፖሊሲ",
-      faq: "FAQ",
       copyright: "© W Import and Technology 2025፣ መብቱ በህግ የተጠበቀ ነው።",
-      // Updated Terms and Conditions from Excel (Amharic)
+      
+      // UPDATED Terms and Conditions in Amharic
       termsTitle: "ውሎች እና ሁኔታዎች",
       termsDescription: "እንኳን ወደ W Import and Technology ውሎች እና ሁኔታዎች በደህና መጡ፡፡",
-
       welcomeTitle: "1. መግቢያ",
-      welcomeContent: "እነዚህ የአገልግሎት ውሎች እና ሁኔታዎች ለእርስዎ በ Vision Tech One member PLC አማካኝነት የቀረበውን አገልግሎት የምትጠቀሙበትን ሁኔታ ይመራል ፡፡ ይህንንም በ፡ https://W Import and Technology.et/Drr/ethtelco/login.php ላይ ማግኘት ትችላላችሁ ፡፡ የእኛን አገልግሎቶች በመጠቀም እነዚህን ውሎች እና ሁኔታዎች ለመከተል ተስማምተዋል ፡፡ እባክዎትን በጥንቃቄ ያንብቡአቸው ፡፡",
-
+      welcomeContent1: "እነዚህ ውሎች እና ሁኔታዎች ድርጅታችንን እና አገልግሎቶቹን ",
+      welcomeContent2:" እንዴት እንደምትጠቀሙ ይመራሉ። እባክዎ በጥንቃቄ ያንብቡ፡፡",
       userRegistrationTitle: "2. የተጠቃሚ ምዝገባ እና ብቁነት",
-      userRegistrationContent: "ጨዋታዎችን ለማግኘት ተጠቃሚዎች ትክክለኛ እና አግባብነት ያላቸው መረጃ በመያዝ ሊመዘገቡ ይገባል፡፡",
-
+      userRegistrationContent: "ጨዋታዎችን ለመጠቀም ተጠቃሚዎች ትክክለኛ መረጃ ማስገባት ይኖርባቸዋል።",
       subscriptionTitle: "3. የምዝገባ ዝርዝሮች",
-      subscriptionContent1: "እነዚህ ጨዋታዎች የደንበኝነት ምዝገባን ይፈልጋሉ። የ3-ቀን ነጻ የሙከራ ጊዜ ያገኛሉ።",
-      subscriptionContent2: "ከሙከራ ጊዜው በኋላ፣ የደንበኝነት ምዝገባዎ በመረጡት ጥቅል መጠን በራስ-ሰር ይታደሳል።",
-      subscriptionPackages: "የእኛ የደንበኝነት ምዝገባ ጥቅሎች የሚከተሉት ናቸው፦",
-      dailyPackage: "በቀን 3 ብር",
-      paymentInfo: "ክፍያ የሚካሄደው በኢትዮ ቴሌኮም በኩል ነው።",
-      unsubscribeTitle: "ተጠቃሚዎች ከደንበኝነት ምዝገባው ለመውጣት (ለመሰረዝ) የሚከተሉትን መልዕክቶች ወደ 9735 መላክ ይችላሉ፦",
-      unsubscribeDaily: "ለዕለታዊ ምዝገባ \"stop A\"",
-      unsubscribeWeekly: "ለሳምንታዊ ምዝገባ \"stop B\"",
-      unsubscribeMonthly: "ለወርሃዊ ምዝገባ \"stop C\"",
-
-      technicalRequirementsTitle: "4. የቴክኒክ መስፈርቶች",
-      technicalRequirementsContent1: "ተጫዋቾች የሀርድ ዌር { ስልኮች፤ላፕቶፖች፤ታብሌቶች} እና የኢንተርኔት ግንኙነት መስፈርቶችን የማሟላት ሀላፊነት አለባቸው፡፡",
-      technicalRequirementsContent2: "በተጫዋቾች በኩል ያሉ የቴክኒክ ጉዳቶች ጨዋታው እንዲቋረጥ ወይም እንዲዘገይ ያደርገዋል፡፡",
-
-      ruleChangesTitle: "5. የህግ ለውጦች እና ማሳወቂያ",
-      ruleChangesContent: "ተጫዋቾች ማንኛወም የህግ ለውጥ በተመለከተ በአፋጣኝ ማሳወቂያ የሚሰጣቸው ይሆናል፡፡",
-
+      subscriptionContent1: "ጨዋታዎች የመመዝገቢያ ጥቅል ይፈልጋሉ። 3 ቀን ነፃ ሙከራ ይገኛል።",
+      subscriptionContent2: "ከሙከራ ጊዜው በኋላ ምዝገባዎ በራስ-ሰር ይታደሳል።",
+      subscriptionPackages: "የእኛ የደንበኝነት ምዝገባ ጥቅል፦",
+      dailyPackage: "በቀን 1 ብር",
+      paymentInfo: "ክፍያ በኢትዮ ቴሌኮም ተፈጻሚ ነው።",
+      subscribeInstruction: "ለመመዝገብ፡ 'OK' ወደ 9735 ይላኩ",
+      unsubscribeInstruction: "ለመሰረዝ፡ 'STOP' ወደ 9735 ይላኩ",
+      shortcodeInfo: "የመስጫ ኮድ፡ 9735",
+      technicalRequirementsTitle: "4. ቴክኒክ መስፈርቶች",
+      technicalRequirementsContent1: "ተጫዋቾች የዲቫይስ እና የኢንተርኔት መስፈርቶችን ማሟላት አለባቸው።",
+      technicalRequirementsContent2: "ችግሮች ጨዋታውን ሊያቋርጡ ወይም ሊዘገዩ ይችላሉ።",
+      ruleChangesTitle: "5. የህግ ለውጦች",
+      ruleChangesContent: "ማንኛውም ለውጥ በአፋጣኝ ይገለጻል።",
       contactInfoTitle: "6. የግንኙነት መረጃ",
-      contactInfoContent: "ከአገልግሎቶቻችን ጋር በተያያዘ ለሚነሱ ጥያቄዎች እንዲሁም ተጨማሪ መረጃ በ Support@W Import and Technology.et ያግኙናል።",
+      contactInfoContent: "ጥያቄ ካለዎት በ Support@WImportAndTechnology.et ያግኙ።",
+      closingMessage: "እኛን ስለተጠቀሙ እናመሰግናለን!",
+      backButton: "ወደ መነሻ ተመለስ",
 
-      closingMessage: "W Import and Technologyን ስለተጠቀሙ እናመሰግናለን።",
-
-      // Footer
+      // Footer & Login
       termsConditions: "ውሎች እና ሁኔታዎች",
       welcome: "እንኳን ወደ W Import and Technology በደህና መጡ",
       login: "ለመመዝገብ",
@@ -263,9 +249,7 @@ export const LanguageProvider = ({ children }) => {
       login_btn: "ግባ",
       trial: "ለመጀመሪያ ምዝገባዎ 3 ቀን በነፃ ይጠቀሙ",
       help: "ለበለጠ መረጃ 251 970 305 059",
-      daily: "ለዕለታዊ ለመመዝገብ (3) A ወደ 9735 ይላኩ",
-      weekly: "ለሳምንታዊ ለመመዝገብ (15) B ወደ 9735 ይላኩ",
-      monthly: "ለወርሃዊ ለመመዝገብ (75) C ወደ 9735 ይላኩ",
+      daily: "ለዕለታዊ ለመመዝገብ (1 ብር) OK ወደ 9735 ይላኩ",
       logging_in: "በመግባት ላይ...",
       myAccount_header: "የእኔ መለያ",
       phone_number: "ስልክ ቁጥር",
@@ -278,7 +262,6 @@ export const LanguageProvider = ({ children }) => {
       unsubscribe: "መመዝገብ ሰርዝ",
       loading: "በመጫን ላይ...",
       failedToLoad: "መረጃ መጫን አልተሳካም።",
-      noGamesAvailable: "ጨዋታዎች አልተገኙም።",
       in: "በ",
       
       // BLOG WEBSITE TRANSLATIONS
@@ -297,7 +280,7 @@ export const LanguageProvider = ({ children }) => {
       // Homepage Translations
       searchPlaceholder: 'ጽሑፎችን ይፈልጉ...',
       search: 'ፈልግ',
-      popularPosts: 'ታዋቂ ጽሑፎች',
+      OurPosts: 'የእኛ ጽሑፎች',
       mostRead: 'በዚህ ሳምንት በጣም የተነበቡ ጽሑፎች',
       viewAllPosts: 'ሁሉንም ጽሑፎች ይመልከቱ →',
       exploreTopics: 'ጽሑፎችን በርዕሰ ጉዳይ ይፈልጉ',
@@ -333,7 +316,8 @@ export const LanguageProvider = ({ children }) => {
       newsletterError: 'መመዝገብ አልተሳካም። እባክዎ እንደገና ይሞክሩ።',
       emailRequired: 'ኢሜል ያስፈልጋል',
       invalidEmail: 'እባክዎ ትክክለኛ ኢሜል አድራሻ ያስገቡ',
-      // Add these to your existing Amharic translations:
+      
+      // Account Management
       myAccount_description: 'የመለያ ቅንብሮችዎን እና የደንበኝነት ምዝገባዎን ያስተዳድሩ',
       accountInformation: 'የመለያ መረጃ',
       subscriptionManagement: 'የደንበኝነት ምዝገባ አስተዳደር',
@@ -362,6 +346,7 @@ export const LanguageProvider = ({ children }) => {
       of: 'ከ',
       previous: 'ያለፈ',
       next: 'ቀጣይ',
+      
       // PostDetails translations
       errorLoadingPost: 'ጽሑፍ ማምጣት አልተሳካም',
       postNotFound: 'ጽሑፍ አልተገኘም',
