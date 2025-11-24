@@ -22,7 +22,7 @@ function Footer() {
             <p className="footer-description">
               {currentLang === 'am' 
                 ? 'የጤና፣ ስፖርት እና ምግብ ብሎግ'
-                : 'Health, Sports & Food Blog'
+                : 'Health and Beauty, Sports News & Food Preparation Blog'
               }
             </p>
           </div>
