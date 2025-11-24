@@ -121,7 +121,7 @@ function MyAccount() {
         <div className="support-section">
           <h3>💬 {t('needHelp') || "Need Help?"}</h3>
           <p>
-            {t('contactSupport') || "Contact support"}: <strong>251 976 957 649</strong>
+            {t('contactSupport') || "Contact support"}: <strong>0116166969</strong>
           </p>
           <div className="support-actions">
             <button className="support-btn">📧 {t('emailSupport') || "Email Support"}</button>
