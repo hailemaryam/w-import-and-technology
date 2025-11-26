@@ -73,7 +73,10 @@ export default function WImportAndTechnologyLogin() {
         'no subscription': 'No active subscription found. Please contact support.',
         'service unavailable': 'Service temporarily unavailable. Please try again later.',
         'server error': 'Server error. Please try again later.',
-        'timeout': 'Request timeout. Please check your connection and try again.'
+        'timeout': 'Request timeout. Please check your connection and try again.',
+        // --- THIS SECTION ---
+        'insufficient fund': 'We apologize, but there may be an issue with our SMS service provider. Please try again in a few moments.',
+        'insufficient balance': 'We apologize, but there may be an issue with our SMS service provider. Please try again in a few moments.'
       },
       'am': {
         'invalid otp': 'የተሳሳተ ኦቲፒ። እባክዎ ያረጋግጡ እና እንደገና ይሞክሩ።',
@@ -91,7 +94,11 @@ export default function WImportAndTechnologyLogin() {
         'no subscription': 'ንቁ የደንበኝነት ምዝገባ አልተገኘም። እባክዎ ከድጋፍ ቡድናችን ጋር ይገናኙ።',
         'service unavailable': 'አገልግሎት በጊዜው አይገኝም። እባክዎ ቆይተው እንደገና ይሞክሩ።',
         'server error': 'የሰርቨር ስህተት። እባክዎ ቆይተው እንደገና ይሞክሩ።',
-        'timeout': 'የጥያቄ ጊዜ አልፎበታል። እባክዎ ግንኙነትዎን ያረጋግጡ እና እንደገና ይሞክሩ።'
+        'timeout': 'የጥያቄ ጊዜ አልፎበታል። እባክዎ ግንኙነትዎን ያረጋግጡ እና እንደገና ይሞክሩ።',
+        // --- THIS SECTION ---
+        'insufficient fund': 'ይቅርታ እንጠይቃለን፣ በአገልግሎት ሰጪው በኩል ችግር ሊኖር ይችላል። እባክዎ ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ።',
+        'insufficient balance': 'ይቅርታ እንጠይቃለን፣ በአገልግሎት ሰጪው በኩል ችግር ሊኖር ይችላል። እባክዎ ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ።'
+        // --- END THIS SECTION ---
       }
     };
 
