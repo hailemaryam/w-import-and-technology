@@ -24,7 +24,7 @@ const TermsAndConditions = () => {
           <section className="terms-card">
             <h2 className="card-title">📖 {t("welcomeTitle")}</h2>
             <div className="card-content">
-              <p>{t("welcomeContent1")} <a href="http://amhaservice.et/">amhaservice.et</a> {t("welcomeContent2")}</p>
+              <p>{t("welcomeContent1")} <a href="https://amhaservice.et/">amhaservice.et</a> {t("welcomeContent2")}</p>
             </div>
           </section>
 

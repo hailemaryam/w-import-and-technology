@@ -9,9 +9,9 @@ import { useEffect } from 'react';
 // Base URL for Frappe API
 // DEV: empty string to leverage Vite proxy
 // PROD: actual domain
-const frappeUrl = import.meta.env.DEV 
+const frappeUrl = import.meta.env.DEV
   ? window.location.origin
-  : 'http://amhaservice.et';
+  : 'https://amhaservice.et';
 
 console.log('Frappe URL:', frappeUrl);
 console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
